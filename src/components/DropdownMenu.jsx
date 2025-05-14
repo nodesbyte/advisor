@@ -20,11 +20,7 @@ const Dropdowns = ({ title, items = [], link, image, label, imageGroup }) => {
     }, []);
 
     const handleItemClick = (index) => {
-        if (activeItem === index) {
-            setActiveItem(null);
-        } else {
-            setActiveItem(index);
-        }
+        setActiveItem(activeItem === index ? null : index);
     };
 
     return (
@@ -37,12 +33,12 @@ const Dropdowns = ({ title, items = [], link, image, label, imageGroup }) => {
             </button>
 
             {isOpen && (
-                <div className="absolute left-0 w-screen bg-[#c2a48f] text-white shadow-xl z-50 border-t border-black">
-                    <div className="max-w-7xl mx-auto px-4">
+                <div className="fixed left-0 w-screen bg-[#814d35] text-white shadow-xl z-50 
+                 overflow-x-hidden">
+                    <div className="px-4 md:px-8 py-6 mx-auto max-w-7xl">
                         {plainTitle === "Our Team" ? (
-                            <div className="flex py-6">
-                                {/* Left Column */}
-                                <div className="w-1/2 pr-6 border-r border-gray-700">
+                            <div className="flex flex-col md:flex-row gap-6">
+                                <div className="md:w-1/2 pr-6 border-r border-gray-700">
                                     <h2 className="text-2xl font-bold">{plainTitle}</h2>
                                     <p className="mt-4 text-sm leading-relaxed">
                                         Meet our team of dedicated professionals driving impactful change.
@@ -54,9 +50,7 @@ const Dropdowns = ({ title, items = [], link, image, label, imageGroup }) => {
                                         View Full Team <ChevronRight size={16} />
                                     </Link>
                                 </div>
-
-                                {/* Right Column (2x2 Image Grid) */}
-                                <div className="w-1/2 pl-6 grid grid-cols-2 gap-4">
+                                <div className="md:w-1/2 grid grid-cols-2 gap-4">
                                     {imageGroup?.map((imgSrc, idx) => (
                                         <img
                                             key={idx}
@@ -68,9 +62,8 @@ const Dropdowns = ({ title, items = [], link, image, label, imageGroup }) => {
                                 </div>
                             </div>
                         ) : plainTitle === "Insights" ? (
-                            <div className="flex py-6">
-                                {/* Left Column */}
-                                <div className="w-1/3 pr-6 border-r border-gray-700">
+                            <div className="flex flex-col md:flex-row gap-6">
+                                <div className="md:w-1/3 pr-6 border-r border-gray-700">
                                     <h2 className="text-2xl font-bold">{plainTitle}</h2>
                                     <p className="mt-4 text-sm leading-relaxed">
                                         Provide Excellent Customer Service
@@ -83,8 +76,7 @@ const Dropdowns = ({ title, items = [], link, image, label, imageGroup }) => {
                                     </Link>
                                 </div>
 
-                                {/* Center Column - Insights specific */}
-                                <div className="w-1/3 px-6 flex flex-col gap-4 text-white border-r border-gray-700">
+                                <div className="md:w-1/3 px-6 flex flex-col gap-4 border-r border-gray-700">
                                     {items.map((item, index) => (
                                         <div key={index} className="relative">
                                             <div
@@ -92,16 +84,19 @@ const Dropdowns = ({ title, items = [], link, image, label, imageGroup }) => {
                                                 onClick={() => handleItemClick(index)}
                                             >
                                                 <span className="text-sm">{item.label}</span>
-                                                {item.sublinks && <ChevronDown size={14} className={`transition-transform ${activeItem === index ? 'rotate-180' : ''}`} />}
+                                                {item.sublinks && (
+                                                    <ChevronDown
+                                                        size={14}
+                                                        className={`transition-transform ${activeItem === index ? "rotate-180" : ""}`}
+                                                    />
+                                                )}
                                             </div>
-
-                                            {/* Sublinks dropdown - removed hover effect */}
                                             {item.sublinks && activeItem === index && (
-                                                <div className="mt-1 ml-4 w-full">
+                                                <div className="mt-1 ml-4">
                                                     {item.sublinks.map((sublink, subIndex) => (
                                                         <Link
                                                             key={subIndex}
-                                                            to={`/${item.label.toLowerCase()}/${sublink.toLowerCase().replace(/\s+/g, '-')}`}
+                                                            to={`/${item.label.toLowerCase()}/${sublink.toLowerCase().replace(/\s+/g, "-")}`}
                                                             className="block px-4 py-2 text-sm text-white rounded"
                                                         >
                                                             {sublink}
@@ -113,8 +108,7 @@ const Dropdowns = ({ title, items = [], link, image, label, imageGroup }) => {
                                     ))}
                                 </div>
 
-                                {/* Right Column - Image */}
-                                <div className="w-1/3 pl-6">
+                                <div className="md:w-1/3 pl-6">
                                     <img
                                         src={image}
                                         alt={`${plainTitle} Preview`}
@@ -123,9 +117,8 @@ const Dropdowns = ({ title, items = [], link, image, label, imageGroup }) => {
                                 </div>
                             </div>
                         ) : (
-                            <div className="flex py-6">
-                                {/* Left Column */}
-                                <div className="w-1/3 pr-6 border-r border-gray-700">
+                            <div className="flex flex-col md:flex-row gap-6">
+                                <div className="md:w-1/3 pr-6 border-r border-gray-700">
                                     <h2 className="text-2xl font-bold">{plainTitle}</h2>
                                     <p className="mt-4 text-sm leading-relaxed">
                                         {plainTitle === "Trainings"
@@ -140,12 +133,11 @@ const Dropdowns = ({ title, items = [], link, image, label, imageGroup }) => {
                                     </Link>
                                 </div>
 
-                                {/* Center Column */}
-                                <div className="w-1/3 px-6 flex flex-col gap-4 text-white border-r border-gray-700">
+                                <div className="md:w-1/3 px-6 flex flex-col gap-3 text-white border-r border-gray-700">
                                     {items.map((item, index) => (
                                         <Link
                                             key={index}
-                                            to={`${link}/${item.toLowerCase().replace(/\s+/g, '-')}`}
+                                            to={`${link}/${item.toLowerCase().replace(/\s+/g, "-")}`}
                                             className="text-sm hover:underline"
                                         >
                                             {item}
@@ -153,8 +145,7 @@ const Dropdowns = ({ title, items = [], link, image, label, imageGroup }) => {
                                     ))}
                                 </div>
 
-                                {/* Right Column */}
-                                <div className="w-1/3 pl-6">
+                                <div className="md:w-1/3 pl-6">
                                     <img
                                         src={image}
                                         alt={`${plainTitle} Preview`}

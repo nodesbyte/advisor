@@ -15,10 +15,28 @@ const postsData = [
         date: 'May 31, 2024',
         title: 'Taxes for growth & prosperity',
         authors: 'Dr. Ikramul Haq and Abdul Rauf Shakoori'
-    }
+    },
+    {
+        image: recent2,
+        date: 'May 31, 2024',
+        title: 'Taxes for growth & prosperity',
+        authors: 'Dr. Ikramul Haq and Abdul Rauf Shakoori'
+    },
+    {
+        image: recent2,
+        date: 'May 31, 2024',
+        title: 'Taxes for growth & prosperity',
+        authors: 'Dr. Ikramul Haq and Abdul Rauf Shakoori'
+    },
+    {
+        image: recent2,
+        date: 'May 31, 2024',
+        title: 'Taxes for growth & prosperity',
+        authors: 'Dr. Ikramul Haq and Abdul Rauf Shakoori'
+    },
 ];
 
-const FeaturedInsights = ({ isInteractive = false }) => {
+const FeaturedInsights = ({ isInteractive = false, isInsightsPage = false }) => {
     const [featuredPost, setFeaturedPost] = useState({
         image: featuredImage,
         date: '23 Apr at 5:48 pm',
@@ -51,32 +69,58 @@ const FeaturedInsights = ({ isInteractive = false }) => {
         setRecentPosts(updatedRecent);
     };
 
+    // Display only two recent posts on non-Insights pages
+    const recentPostsToShow = isInsightsPage ? recentPosts : recentPosts.slice(0, 2);
+
     return (
         <section className="bg-white py-12 px-6">
             <div className="max-w-7xl mx-auto grid md:grid-cols-3 gap-8">
-                {/* Featured */}
+                {/* Featured Post */}
                 <div className="md:col-span-2">
-                    <h2 className="text-6xl font-bold text-[#814d35] mb-6 font-lisu">Featured insights</h2>
+                    <h2 className="text-6xl font-bold text-[#814d35] mb-6 font-lisu">Featured Insights</h2>
+
+                    {/* Featured Image Section */}
                     <div className="relative rounded-xl overflow-hidden">
                         <img src={featuredPost.image} alt="Featured" className="w-full h-[400px] object-cover" />
-                        <div className="absolute top-4 left-4 text-white text-sm">Posted on {featuredPost.date}</div>
-                        <div className="absolute bottom-40 left-4 text-white">
-                            <h3 className="text-3xl font-bold">{featuredPost.title}</h3>
-                        </div>
+                        
+                        {/* Text Overlay - Only for non-Insights pages */}
+                        {!isInsightsPage && (
+                            <>
+                                <div className="absolute top-4 left-4 text-white text-sm">Posted on {featuredPost.date}</div>
+                                <div className="absolute bottom-40 left-4 text-white">
+                                    <h3 className="text-3xl font-bold">
+                                        {featuredPost.title.split('\n').map((line, index) => (
+                                            <span key={index}>
+                                                {line}
+                                                <br />
+                                            </span>
+                                        ))}
+                                    </h3>
+                                </div>
+                            </>
+                        )}
                     </div>
+
+                    {/* For Insights Page, show the text below the image */}
+                    {isInsightsPage && (
+                        <div className="mt-6">
+                            <div className="text-sm text-gray-600">Posted on {featuredPost.date}</div>
+                            <h3 className="text-3xl font-bold mt-2">{featuredPost.title}</h3>
+                        </div>
+                    )}
                 </div>
 
-                {/* Recents */}
+                {/* Recent Posts */}
                 <div>
-                    <h3 className="text-3xl font-bold text-[#814d35] mb-6">Recents Post</h3>
+                    <h3 className="text-3xl font-bold text-[#814d35] mb-6">Recent Posts</h3>
 
-                    {recentPosts.map((post, index) => (
+                    {recentPostsToShow.map((post, index) => (
                         <div key={index} className="mb-8 cursor-pointer" onClick={() => handleRecentClick(index)}>
                             <img src={post.image} alt={`Post ${index + 1}`} className="w-full h-32 object-cover rounded-md mb-2" />
                             <div className="text-sm text-gray-600 mb-1">Posted on {post.date}</div>
                             <h4 className="text-md font-bold text-[#814d35]">{post.title}</h4>
                             <p className="text-xs text-gray-700">{post.authors}</p>
-                            {index !== recentPosts.length - 1 && <hr className="my-4" />}
+                            {index !== recentPostsToShow.length - 1 && <hr className="my-4" />}
                         </div>
                     ))}
                 </div>
