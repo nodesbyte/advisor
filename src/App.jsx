@@ -14,10 +14,12 @@ import TrainingServices from "./components/TrainingServices";
 import AboutSection from "./components/AboutSection";
 import TeamSection from "./components/TeamSection";
 import TestimonialSection from "./components/TestimonialSection";
-
+import PageTop from './components/PageTop';
 // Pages
 import ServicesPage from "./pages/ServicesPage";
 import ServiceDetail from "./pages/ServiceDetail";
+import Insights from "./pages/Insights";
+import Contact from "./pages/Contact";
 import TrainingPage from "./pages/TrainingPage";
 // import TrainingDetail from "./pages/TrainingDetail"; // Import TrainingDetail Page
 
@@ -32,6 +34,7 @@ const theme = createTheme({
 function App() {
   return (
     <ThemeProvider theme={theme}>
+      <PageTop/>
       <CssBaseline />
       <Navbar />
 
@@ -53,10 +56,12 @@ function App() {
         <Route path="/services" element={<ServicesPage />} />
         <Route path="/services/:slug" element={<ServiceDetail />} />
         <Route path="/trainings" element={<TrainingPage />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/featured" element={<Insights />} />
         {/* <Route path="/trainings/:slug" element={<TrainingDetail />} /> Update the path for training detail */}
       </Routes>
-
       <Footer />
+
     </ThemeProvider>
   );
 }
