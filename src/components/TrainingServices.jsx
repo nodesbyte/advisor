@@ -1,42 +1,55 @@
+import { Link } from "react-router-dom";
 import { LuPresentation } from "react-icons/lu";
+import { FaChalkboardTeacher, FaUserTie, FaUsersCog, FaLayerGroup } from "react-icons/fa";
 
 const trainingServices = [
-    "Training Needs Assessment (TNA)",
-    "Capacity Building Programs",
-    "Leadership & Team Building",
-    "Customized Training Modules",
+    {
+        title: "Training Needs Assessment (TNA)",
+        icon: <FaChalkboardTeacher className="text-4xl mb-4" />,
+    },
+    {
+        title: "Capacity Building Programs",
+        icon: <FaUsersCog className="text-4xl mb-4" />,
+    },
+    {
+        title: "Leadership & Team Building",
+        icon: <FaUserTie className="text-4xl mb-4" />,
+    },
+    {
+        title: "Customized Training Modules",
+        icon: <FaLayerGroup className="text-4xl mb-4" />,
+    },
 ];
 
 const TrainingServices = () => {
-    const handleClick = (service) => {
-        alert(`Clicked: ${service}`);
-        // You can navigate, open modal, or trigger any logic here
-    };
-
     return (
-        <section className="bg-[#f9f9f7] py-16 px-6">
+        <section className="bg-white py-16 px-6 text-black">
             <div className="max-w-7xl mx-auto text-center">
-                <h2 className="text-2xl md:text-3xl font-bold text-[#814d35] mb-12 font-lisu">
+                <h2 className="text-2xl md:text-3xl font-bold mb-12 font-lisu">
                     Provide Training Services With Our Tools
                 </h2>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-8">
+                {/* Cards with icons and links */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                     {trainingServices.map((service, index) => (
-                        <button
+                        <Link
+                            to="/trainings"
                             key={index}
-                            onClick={() => handleClick(service)}
-                            className="bg-[#b78c73] flex flex-col justify-center items-center text-center px-8 py-10 rounded-xl text-[#3c1f14] h-56 hover:bg-[#a1745c] transition duration-200 w-full"
+                            className="bg-[#0f1e3c] w-full flex flex-col justify-center items-center text-center px-6 py-10 rounded-xl h-56 text-white hover:bg-[#1c2d57] transition duration-200"
                         >
-                            <LuPresentation className="text-4xl mb-4" />
-                            <p className="font-semibold">{service}</p>
-                        </button>
+                            {service.icon}
+                            <p className="font-semibold">{service.title}</p>
+                        </Link>
                     ))}
                 </div>
 
                 <div className="mt-12">
-                    <button className="border border-[#814d35] text-[#814d35] font-medium px-6 py-2 rounded-full hover:bg-[#814d35] hover:text-white transition">
+                    <Link
+                        to="/trainings"
+                        className="border border-[#0f1e3c] text-[#0f1e3c] font-medium px-6 py-2 rounded-full hover:bg-[#0f1e3c] hover:text-white transition"
+                    >
                         View All Trainings →
-                    </button>
+                    </Link>
                 </div>
             </div>
         </section>
