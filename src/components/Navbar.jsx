@@ -35,7 +35,7 @@ const insights = [
   },
   {
     label: "Newspapers",
-    sublinks: ["Daily News", "Global Times", "Economic Daily"],
+    // sublinks: ["Daily News", "Global Times", "Economic Daily"],
   },
   {
     label: "Articles",
@@ -122,7 +122,7 @@ const Navbar = () => {
               </span>
             }
             items={insights}
-            link="/insights"
+            link="/featured"
             image={insightsImg}
           />
           <Link to="/support" className="hover:underline">Support</Link>
