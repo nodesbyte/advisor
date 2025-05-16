@@ -5,9 +5,9 @@ import { Facebook, Linkedin, Send } from "lucide-react";
 const TeamSection = () => {
     const team = [
         { name: "Tahir Hassan Qureshi", title: "Senior Partner", image: profile1 },
-        { name: "Rauf", title: "Senior Partner", image: profile2 },
+        { name: "Abdul Rauf Shakoori", title: "Senior Partner", image: profile2 },
         { name: "Tahir Hassan Qureshi", title: "Senior Partner", image: profile1 },
-        { name: "Rauf", title: "Senior Partner", image: profile2 },
+        { name: "Abdul Rauf Shakoori", title: "Senior Partner", image: profile2 },
     ];
 
     return (

@@ -9,14 +9,18 @@ import image1 from "../assets/team1.jpg";
 import image2 from "../assets/team2.jpg";
 import image3 from "../assets/team1.jpg";
 import image4 from "../assets/team2.jpg";
+// import SearchBar from "../components/SearchBar"; // adjust path as needed
 
 const services = [
-  "ESG Advisory",
-  "AML & Sanctions Compliance",
-  "Investigations & Intelligence",
-  "Regulatory Examinations",
-  "Risk & Compliance",
+  "ESG Strategy and Implementation Services",
+  "AML–CFT and Sanctions Compliance",
+  "Investigative and Business Intelligence Services",
+  "Independent and Pre-Regulatory Examinations",
+  "Risk, Compliance, and Controls",
+  "Strategic Assurance and Policies Development",
+  "Testing",
 ];
+
 
 const trainings = [
   "Training Needs Analysis",
@@ -54,6 +58,7 @@ const Navbar = () => {
             <img src={logo} alt="Logo" className="w-28 h-auto" />
           </Link>
           <div className="flex-1 flex justify-center px-4">
+            {/* <SearchBar/> */}
             <input
               type="text"
               placeholder="Search by services, trainings, and more..."
@@ -125,7 +130,6 @@ const Navbar = () => {
             link="/featured"
             image={insightsImg}
           />
-          <Link to="/support" className="hover:underline">Support</Link>
         </div>
       </div>
     </header>

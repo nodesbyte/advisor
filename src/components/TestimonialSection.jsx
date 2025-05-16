@@ -1,9 +1,9 @@
 import { useState } from "react";
 import profile1 from "../assets/profile1.png";
-import profile2 from "../assets/profile1.png";
-import profile3 from "../assets/profile1.png";
-import profile4 from "../assets/profile1.png";
-import profile5 from "../assets/profile1.png";
+import profile2 from "../assets/profile2.jpg";
+import profile3 from "../assets/profile3.jpg";
+import profile4 from "../assets/profile4.jpg";
+import profile5 from "../assets/profile3.jpg";
 
 const testimonials = [
     {
