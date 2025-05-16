@@ -1,5 +1,6 @@
 // src/components/AboutSection.jsx
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const valuesData = [
     {
@@ -85,7 +86,7 @@ export default function AboutSection() {
                         ‹
                     </button>
 
-                    <div className="max-w-xl bg-gray-100 p-8 rounded shadow text-left">
+                    <div className="max-w-xll bg-gray-100 p-8 rounded shadow text-left">
                         <h4 className="text-4xl font-bold text-[#0f1e3c] mb-1">
                             {valuesData[current].number}
                         </h4>
@@ -107,12 +108,13 @@ export default function AboutSection() {
                 </div>
             </div>
 
-            {/* Bottom CTA */}
-            <div className="mt-12 bg-[#814d35] text-white py-6 px-8 rounded-xl flex justify-between items-center">
-                <h4 className="text-xl">Who we are?</h4>
-                <button className="bg-white text-[#814d35] px-4 py-2 text-sm font-semibold rounded-full">
-                    Explore More
-                </button>
+            <div className="mt-12">
+                <Link
+                    to="/about"
+                    className="border border-[#0f1e3c] text-[#0f1e3c] font-medium px-6 py-2 rounded-full hover:bg-[#0f1e3c] hover:text-white transition"
+                >
+                    View More →
+                </Link>
             </div>
         </section>
     );

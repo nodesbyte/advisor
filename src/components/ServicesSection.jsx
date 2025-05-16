@@ -1,15 +1,78 @@
 import { useState } from 'react';
-import { FaPodcast } from 'react-icons/fa'; // Matching the icon shown
+import {
+    FaLeaf,          // ESG
+    FaShieldAlt,     // AML-CFT
+    FaSearch,        // Investigations
+    FaLock,          // Cybersecurity
+    FaUserShield,    // GDPR
+    FaBug,           // Fraud
+    FaGavel,         // Governance
+    FaCogs,          // Systems Modeling
+    FaRegClipboard,  // Policy Development
+    FaChalkboardTeacher, // Training
+} from 'react-icons/fa';
 
 const services = [
-    "ESG strategy & Implementation",
-    "ESG strategy & Implementation",
-    "ESG strategy & Implementation",
-    "AML-CFT and Sanctions Compliance",
-    "ESG strategy & Implementation",
-    "ESG strategy & Implementation",
-    "ESG strategy & Implementation",
-    "ESG strategy & Implementation",
+    {
+        name: "ESG Strategy and Implementation",
+        description:
+            "We help organizations integrate Environmental, Social, and Governance concerns into their operations for responsible and sustainable business practices.",
+        icon: <FaLeaf size={24} className="text-[#814d35]" />,
+    },
+    {
+        name: "AML-CFT and Sanctions Compliance",
+        description:
+            "Ensures compliance with anti-money laundering regulations and international sanctions to prevent financial crime.",
+        icon: <FaShieldAlt size={24} className="text-[#814d35]" />,
+    },
+    {
+        name: "Business Intelligence & Investigations",
+        description:
+            "Offers insights and data-driven investigations to support business decisions and mitigate risk.",
+        icon: <FaSearch size={24} className="text-[#814d35]" />,
+    },
+    {
+        name: "Cyber Security & Information Protection",
+        description:
+            "Protects your organization from cyber threats and ensures data integrity and security compliance.",
+        icon: <FaLock size={24} className="text-[#814d35]" />,
+    },
+    {
+        name: "GDPR Implementation",
+        description:
+            "Guides businesses in aligning with data privacy laws to safeguard customer data and build trust.",
+        icon: <FaUserShield size={24} className="text-[#814d35]" />,
+    },
+    {
+        name: "Fraud Detection & Prevention",
+        description:
+            "Minimizes risk by identifying and mitigating fraudulent activities across systems and processes.",
+        icon: <FaBug size={24} className="text-[#814d35]" />,
+    },
+    {
+        name: "Corporate Governance",
+        description:
+            "Helps companies establish strong governance structures that ensure accountability and compliance.",
+        icon: <FaGavel size={24} className="text-[#814d35]" />,
+    },
+    {
+        name: "Systems Modeling and Evaluations",
+        description:
+            "Analyzes systems and workflows to improve operational efficiency and performance.",
+        icon: <FaCogs size={24} className="text-[#814d35]" />,
+    },
+    {
+        name: "Strategic Policy Development",
+        description:
+            "Supports the creation of effective policies to strengthen organizational strategy and culture.",
+        icon: <FaRegClipboard size={24} className="text-[#814d35]" />,
+    },
+    {
+        name: "Training and Workshops",
+        description:
+            "Empowers teams through interactive learning sessions focused on compliance, leadership, and technical skills.",
+        icon: <FaChalkboardTeacher size={24} className="text-[#814d35]" />,
+    },
 ];
 
 const ServicesSection = () => {
@@ -28,12 +91,12 @@ const ServicesSection = () => {
                             key={index}
                             onClick={() => setSelectedService(service)}
                             className={`flex items-center justify-between w-full p-4 border-b hover:bg-gray-50 transition-all ${
-                                selectedService === service ? 'bg-gray-100 border-[#814d35]' : ''
+                                selectedService?.name === service.name ? 'bg-gray-100 border-[#814d35]' : ''
                             }`}
                         >
                             <div className="flex items-center gap-3">
-                                <FaPodcast className="text-[#814d35]" size={24} />
-                                <span className="text-[#814d35] font-medium">{service}</span>
+                                {service.icon}
+                                <span className="text-[#814d35] font-medium">{service.name}</span>
                             </div>
                         </button>
                     ))}
@@ -42,11 +105,8 @@ const ServicesSection = () => {
                 {/* Selected service content */}
                 {selectedService && (
                     <div className="mt-10 p-6 border rounded-lg bg-gray-50 max-w-2xl mx-auto">
-                        <h3 className="text-xl font-bold text-[#814d35] mb-2">{selectedService}</h3>
-                        <p className="text-gray-700">
-                            Detailed information about <strong>{selectedService}</strong> goes here. This area can
-                            include service descriptions, benefits, or links to more content.
-                        </p>
+                        <h3 className="text-xl font-bold text-[#814d35] mb-2">{selectedService.name}</h3>
+                        <p className="text-gray-700">{selectedService.description}</p>
                     </div>
                 )}
 

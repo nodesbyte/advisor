@@ -23,6 +23,11 @@ const Dropdowns = ({ title, items = [], link, image, label, imageGroup }) => {
         setActiveItem(activeItem === index ? null : index);
     };
 
+    const handleClose = () => {
+        setIsOpen(false);
+        setActiveItem(null);
+    };
+
     return (
         <div className="relative h-full" ref={dropdownRef}>
             <button
@@ -33,8 +38,7 @@ const Dropdowns = ({ title, items = [], link, image, label, imageGroup }) => {
             </button>
 
             {isOpen && (
-                <div className="fixed left-0 w-screen bg-[#814d35] text-white shadow-xl z-50 
-                 overflow-x-hidden">
+                <div className="fixed left-0 w-screen bg-[#814d35] text-white shadow-xl z-50 overflow-x-hidden">
                     <div className="px-4 md:px-8 py-6 mx-auto max-w-7xl">
                         {plainTitle === "Our Team" ? (
                             <div className="flex flex-col md:flex-row gap-6">
@@ -46,6 +50,7 @@ const Dropdowns = ({ title, items = [], link, image, label, imageGroup }) => {
                                     <Link
                                         to={link}
                                         className="mt-6 inline-flex items-center gap-2 px-5 py-2 rounded-full border border-white bg-[#6e4b3a] text-white text-sm hover:bg-[#5a3d2f] transition"
+                                        onClick={handleClose}
                                     >
                                         View Full Team <ChevronRight size={16} />
                                     </Link>
@@ -71,6 +76,7 @@ const Dropdowns = ({ title, items = [], link, image, label, imageGroup }) => {
                                     <Link
                                         to={link}
                                         className="mt-6 inline-flex items-center gap-2 px-5 py-2 rounded-full border border-white bg-[#6e4b3a] text-white text-sm hover:bg-[#5a3d2f] transition"
+                                        onClick={handleClose}
                                     >
                                         View More <ChevronRight size={16} />
                                     </Link>
@@ -98,6 +104,7 @@ const Dropdowns = ({ title, items = [], link, image, label, imageGroup }) => {
                                                             key={subIndex}
                                                             to={`/${item.label.toLowerCase()}/${sublink.toLowerCase().replace(/\s+/g, "-")}`}
                                                             className="block px-4 py-2 text-sm text-white rounded"
+                                                            onClick={handleClose}
                                                         >
                                                             {sublink}
                                                         </Link>
@@ -128,6 +135,7 @@ const Dropdowns = ({ title, items = [], link, image, label, imageGroup }) => {
                                     <Link
                                         to={link}
                                         className="mt-6 inline-flex items-center gap-2 px-5 py-2 rounded-full border border-white bg-[#6e4b3a] text-white text-sm hover:bg-[#5a3d2f] transition"
+                                        onClick={handleClose}
                                     >
                                         View More <ChevronRight size={16} />
                                     </Link>
@@ -139,6 +147,7 @@ const Dropdowns = ({ title, items = [], link, image, label, imageGroup }) => {
                                             key={index}
                                             to={`${link}/${item.toLowerCase().replace(/\s+/g, "-")}`}
                                             className="text-sm hover:underline"
+                                            onClick={handleClose}
                                         >
                                             {item}
                                         </Link>

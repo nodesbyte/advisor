@@ -15,18 +15,21 @@ import AboutSection from "./components/AboutSection";
 import TeamSection from "./components/TeamSection";
 import TestimonialSection from "./components/TestimonialSection";
 import PageTop from './components/PageTop';
+
 // Pages
 import ServicesPage from "./pages/ServicesPage";
 import ServiceDetail from "./pages/ServiceDetail";
 import Insights from "./pages/Insights";
 import Contact from "./pages/Contact";
 import TrainingPage from "./pages/TrainingPage";
-// import TrainingDetail from "./pages/TrainingDetail"; // Import TrainingDetail Page
+// import TrainingDetail from "./pages/TrainingDetail";
+import About from "./pages/About"; // ✅ Import the About page
+import TeamPage from "./pages/TeamPage"; // ✅ Import the About page
 
 const theme = createTheme({
   palette: {
     primary: {
-      main: "#1976d2", // Blue
+      main: "#1976d2",
     },
   },
 });
@@ -34,7 +37,7 @@ const theme = createTheme({
 function App() {
   return (
     <ThemeProvider theme={theme}>
-      <PageTop/>
+      <PageTop />
       <CssBaseline />
       <Navbar />
 
@@ -58,10 +61,12 @@ function App() {
         <Route path="/trainings" element={<TrainingPage />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/featured" element={<Insights />} />
-        {/* <Route path="/trainings/:slug" element={<TrainingDetail />} /> Update the path for training detail */}
+        <Route path="/about" element={<About />} /> {/* ✅ New About page route */}
+        <Route path="/team" element={<TeamPage />} /> {/* ✅ New About page route */}
+        {/* <Route path="/trainings/:slug" element={<TrainingDetail />} /> */}
       </Routes>
-      <Footer />
 
+      <Footer />
     </ThemeProvider>
   );
 }
