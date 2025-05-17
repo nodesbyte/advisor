@@ -19,7 +19,6 @@ import workshops from "../assets/trainings/Practical-Application.jpg";
 import compliance from "../assets/trainings/compliance.jpg";
 import support from "../assets/trainings/ongoing.jpg";
 
-// Updated and expanded training list with local images
 const trainings = [
   {
     slug: "training-needs-analysis",
@@ -50,7 +49,7 @@ const trainings = [
     image: manuals,
   },
   {
-    slug: "customized-syllabi",
+    slug: "customized-training-syllabi",
     title: "Customized Training Syllabi",
     description: "Develop training syllabi tailored to department goals.",
     objectives: [
@@ -64,7 +63,7 @@ const trainings = [
     image: syllabi,
   },
   {
-    slug: "practical-application-workshops",
+    slug: "practical-workshops",
     title: "Practical Application Workshops",
     description: "Hands-on workshops to implement training concepts.",
     objectives: [
@@ -93,7 +92,7 @@ const trainings = [
   },
   {
     slug: "ongoing-support",
-    title: "OngoingSupport",
+    title: "Ongoing Support",
     description: "Continuous training support post-deployment.",
     objectives: [
       "Track training progress over time",
@@ -106,7 +105,6 @@ const trainings = [
     image: support,
   },
 ];
-
 
 const TrainingDetail = () => {
   const { slug } = useParams();
