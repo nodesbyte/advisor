@@ -1,10 +1,12 @@
-import Featured from "../components/FeaturedInsights";  
+import { useParams } from "react-router-dom";
+import FeaturedInsights from "../components/FeaturedInsights";  
 
 export default function Insights() {
+  const { postTitle } = useParams();
+  
   return (
     <>
-  <Featured isInteractive={true} isInsightsPage={true}/>
-
+      <FeaturedInsights isInteractive={true} selectedPost={postTitle} />
     </>
   )
 }

@@ -35,15 +35,27 @@ const trainings = [
 const insights = [
   {
     label: "Magazines",
-    sublinks: ["Crypto", "Finance", "Technology"],
+    sublinks: [
+      "E-Magazine April 2025 Edition", 
+      "IRTH Regulatory Updates – Jan 2025 Edition", 
+    ],
   },
   {
     label: "Newspapers",
-    // sublinks: ["Daily News", "Global Times", "Economic Daily"],
   },
   {
     label: "Articles",
-    sublinks: ["Startups", "Interviews", "Case Studies"],
+    sublinks: [
+      "Transforming FBR", 
+      "Taxes for growth & prosperity", 
+      "Reform agenda for 2024 budget",
+      "NAB & Judiciary",
+      "Inevitable tax reforms",
+      "Fundamental reforms for survival",
+      "Budgets 2024: thinking a fresh",
+      "Budget, taxes & growth",
+      "Budget & tax policy",
+    ],
   },
 ];
 
