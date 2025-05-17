@@ -1,6 +1,10 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 import { ThemeProvider, createTheme, CssBaseline } from "@mui/material";
+import '@fontsource/poppins'; // Defaults to weight 400
+// Optional: import weights or styles you need
+import '@fontsource/poppins/300.css';
+import '@fontsource/poppins/600.css';
 
 // Layout Components
 import Navbar from "./components/Navbar";
@@ -22,7 +26,7 @@ import ServiceDetail from "./pages/ServiceDetail";
 import Insights from "./pages/Insights";
 import Contact from "./pages/Contact";
 import TrainingPage from "./pages/TrainingPage";
-// import TrainingDetail from "./pages/TrainingDetail";
+import TrainingDetail from "./pages/TrainingDetail";
 import About from "./pages/About"; // ✅ Import the About page
 import TeamPage from "./pages/TeamPage"; // ✅ Import the About page
 
@@ -63,7 +67,7 @@ function App() {
         <Route path="/featured" element={<Insights />} />
         <Route path="/about" element={<About />} /> {/* ✅ New About page route */}
         <Route path="/team" element={<TeamPage />} /> {/* ✅ New About page route */}
-        {/* <Route path="/trainings/:slug" element={<TrainingDetail />} /> */}
+        <Route path="/trainings/:slug" element={<TrainingDetail />} />
       </Routes>
 
       <Footer />

@@ -2,7 +2,7 @@ import React from "react";
 
 import { Grid, Typography, Box, CardContent, useTheme, useMediaQuery, } from "@mui/material";
 import { styled } from "@mui/material/styles";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 // Import specific training images
 import tna from "../assets/trainings/tna.jpg";
@@ -29,7 +29,7 @@ const trainings = [
     {
         title: "Customized Training Syllabi",
         description: "Our team creates customized training syllabi tailored to your organization’s unique requirements and regulatory obligations.",
-        slug: "custom-syllabi",
+        slug: "customized-training-syllabi",
         image: syllabi,
     },
     {
@@ -101,11 +101,11 @@ const BackFace = styled(FlipCardFace)({
 const TrainingPage = () => {
     const theme = useTheme();
     const isSmall = useMediaQuery(theme.breakpoints.down("sm"));
-    // const navigate = useNavigate();
+    const navigate = useNavigate();
 
-    // const handleCardClick = (slug) => {
-    //     navigate(`/trainings/${slug}`);
-    // };
+    const handleCardClick = (slug) => {
+        navigate(`/trainings/${slug}`);
+    };
 
     return (
         <Box
@@ -139,7 +139,7 @@ const TrainingPage = () => {
                         sm={6}
                         md={4}
                         key={index}
-                        // onClick={() => handleCardClick(training.slug)}
+                        onClick={() => handleCardClick(training.slug)}
                         sx={{
                             maxWidth: { md: "calc(100% / 3 - 32px)" },
                             flexBasis: { md: "calc(100% / 3 - 32px)" },

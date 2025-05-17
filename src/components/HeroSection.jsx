@@ -11,7 +11,7 @@ const HeroSection = () => {
             <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-8 items-center">
                 {/* Left Content */}
                 <div>
-                    <h2 className="text-5xl font-bold text-[#814d35] leading-tight mb-6 font-lisu">
+                    <h2 className="text-5xl font-bold text-[#814d35] leading-tight mb-6 ">
                         Building Trust. <br /> Driving Growth
                     </h2>
 

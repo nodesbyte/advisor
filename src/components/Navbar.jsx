@@ -25,7 +25,7 @@ const services = [
 const trainings = [
   "Training Needs Analysis",
   "Training Manuals",
-  "Custom Syllabi",
+  "Customized Training Syllabi",
   "Training Modules",
   "Training Plans",
   "Practical Workshops",

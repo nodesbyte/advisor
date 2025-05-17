@@ -10,7 +10,7 @@ import {
 
 export default function Footer() {
     return (
-        <footer className="bg-[#b99685] text-black px-6 py-8">
+        <footer className="bg-[#814d35] text-white px-6 py-8">
             <div className="max-w-7xl mx-auto flex flex-col items-center">
                 {/* Logo */}
                 <img src={logo} alt="Logo" className="h-12 mb-4" />
