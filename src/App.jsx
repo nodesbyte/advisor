@@ -1,9 +1,9 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 import { ThemeProvider, createTheme, CssBaseline, Typography } from "@mui/material";
-import '@fontsource/poppins'; // Defaults to weight 400
-import '@fontsource/poppins/300.css';
-import '@fontsource/poppins/600.css';
+// import '@fontsource/poppins'; // Defaults to weight 400
+// import '@fontsource/poppins/300.css';
+// import '@fontsource/poppins/600.css';
 
 // Layout Components
 import Navbar from "./components/Navbar";
@@ -61,7 +61,7 @@ function App() {
         <Route path="/featured" element={<Insights />} />
 
         {/* 404 Not Found */}
-        <Route
+        {/* <Route
           path="*"
           element={
             <Box sx={{ p: 4, textAlign: "center" }}>
@@ -73,7 +73,7 @@ function App() {
               </Typography>
             </Box>
           }
-        />
+        /> */}
       </Routes>
 
       <Footer />
