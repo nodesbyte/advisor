@@ -1,4 +1,5 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import about from "../assets/aboutbanner.jpeg";
 
 const valuesData = [
@@ -34,7 +35,7 @@ const valuesData = [
   },
 ];
 
-export default function AboutSection() {
+export default function AboutSection({ isHomePage = false }) {
   const [showNext, setShowNext] = useState(true);
 
   const handleNext = () => {
@@ -52,116 +53,124 @@ export default function AboutSection() {
   return (
     <section className="px-6 py-12 space-y-8 md:px-16 bg-white">
       {/* aboutus */}
-      <div className="flex justify-center items-center">
+      <div className="flex flex-col lg:flex-row justify-center items-center gap-8">
         <div className="flex flex-col">
           <h2 className="text-4xl font-bold mb-6">Who we Are?</h2>
           <p className="mr-12">
             Irth Advisors LLC is a distinguished management consulting firm
             renowned for its extensive experience and unwavering commitment to
             integrity. With a proven track record of delivering exceptional
-            results, we bring decades of collective expertise to the table.
-            Our team of seasoned professionals possesses deep industry knowledge
-            and a comprehensive understanding of the intricate challenges
-            facing organizations today. <br />
+            results, we bring decades of collective expertise to the table.{" "}
             <br />
-            Driven by a steadfast dedication to excellence, Irth Advisors LLC has
-            earned a reputation for upholding the highest standards of
-            integrity and ethical conduct in all our endeavors. We approach
-            every client engagement with honesty, transparency, and a genuine
-            commitment to their success. Our unwavering integrity forms the
-            cornerstone of our business philosophy, guiding our decisions and
-            actions as we partner with clients to navigate complex business
-            landscapes, mitigate risks, and capitalize on emerging
-            opportunities. <br />
             <br />
-            In the dynamic world of management consulting, Irth Advisors LLC
-            stands apart for its integrity, expertise, and client-centric
-            approach. We are trusted advisors, strategic partners, and advocates
-            for excellence, empowering organizations to achieve sustainable
-            growth and navigate the complexities of today’s business
-            environment with confidence and integrity.
+            {isHomePage ? (
+              <>
+                <Link
+                  to="/about"
+                  className="bg-[#814d35] text-white px-4 py-2 rounded-full text-sm font-semibold hover:bg-[#6e3f2a] transition"
+                >
+                  Read more
+                </Link>
+              </>
+            ) : (
+              <>
+                Our team of seasoned professionals possesses deep industry knowledge and
+                a comprehensive understanding of the intricate challenges facing
+                organizations today. <br />
+                <br />
+                Driven by a steadfast dedication to excellence, Irth Advisors LLC
+                has earned a reputation for upholding the highest standards of
+                integrity and ethical conduct in all our endeavors. We approach
+                every client engagement with honesty, transparency, and a genuine
+                commitment to their success. Our unwavering integrity forms the
+                cornerstone of our business philosophy, guiding our decisions and
+                actions as we partner with clients to navigate complex business
+                landscapes, mitigate risks, and capitalize on emerging
+                opportunities. <br />
+                <br />
+                In the dynamic world of management consulting, Irth Advisors LLC
+                stands apart for its integrity, expertise, and client-centric
+                approach. We are trusted advisors, strategic partners, and advocates
+                for excellence, empowering organizations to achieve sustainable
+                growth and navigate the complexities of today’s business environment
+                with confidence and integrity.
+              </>
+            )}
           </p>
         </div>
-        <img src={about} className="h-[60vh] rounded-md " alt="" />
-      </div>
-      {/* Vision */}
-      <div className="bg-[#0f1e3c] text-white p-6 w-full my-4 rounded flex items-center gap-4">
-        <div className="w-1/4 text-right pr-4">
-          <h3 className="text-xl font-bold">Our Vision:</h3>
-        </div>
-        <div className="w-3/4">
-          <p className="text-left">
-            "At Irth Advisors LLC, we envision being the global leader in
-            ethical business advisory—driving compliance, integrity, and
-            sustainable growth through innovative solutions."
-          </p>
-        </div>
+        <img src={about} className="h-[60vh] rounded-md" alt="About Us" />
       </div>
 
-      {/* Mission */}
-      <div className="bg-[#804d2b] text-white p-6 w-full my-4 rounded flex items-center gap-4">
-        <div className="w-1/4 text-right pr-4">
-          <h3 className="text-xl font-bold">Our Mission:</h3>
-        </div>
-        <div className="w-3/4">
-          <p className="text-left">
-            "Irth Advisors LLC empowers organizations with tailored regulatory,
-            risk, and strategic advisory services—driving sustainable success
-            through expertise and collaboration."
-          </p>
-        </div>
-      </div>
-
-   {/* Our Core Values */}
-      <div className="mt-10">
-        <h3 className="text-3xl font-bold text-center mb-6">Our Core Values</h3>
-
-        <div className="relative">
-          {/* Conditionally render Prev button */}
-          { !showNext && (
-            <button
-              onClick={handlePrev}
-              className="absolute left-2 top-1/2 transform -translate-y-1/2 z-10 bg-[#0f1e3c] text-white w-10 h-10 rounded-full flex items-center justify-center shadow-md hover:bg-[#1c2a4d]"
-              aria-label="Scroll Left"
-            >
-              ←
-            </button>
-          )}
-
-          {/* Scrollable Cards Container */}
-          <div
-            id="card-slider"
-            className="flex overflow-hidden space-x-6 px-12"
-          >
-            {valuesData.map((value, index) => (
-              <div
-                key={index}
-                className="flex flex-col bg-[#f5f5f5] p-6 rounded-lg shadow-md flex-shrink-0"
-              >
-                <div className="text-[#0f1e3c] text-3xl font-bold mb-2">
-                  {value.number}
-                </div>
-                <h4 className="text-xl font-semibold mb-3">{value.title}</h4>
-                <p className="text-gray-700 w-72 text-base ">
-                  {value.description}
-                </p>
-              </div>
-            ))}
+      {/* Only show below sections if not on Home Page */}
+      {!isHomePage && (
+        <>
+          {/* Vision */}
+          <div className="flex-col bg-[#0f1e3c] text-white p-6 w-full my-4 rounded flex">
+            <h3 className="text-xl font-bold">Our Vision:</h3>
+            <div className="w-3/4">
+              <p className="text-left">
+                "At Irth Advisors LLC, we envision being the global leader in
+                ethical business advisory—driving compliance, integrity, and
+                sustainable growth through innovative solutions."
+              </p>
+            </div>
           </div>
 
-          {/* Conditionally render Next button */}
-          { showNext && (
-            <button
-              onClick={handleNext}
-              className="absolute right-2 top-1/2 transform -translate-y-1/2 z-10 bg-[#0f1e3c] text-white w-10 h-10 rounded-full flex items-center justify-center shadow-md hover:bg-[#1c2a4d]"
-              aria-label="Scroll Right"
-            >
-              →
-            </button>
-          )}
-        </div>
-      </div>
+          {/* Mission */}
+          <div className="flex-col bg-[#0f1e3c] text-white p-6 w-full my-4 rounded flex">
+            <h3 className="text-xl font-bold">Our Mission:</h3>
+            <div className="w-3/4">
+              <p className="text-left">
+                "Irth Advisors LLC empowers organizations with tailored regulatory,
+                risk, and strategic advisory services—driving sustainable success
+                through expertise and collaboration."
+              </p>
+            </div>
+          </div>
 
+          {/* Core Values */}
+          <div className="mt-10">
+            <h3 className="text-3xl font-bold text-center mb-6">Our Core Values</h3>
+
+            <div className="relative">
+              {!showNext && (
+                <button
+                  onClick={handlePrev}
+                  className="absolute left-2 top-1/2 transform -translate-y-1/2 z-10 bg-[#0f1e3c] text-white w-10 h-10 rounded-full flex items-center justify-center shadow-md hover:bg-[#1c2a4d]"
+                  aria-label="Scroll Left"
+                >
+                  ←
+                </button>
+              )}
+              <div id="card-slider" className="flex overflow-hidden space-x-6 px-12">
+                {valuesData.map((value, index) => (
+                  <div
+                    key={index}
+                    className="flex flex-col bg-[#f5f5f5] p-6 rounded-lg shadow-md flex-shrink-0"
+                  >
+                    <div className="text-[#0f1e3c] text-3xl font-bold mb-2">
+                      {value.number}
+                    </div>
+                    <h4 className="text-xl font-semibold mb-3">{value.title}</h4>
+                    <p className="text-gray-700 w-72 text-base">
+                      {value.description}
+                    </p>
+                  </div>
+                ))}
+              </div>
+              {showNext && (
+                <button
+                  onClick={handleNext}
+                  className="absolute right-2 top-1/2 transform -translate-y-1/2 z-10 bg-[#0f1e3c] text-white w-10 h-10 rounded-full flex items-center justify-center shadow-md hover:bg-[#1c2a4d]"
+                  aria-label="Scroll Right"
+                >
+                  →
+                </button>
+              )}
+            </div>
+          </div>
+        </>
+      )}
     </section>
   );
 }

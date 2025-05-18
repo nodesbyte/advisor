@@ -11,7 +11,7 @@ export default function Home() {
   return (
     <>
       <HeroSection />
-      <AboutSection />
+      <AboutSection isHomePage={true}/>
       <FeaturedInsights  />
       <ServicesSection />
       <TrainingServices />

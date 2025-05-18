@@ -1,4 +1,4 @@
-import { useState } from "react";
+import Marquee from "react-fast-marquee";
 import profile1 from "../assets/profile1.png";
 import profile2 from "../assets/profile2.jpg";
 import profile3 from "../assets/profile3.jpg";
@@ -9,93 +9,86 @@ const testimonials = [
     {
         name: "Rahim",
         image: profile3,
-        feedback:
-            "Testimonial delivered quality QA services with clear communication and timely results. Highly recommended!",
+        feedback: "Delivered quality QA services with clear communication and timely results.",
     },
     {
         name: "John",
         image: profile1,
-        feedback:
-            "Amazing experience! Very professional team and great outcome. Will definitely return.",
+        feedback: "Amazing experience! Very professional team and great outcome. Will definitely return.",
     },
     {
         name: "Rahim",
         image: profile4,
-        feedback:
-            "Prompt service with attention to detail. Exceeded expectations in every aspect!",
+        feedback: "Prompt service with attention to detail. Exceeded expectations in every aspect!",
     },
     {
         name: "Ali",
         image: profile2,
-        feedback:
-            "Exceptional service and consistent quality delivery. Truly commendable!",
+        feedback: "Exceptional service and consistent quality delivery. Truly commendable!",
     },
     {
         name: "Emily",
         image: profile5,
-        feedback:
-            "I was impressed with the clear communication and fast turnaround time.",
+        feedback: "I was impressed with the clear communication and fast turnaround time.",
     },
 ];
 
 export default function TestimonialSection() {
-    const [current, setCurrent] = useState(0);
-
-    const prevTestimonial = () =>
-        setCurrent((prev) => (prev === 0 ? testimonials.length - 1 : prev - 1));
-    const nextTestimonial = () =>
-        setCurrent((prev) => (prev === testimonials.length - 1 ? 0 : prev + 1));
-
     return (
-        <section className="py-16 bg-[#f9fafb] text-center px-4">
+        <section className="bg-[#f9fafb] py-16 px-4 text-center">
             <h2 className="text-4xl font-semibold text-[#9b5c38] mb-10">
                 Testimonials
             </h2>
-
-            <div className="flex justify-center items-center gap-6">
-                {/* Left Arrow */}
-                <button
-                    onClick={prevTestimonial}
-                    className="w-12 h-12 bg-[#c3815f] text-white rounded-full text-2xl flex items-center justify-center"
+            <div className="grid grid-cols-3 gap-6 h-[400px] overflow-hidden">
+                {/* Top to Bottom */}
+                <Marquee
+                    direction="down"
+                    speed={30}
+                    gradient={false}
+                    pauseOnHover
+                    className="flex flex-col gap-6"
                 >
-                    &#8249;
-                </button>
+                    {testimonials.map((t, i) => (
+                        <Card key={`m1-${i}`} {...t} />
+                    ))}
+                </Marquee>
 
-                {/* Testimonial Box */}
-                <div className="border-4 border-[#9b5c38] bg-white px-6 py-8 max-w-xl rounded-md shadow-md">
-                    <p className="text-lg text-black leading-relaxed">
-                        {testimonials[current].feedback}
-                    </p>
-                </div>
-
-                {/* Right Arrow */}
-                <button
-                    onClick={nextTestimonial}
-                    className="w-12 h-12 bg-[#c3815f] text-white rounded-full text-2xl flex items-center justify-center"
+                {/* Bottom to Top */}
+                <Marquee
+                    direction="up"
+                    speed={30}
+                    gradient={false}
+                    pauseOnHover
+                    className="flex flex-col gap-6"
                 >
-                    &#8250;
-                </button>
-            </div>
+                    {testimonials.map((t, i) => (
+                        <Card key={`m2-${i}`} {...t} />
+                    ))}
+                </Marquee>
 
-            {/* Profile thumbnails */}
-            <div className="flex justify-center items-center gap-6 mt-8">
-                {testimonials.map((t, index) => (
-                    <img
-                        key={index}
-                        src={t.image}
-                        alt={t.name}
-                        onClick={() => setCurrent(index)}
-                        className={`w-14 h-14 rounded-full cursor-pointer border-2 ${current === index
-                                ? "border-[#9b5c38] scale-110"
-                                : "border-transparent"
-                            }`}
-                    />
-                ))}
+                {/* Top to Bottom again */}
+                <Marquee
+                    direction="down"
+                    speed={30}
+                    gradient={false}
+                    pauseOnHover
+                    className="flex flex-col gap-6"
+                >
+                    {testimonials.map((t, i) => (
+                        <Card key={`m3-${i}`} {...t} />
+                    ))}
+                </Marquee>
             </div>
-
-            {/* Name */}
-            <p className="mt-4 font-bold text-lg">{testimonials[current].name}</p>
         </section>
     );
 }
 
+function Card({ name, image, feedback }) {
+    return (
+        <div className="bg-white border-2 border-[#9b5c38] rounded-md p-4 w-72 mx-auto shadow-md mb-4">
+            <img src={image} alt={name} className="w-12 h-12 rounded-full mx-auto mb-2" />
+            <p className="text-sm text-black italic">"{feedback}"</p>
+            <p className="mt-2 font-semibold text-[#9b5c38]">{name}</p>
+        </div>
+    );
+}
