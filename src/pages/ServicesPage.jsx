@@ -1,5 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
 import service1 from "../assets/services/aml-cft.png";
 import service2 from "../assets/services/business-intel.png";
 import service3 from "../assets/services/esg-glass.png";
@@ -26,6 +29,8 @@ import service23 from "../assets/services/service 231.jpg";
 import service24 from "../assets/services/service 241.jpg";
 import service25 from "../assets/services/service 251.jpg";
 import service26 from "../assets/services/service 26.jpg";
+gsap.registerPlugin(ScrollTrigger);
+
 
 
 const services = [
