@@ -1,121 +1,167 @@
-// src/components/AboutSection.jsx
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect, useRef } from "react";
+import about from "../assets/aboutbanner.jpeg";
 
 const valuesData = [
-    {
-        number: "01",
-        title: "Integrity",
-        description:
-            "We uphold the highest standards of integrity, honesty, and ethical conduct in all aspects of our work, ensuring trust and confidence in our relationships with clients, partners, and stakeholders.",
-    },
-    {
-        number: "02",
-        title: "Excellence",
-        description:
-            "We are committed to excellence in everything we do, constantly improving our performance, quality of service, and client satisfaction.",
-    },
-    {
-        number: "03",
-        title: "Collaboration",
-        description:
-            "We believe in teamwork and the power of collective thinking to drive better results for our clients and ourselves.",
-    },
-    {
-        number: "04",
-        title: "Innovation",
-        description:
-            "We embrace innovation and continuously seek new ways to deliver greater value through smarter, more effective solutions.",
-    },
-    {
-        number: "05",
-        title: "Sustainability",
-        description:
-            "We prioritize sustainable practices that create long-term benefits for businesses, society, and the environment.",
-    },
+  {
+    number: "01",
+    title: "Integrity",
+    description:
+      "We maintain the highest integrity, honesty, and ethics in all our work, building trust with clients, partners, and stakeholders.",
+  },
+  {
+    number: "02",
+    title: "Excellence",
+    description:
+      "We are committed to excellence in everything we do, constantly improving our performance, quality of service, and client satisfaction.",
+  },
+  {
+    number: "03",
+    title: "Collaboration",
+    description:
+      "We believe in teamwork and the power of collective thinking to drive better results for our clients and ourselves.",
+  },
+  {
+    number: "04",
+    title: "Innovation",
+    description:
+      "We embrace innovation and continuously seek new ways to deliver greater value through smarter, more effective solutions.",
+  },
+  {
+    number: "05",
+    title: "Sustainability",
+    description:
+      "We prioritize sustainable practices that create long-term benefits for businesses, society, and the environment. ",
+  },
 ];
 
 export default function AboutSection() {
-    const [current, setCurrent] = useState(0);
+  const [showNext, setShowNext] = useState(true);
 
-    const nextSlide = () => setCurrent((prev) => (prev + 1) % valuesData.length);
-    const prevSlide = () => setCurrent((prev) => (prev - 1 + valuesData.length) % valuesData.length);
+  const handleNext = () => {
+    const container = document.getElementById("card-slider");
+    container.scrollBy({ left: 320, behavior: "smooth" });
+    setShowNext(false);
+  };
 
-    return (
-        <section className="px-6 py-12 space-y-8 text-center md:px-16 bg-white">
-            <h2 className="text-4xl font-bold text-[#a86c43]">Who we Are?</h2>
+  const handlePrev = () => {
+    const container = document.getElementById("card-slider");
+    container.scrollBy({ left: -320, behavior: "smooth" });
+    setShowNext(true);
+  };
 
-            {/* Vision */}
-            <div className="bg-[#0f1e3c] text-white p-6 w-full my-4 rounded flex items-center gap-4">
-                <div className="w-1/4 text-right pr-4">
-                    <h3 className="text-xl font-bold">Our Vision:</h3>
+  return (
+    <section className="px-6 py-12 space-y-8 md:px-16 bg-white">
+      {/* aboutus */}
+      <div className="flex justify-center items-center">
+        <div className="flex flex-col">
+          <h2 className="text-4xl font-bold mb-6">Who we Are?</h2>
+          <p className="mr-12">
+            Irth Advisors LLC is a distinguished management consulting firm
+            renowned for its extensive experience and unwavering commitment to
+            integrity. With a proven track record of delivering exceptional
+            results, we bring decades of collective expertise to the table.
+            Our team of seasoned professionals possesses deep industry knowledge
+            and a comprehensive understanding of the intricate challenges
+            facing organizations today. <br />
+            <br />
+            Driven by a steadfast dedication to excellence, Irth Advisors LLC has
+            earned a reputation for upholding the highest standards of
+            integrity and ethical conduct in all our endeavors. We approach
+            every client engagement with honesty, transparency, and a genuine
+            commitment to their success. Our unwavering integrity forms the
+            cornerstone of our business philosophy, guiding our decisions and
+            actions as we partner with clients to navigate complex business
+            landscapes, mitigate risks, and capitalize on emerging
+            opportunities. <br />
+            <br />
+            In the dynamic world of management consulting, Irth Advisors LLC
+            stands apart for its integrity, expertise, and client-centric
+            approach. We are trusted advisors, strategic partners, and advocates
+            for excellence, empowering organizations to achieve sustainable
+            growth and navigate the complexities of today’s business
+            environment with confidence and integrity.
+          </p>
+        </div>
+        <img src={about} className="h-[60vh] rounded-md " alt="" />
+      </div>
+      {/* Vision */}
+      <div className="bg-[#0f1e3c] text-white p-6 w-full my-4 rounded flex items-center gap-4">
+        <div className="w-1/4 text-right pr-4">
+          <h3 className="text-xl font-bold">Our Vision:</h3>
+        </div>
+        <div className="w-3/4">
+          <p className="text-left">
+            "At Irth Advisors LLC, we envision being the global leader in
+            ethical business advisory—driving compliance, integrity, and
+            sustainable growth through innovative solutions."
+          </p>
+        </div>
+      </div>
+
+      {/* Mission */}
+      <div className="bg-[#804d2b] text-white p-6 w-full my-4 rounded flex items-center gap-4">
+        <div className="w-1/4 text-right pr-4">
+          <h3 className="text-xl font-bold">Our Mission:</h3>
+        </div>
+        <div className="w-3/4">
+          <p className="text-left">
+            "Irth Advisors LLC empowers organizations with tailored regulatory,
+            risk, and strategic advisory services—driving sustainable success
+            through expertise and collaboration."
+          </p>
+        </div>
+      </div>
+
+   {/* Our Core Values */}
+      <div className="mt-10">
+        <h3 className="text-3xl font-bold text-center mb-6">Our Core Values</h3>
+
+        <div className="relative">
+          {/* Conditionally render Prev button */}
+          { !showNext && (
+            <button
+              onClick={handlePrev}
+              className="absolute left-2 top-1/2 transform -translate-y-1/2 z-10 bg-[#0f1e3c] text-white w-10 h-10 rounded-full flex items-center justify-center shadow-md hover:bg-[#1c2a4d]"
+              aria-label="Scroll Left"
+            >
+              ←
+            </button>
+          )}
+
+          {/* Scrollable Cards Container */}
+          <div
+            id="card-slider"
+            className="flex overflow-hidden space-x-6 px-12"
+          >
+            {valuesData.map((value, index) => (
+              <div
+                key={index}
+                className="flex flex-col bg-[#f5f5f5] p-6 rounded-lg shadow-md flex-shrink-0"
+              >
+                <div className="text-[#0f1e3c] text-3xl font-bold mb-2">
+                  {value.number}
                 </div>
-                <div className="w-3/4">
-                    <p className="text-left">
-                        "At Irth Advisors LLC, we envision being the global leader in ethical business
-                        advisory—driving compliance, integrity, and sustainable growth through innovative
-                        solutions."
-                    </p>
-                </div>
-            </div>
+                <h4 className="text-xl font-semibold mb-3">{value.title}</h4>
+                <p className="text-gray-700 w-72 text-base ">
+                  {value.description}
+                </p>
+              </div>
+            ))}
+          </div>
 
-            {/* Mission */}
-            <div className="bg-[#804d2b] text-white p-6 w-full my-4 rounded flex items-center gap-4">
-                <div className="w-1/4 text-right pr-4">
-                    <h3 className="text-xl font-bold">Our Mission:</h3>
-                </div>
-                <div className="w-3/4">
-                    <p className="text-left">
-                        "Irth Advisors LLC empowers organizations with tailored regulatory, risk, and strategic
-                        advisory services—driving sustainable success through expertise and collaboration."
-                    </p>
-                </div>
-            </div>
+          {/* Conditionally render Next button */}
+          { showNext && (
+            <button
+              onClick={handleNext}
+              className="absolute right-2 top-1/2 transform -translate-y-1/2 z-10 bg-[#0f1e3c] text-white w-10 h-10 rounded-full flex items-center justify-center shadow-md hover:bg-[#1c2a4d]"
+              aria-label="Scroll Right"
+            >
+              →
+            </button>
+          )}
+        </div>
+      </div>
 
-
-
-            {/* Values Carousel */}
-            <div className="space-y-4 mt-8">
-                <h3 className="text-3xl font-bold text-[#a86c43]">Our Values:</h3>
-
-                <div className="flex items-center justify-center gap-4">
-                    <button
-                        onClick={prevSlide}
-                        className="text-2xl font-bold px-3 py-1 bg-[#0f1e3c] text-white rounded hover:bg-[#1c2f52]"
-                    >
-                        ‹
-                    </button>
-
-                    <div className="max-w-xll bg-gray-100 p-8 rounded shadow text-left">
-                        <h4 className="text-4xl font-bold text-[#0f1e3c] mb-1">
-                            {valuesData[current].number}
-                        </h4>
-                        <h5 className="text-2xl font-semibold text-[#0f1e3c] mb-3">
-                            {valuesData[current].title}
-                        </h5>
-                        <p className="text-lg text-gray-700 leading-relaxed">
-                            {valuesData[current].description}
-                        </p>
-                    </div>
-
-
-                    <button
-                        onClick={nextSlide}
-                        className="text-2xl font-bold px-3 py-1 bg-[#0f1e3c] text-white rounded hover:bg-[#1c2f52]"
-                    >
-                        ›
-                    </button>
-                </div>
-            </div>
-
-            <div className="mt-12">
-                <Link
-                    to="/about"
-                    className="border border-[#0f1e3c] text-[#0f1e3c] font-medium px-6 py-2 rounded-full hover:bg-[#0f1e3c] hover:text-white transition"
-                >
-                    View More →
-                </Link>
-            </div>
-        </section>
-    );
+    </section>
+  );
 }
