@@ -7,8 +7,8 @@ import trainingImage from "../assets/training.png";
 import insightsImg from "../assets/insight.jpg";
 import image1 from "../assets/team1.jpg";
 import image2 from "../assets/team2.jpg";
-import image3 from "../assets/team1.jpg";
-import image4 from "../assets/team2.jpg";
+import image3 from "../assets/team3.jpg";
+import image4 from "../assets/team4.jpg";
 // import SearchBar from "../components/SearchBar"; // adjust path as needed
 
 const services = [
@@ -18,8 +18,6 @@ const services = [
   "Strategic Assurance and Policies Development",
   "Testing",
 ];
-
-
 const trainings = [
   "Training Needs Analysis",
   "Training Manuals",
@@ -32,8 +30,8 @@ const insights = [
   {
     label: "Magazines",
     sublinks: [
-      "E-Magazine April 2025 Edition", 
-      "IRTH Regulatory Updates – Jan 2025 Edition", 
+      "E-Magazine April 2025 Edition",
+      "IRTH Regulatory Updates – Jan 2025 Edition",
     ],
   },
   {
@@ -60,17 +58,17 @@ const Navbar = () => {
   return (
     <header className="sticky top-0 z-50 bg-white shadow-sm">
       {/* Top Section */}
-      <div className="bg-white px-4 py-3">
+      <div className="bg-white px-4 py-4">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           <Link to="/">
-            <img src={logo} alt="Logo" className="w-28 h-auto" />
+            <img src={logo} alt="Logo" className="w-32 h-auto" />
           </Link>
           <div className="flex-1 flex justify-center px-4">
             {/* <SearchBar/> */}
             <input
               type="text"
               placeholder="Search by services, trainings, and more..."
-              className="w-full max-w-lg px-4 py-2 rounded-full border border-gray-300 text-sm focus:outline-none"
+              className="w-full max-w-xl px-4 py-2 rounded-full border border-gray-500 text-md focus:outline-none bg-[#F0F0F0]"
             />
           </div>
           <div className="flex items-center space-x-4">
@@ -89,7 +87,7 @@ const Navbar = () => {
 
       {/* Bottom Section */}
       <div className="bg-[#814d35] border-b">
-        <div className="max-w-7xl mx-auto px-4 py-6 flex justify-center space-x-8 text-sm font-medium text-white">
+        <div className="max-w-7xl mx-auto px-4 py-8 flex justify-center space-x-8 text-md font-medium text-white shadow-black">
           <Link to="/about" className="hover:underline">About Us</Link>
           <Dropdowns
             title="Our Team"
