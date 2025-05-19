@@ -1,94 +1,111 @@
-import Marquee from "react-fast-marquee";
+import { useEffect, useRef, useState } from "react";
 import profile1 from "../assets/profile1.png";
 import profile2 from "../assets/profile2.jpg";
 import profile3 from "../assets/profile3.jpg";
-import profile4 from "../assets/profile4.jpg";
-import profile5 from "../assets/profile3.jpg";
 
 const testimonials = [
-    {
-        name: "Rahim",
-        image: profile3,
-        feedback: "Delivered quality QA services with clear communication and timely results.",
-    },
-    {
-        name: "John",
-        image: profile1,
-        feedback: "Amazing experience! Very professional team and great outcome. Will definitely return.",
-    },
-    {
-        name: "Rahim",
-        image: profile4,
-        feedback: "Prompt service with attention to detail. Exceeded expectations in every aspect!",
-    },
-    {
-        name: "Ali",
-        image: profile2,
-        feedback: "Exceptional service and consistent quality delivery. Truly commendable!",
-    },
-    {
-        name: "Emily",
-        image: profile5,
-        feedback: "I was impressed with the clear communication and fast turnaround time.",
-    },
+  {
+    name: "Rahim",
+    image: profile3,
+    feedback:
+      "Delivered quality QA services with clear communication and timely results.",
+  },
+  {
+    name: "John",
+    image: profile1,
+    feedback:
+      "Amazing experience! Very professional team and great outcome. Will definitely return.",
+  },
+  {
+    name: "Ali",
+    image: profile2,
+    feedback: "Highly recommended. Fast delivery and excellent support.",
+  },
 ];
 
-export default function TestimonialSection() {
-    return (
-        <section className="bg-[#f9fafb] py-16 px-4 text-center">
-            <h2 className="text-4xl font-semibold text-[#9b5c38] mb-10">
-                Testimonials
-            </h2>
-            <div className="grid grid-cols-3 gap-6 h-[400px] overflow-hidden">
-                {/* Top to Bottom */}
-                <Marquee
-                    direction="down"
-                    speed={30}
-                    gradient={false}
-                    pauseOnHover
-                    className="flex flex-col gap-6"
-                >
-                    {testimonials.map((t, i) => (
-                        <Card key={`m1-${i}`} {...t} />
-                    ))}
-                </Marquee>
+const TestimonialCard = ({ image, name, feedback }) => (
+  <div className="bg-white border border-[#9b5c38] rounded-lg p-4 w-72 shadow-md my-4">
+    <div className="flex flex-col items-center mb-2">
+      <img
+        src={image}
+        alt={name}
+        className="rounded-full h-12 w-12 object-cover mb-2"
+      />
+      <h2 className="text-[#9b5c38] font-semibold">{name}</h2>
+    </div>
+    <p className="text-sm text-gray-700 italic text-center">"{feedback}"</p>
+  </div>
+);
 
-                {/* Bottom to Top */}
-                <Marquee
-                    direction="up"
-                    speed={30}
-                    gradient={false}
-                    pauseOnHover
-                    className="flex flex-col gap-6"
-                >
-                    {testimonials.map((t, i) => (
-                        <Card key={`m2-${i}`} {...t} />
-                    ))}
-                </Marquee>
+const VerticalMarquee = ({ direction = "up" }) => {
+  const containerRef = useRef(null);
+  const contentRef = useRef(null);
+  const [paused, setPaused] = useState(false);
 
-                {/* Top to Bottom again */}
-                <Marquee
-                    direction="down"
-                    speed={30}
-                    gradient={false}
-                    pauseOnHover
-                    className="flex flex-col gap-6"
-                >
-                    {testimonials.map((t, i) => (
-                        <Card key={`m3-${i}`} {...t} />
-                    ))}
-                </Marquee>
-            </div>
-        </section>
-    );
-}
+  useEffect(() => {
+    const container = containerRef.current;
+    const content = contentRef.current;
 
-function Card({ name, image, feedback }) {
-    return (
-        <div className="bg-white border-2 border-[#9b5c38] rounded-md p-4 w-72 mx-auto shadow-md mb-4">
-            <img src={image} alt={name} className="w-12 h-12 rounded-full mx-auto mb-2" />
-            <p className="text-sm text-black italic">"{feedback}"</p>
-            <p className="mt-2 font-semibold text-[#9b5c38]">{name}</p>
-        </div>
-    );
-}
+    const scrollStep = 1; // pixels per interval
+    const intervalDelay = 30; // ms
+
+    const intervalId = setInterval(() => {
+      if (!paused) {
+        if (direction === "up") {
+          // Scroll upward (bottom to top)
+          if (container.scrollTop >= content.scrollHeight / 2) {
+            container.scrollTop = 0;
+          } else {
+            container.scrollTop += scrollStep;
+          }
+        } else {
+          // Scroll downward (top to bottom)
+          if (container.scrollTop <= 0) {
+            container.scrollTop = content.scrollHeight / 2;
+          } else {
+            container.scrollTop -= scrollStep;
+          }
+        }
+      }
+    }, intervalDelay);
+
+    return () => clearInterval(intervalId);
+  }, [paused, direction]);
+
+  return (
+    <div
+      ref={containerRef}
+      className="h-96 overflow-hidden mx-4"
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+    >
+      <div ref={contentRef}>
+        {/* Duplicate testimonials to create infinite loop */}
+        {[...testimonials, ...testimonials].map((t, i) => (
+          <TestimonialCard
+            key={`${direction}-testimonial-${i}`}
+            image={t.image}
+            name={t.name}
+            feedback={t.feedback}
+          />
+        ))}
+      </div>
+    </div>
+  );
+};
+
+const TestimonialSection = () => {
+  return (
+    <section className="bg-[#f9fafb] py-16 px-4 text-center">
+      <h2 className="text-4xl font-semibold text-[#9b5c38] mb-10">Testimonials</h2>
+      <div className="flex justify-center items-start gap-10 flex-wrap">
+          <VerticalMarquee direction="up" />
+          <VerticalMarquee direction="down" />
+          <VerticalMarquee direction="up" />
+       
+      </div>
+    </section>
+  );
+};
+
+export default TestimonialSection;
