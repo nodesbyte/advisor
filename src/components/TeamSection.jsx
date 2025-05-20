@@ -10,30 +10,7 @@ import facebookImg from "../assets/facebook.png";
 
 const TeamSection = () => {
     const team = [
-        {
-            name: "Tahir Hassan Qureshi",
-            title: "Senior Partner",
-            image: profile1,
-            description:
-                "Mr. Tahir is a seasoned professional based in the UK, and a fellow member of the Institute of Chartered Accountants of Pakistan. He brings decades of experience in financial consultancy and leadership.",
-            socials: {
-                instagram: "#",
-                twitter: "https://x.com/thqabl1",
-                facebook: "#",
-            },
-        },
-        {
-            name: "Abdul Rauf Shakoori",
-            title: "Senior Partner",
-            image: profile2,
-            description:
-                "Mr. Abdul Rauf is known for his legal expertise and strategic planning. Based internationally, he has a significant presence in corporate law and compliance.",
-            socials: {
-                instagram: "#",
-                twitter: "https://x.com/RaufAaeq",
-                facebook: "#",
-            },
-        },
+
         {
             name: "Huzaima Bukhari",
             title: "Chief Partner",
@@ -55,6 +32,30 @@ const TeamSection = () => {
             socials: {
                 instagram: "#",
                 twitter: "https://x.com/DrIkramulHaq",
+                facebook: "#",
+            },
+        },
+        {
+            name: "Tahir Hassan Qureshi",
+            title: "Senior Partner",
+            image: profile1,
+            description:
+                "Mr. Tahir is a seasoned professional based in the UK, and a fellow member of the Institute of Chartered Accountants of Pakistan. He brings decades of experience in financial consultancy and leadership.",
+            socials: {
+                instagram: "#",
+                twitter: "https://x.com/thqabl1",
+                facebook: "#",
+            },
+        },
+        {
+            name: "Abdul Rauf Shakoori",
+            title: "Senior Partner",
+            image: profile2,
+            description:
+                "Mr. Abdul Rauf is known for his legal expertise and strategic planning. Based internationally, he has a significant presence in corporate law and compliance.",
+            socials: {
+                instagram: "#",
+                twitter: "https://x.com/RaufAaeq",
                 facebook: "#",
             },
         },
