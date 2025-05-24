@@ -48,9 +48,9 @@ const About = () => {
             <AboutSection />
 
             {/* What We Do Section */}
-            <section className="max-w-7xl mx-auto px-6 py-16 flex flex-col md:flex-row items-center gap-10">
+            <section className="max-w-6xl mx-auto px-6 py-16 flex flex-col md:flex-row items-center gap-10">
                 <div className="md:w-1/2">
-                    <h2 className="text-4xl font-bold text-[#814d35] mb-6">What We Do</h2>
+                    <h2 className="text-4xl font-bold text-[#814d35] mb-6">What We Do?</h2>
                     <p className="text-gray-700 text-lg leading-relaxed">
                         We provide comprehensive solutions that empower businesses to grow and succeed. From advisory and technology transformation to training and compliance, our expert team ensures that you get tailored support and innovative strategies aligned with your goals.
                     </p>
@@ -67,7 +67,7 @@ const About = () => {
             {/* Why Choose Us Section */}
             <section className="max-w-7xl mx-auto px-6 pb-16">
                 <h2 className="text-4xl font-bold text-center text-[#814d35] mb-12">
-                    Why Choose Us
+                    Why Choose Us?
                 </h2>
 
                 {/* Vertical List with alternating layout */}
@@ -82,7 +82,7 @@ const About = () => {
                             >
                                 {/* Text */}
                                 <div className="md:w-1/2">
-                                    <h3 className="text-2xl font-semibold mb-4 text-[#814d35]">{title}</h3>
+                                    <h3 className="text-4xl font-semibold mb-4 text-[#814d35]">{title}</h3>
                                     <p className="text-gray-700 leading-relaxed">{description}</p>
                                 </div>
 

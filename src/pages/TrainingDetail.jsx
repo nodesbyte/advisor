@@ -117,21 +117,19 @@ const TrainingDetail = () => {
   return (
     <Box sx={{ padding: 4 }}>
       <Paper elevation={6} sx={{ padding: 3, borderRadius: 4 }}>
-        <Grid container spacing={4}>
-          {/* Image Section */}
-          <Grid item xs={12} md={5}>
-            <Card sx={{ borderRadius: 3, overflow: "hidden" }}>
-              <CardMedia
-                component="img"
-                height="300"
-                image={training.image}
-                alt={training.title}
-              />
-            </Card>
-          </Grid>
-
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "row", // Always row
+            gap: 4,
+            flexWrap: "nowrap",  // Prevent stacking
+            alignItems: "flex-start",
+            justifyContent: "space-between",
+            overflowX: "auto", // Prevent layout breaking on small screens
+          }}
+        >
           {/* Text Details Section */}
-          <Grid item xs={12} md={7}>
+          <Box sx={{ flex: 1, minWidth: "300px" }}>
             <Typography variant="h3" gutterBottom>
               {training.title}
             </Typography>
@@ -161,7 +159,9 @@ const TrainingDetail = () => {
                     <Typography variant="subtitle2" color="text.secondary">
                       Target Audience
                     </Typography>
-                    <Typography variant="body2">{training.targetAudience}</Typography>
+                    <Typography variant="body2">
+                      {training.targetAudience}
+                    </Typography>
                   </CardContent>
                 </Card>
               </Grid>
@@ -186,8 +186,20 @@ const TrainingDetail = () => {
                 </Card>
               </Grid>
             </Grid>
-          </Grid>
-        </Grid>
+          </Box>
+
+          {/* Image Section */}
+          <Box sx={{ flexShrink: 0 }}>
+            <Card sx={{ borderRadius: 3, overflow: "hidden", maxWidth: 400 }}>
+              <CardMedia
+                component="img"
+                height="300"
+                image={training.image}
+                alt={training.title}
+              />
+            </Card>
+          </Box>
+        </Box>
       </Paper>
     </Box>
   );
