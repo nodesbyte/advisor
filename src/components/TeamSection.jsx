@@ -160,44 +160,47 @@ const TeamPage = () => {
 
     return (
         <Box sx={{ maxWidth: "1000px", mx: "auto", mt: 8, px: 2 }}>
-            <Typography variant="h2" align="center" gutterBottom>
+            <Typography variant="h4" align="center" gutterBottom>
                 Meet our Team
             </Typography>
             <Typography variant="subtitle1" align="center" gutterBottom>
                 We Help To Create Visual Strategies
             </Typography>
 
-            <Tabs
-                value={selectedTab}
-                onChange={(e, newValue) => setSelectedTab(newValue)}
-                variant="scrollable"
-                scrollButtons="auto"
-                sx={{
-                    mt: 3,
-                    borderBottom: 1,
-                    borderColor: "divider",
-                    "& .MuiTab-root": {
-                        textTransform: "none",
-                        fontWeight: 500,
-                        color: "#000", // default color
-                        transition: "color 0.3s ease",
-                        "&:hover": {
-                            color: "#BC9A87" // hover effect
-                        }
-                    },
-                    "& .Mui-selected": {
-                        color: "#BC9A87 !important", // selected tab text color
-                        fontWeight: "bold"
-                    },
-                    "& .MuiTabs-indicator": {
-                        backgroundColor: "#BC9A87" // tab underline
-                    }
-                }}
-            >
-                {teamMembers.map((member, index) => (
-                    <Tab key={index} label={member.name} />
-                ))}
-            </Tabs>
+            <Box sx={{ display: "flex", justifyContent: "center" }}>
+                <Tabs
+                    value={selectedTab}
+                    onChange={(e, newValue) => setSelectedTab(newValue)}
+                    variant="scrollable"
+                    scrollButtons="auto"
+                    sx={{
+                        mt: 3,
+                        borderBottom: 1,
+                        borderColor: "divider",
+                        "& .MuiTab-root": {
+                            textTransform: "none",
+                            fontWeight: 500,
+                            color: "#000", // default color
+                            transition: "color 0.3s ease",
+                            "&:hover": {
+                                color: "#BC9A87", // hover effect
+                            },
+                        },
+                        "& .Mui-selected": {
+                            color: "#BC9A87 !important", // selected tab text color
+                            fontWeight: "bold",
+                        },
+                        "& .MuiTabs-indicator": {
+                            backgroundColor: "#BC9A87", // tab underline
+                        },
+                    }}
+                >
+                    {teamMembers.map((member, index) => (
+                        <Tab key={index} label={member.name} />
+                    ))}
+                </Tabs>
+            </Box>
+
 
             <Box sx={{ mt: 4 }}>
                 <Card sx={{ display: "flex", flexDirection: ["column", "row"], p: 2 }}>
