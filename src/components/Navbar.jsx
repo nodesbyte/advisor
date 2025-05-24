@@ -98,7 +98,7 @@ const Navbar = () => {
             }
             items={[]}
             link="/team"
-            imageGroup={[image1, image2, image3, image4]}
+            imageGroup={[image3, image4, image1, image2]}
           />
 
           <Dropdowns

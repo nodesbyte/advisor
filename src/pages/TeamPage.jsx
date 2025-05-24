@@ -17,6 +17,122 @@ import { Link } from "@mui/material";
 
 const teamMembers = [
     {
+        name: "Huzaima Bukhari",
+        title: "Chief Partner",
+        email: "huzaima@irthadvisors.com",
+        image: profile3,
+        bio: (
+            <>
+                <Typography variant="body8" paragraph>
+                    <strong>Ms. Huzaima Bukhari</strong>, MA, LLB, Advocate High Court, Visiting Faculty at Lahore University of Management Sciences (LUMS), member Advisory Board and Visiting Senior Fellow of Pakistan Institute of Development Economics (PIDE)
+                </Typography>
+                <Typography variant="body8" paragraph>
+                    The recent publication, coauthored with Abdul Rauf Shakoori and IKRAM UL HAQ, is <strong>Pakistan Tackling FATF: Challenges & Solutions</strong>, available at:{" "}
+                    <Typography variant="body8">
+                        <Link
+                            href="https://www.amazon.com/dp/B08RXH8W46"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            underline="hover"
+                            color="primary"
+                        >
+                            Amazon
+                        </Link>
+                        <Box component="span" ml={1} mr={1}>
+                            and
+                        </Box>
+                        <Link
+                            href="https://aacp.com.pk/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            underline="hover"
+                            color="primary"
+                        >
+                            AACP Pakistan
+                        </Link>
+                    </Typography>
+
+                </Typography>
+            </>
+        ),
+        experience: (
+            <>
+                <Typography variant="h4" paragraph>
+                    <strong>About Huzaima</strong>
+                </Typography>
+                <Typography variant="body8" paragraph>
+                    Ms. Huzaima Bukhari, MA, LLB, Advocate High Court, Visiting Faculty at Lahore University of Management Sciences (LUMS), member Advisory Board and Visiting Senior Fellow of Pakistan Institute of Development Economics (PIDE), is the author of numerous books and articles on Pakistani tax laws. She is the editor of Taxation and partner in Huzaima & Ikram, and Huzaima, Ikram & Ijaz, leading law firms in Pakistan. From 1984 to 2003, she was associated with the Civil Services of Pakistan. Since 1987, she has been teaching tax laws at various institutions including government-run training institutes in Lahore. She specializes in the areas of international tax laws, ML/CFT-related laws, and corporate and commercial laws. She is a co-author and review editor for many publications of the International Bureau of Fiscal Documentation (IBFD).
+                </Typography>
+                <Typography variant="body8" paragraph>
+                    She has co-authored with IKRAM UL HAQ many books that include Tax Reforms in Pakistan: Historic & Critical Review, Towards Flat, Low-rate, Broad and Predictable Taxes (Revised & Expanded Edition, Pakistan: Enigma of Taxation, Towards Flat, Low-rate, Broad and Predictable Taxes (revised/enlarged edition of December 2020), Law & Practice of Income Tax, Law, Practice of Sales Tax, Law and Practice of Corporate Law, Law & Practice of Federal Excise, Law & Practice of Sales Tax on Services, Federal Tax Laws of Pakistan, Provincial Tax Laws, Practical Handbook of Income Tax, Tax Laws of Pakistan, Principles of Income Tax with Glossary and Master Tax Guide, Income Tax Digest 1886-2011 (with judicial analysis).
+                </Typography>
+                <Typography variant="body8" paragraph>
+                    She regularly writes columns/articles/features/papers for Pakistani newspapers/journals and international journals/magazines. She has contributed over 1800 articles on issues of public finance, taxation, economy, and various social issues in various journals, magazines, and newspapers at home and abroad.
+                </Typography>
+            </>
+        )
+
+
+    },
+    {
+        name: "Dr. Ikram Ul Haq",
+        title: "Managing Partner",
+        email: "ikram@huzaimaikram.com",
+        image: profile4,
+        bio: (
+            <>
+                <Typography variant="body8" paragraph>
+                    <strong>Dr. Ikramul Haq</strong>, Advocate Supreme Court, specialises in constitutional, corporate, media and cyber laws, ML/CFT, IT, intellectual property, arbitration and international taxation. He holds LLD in tax laws with specialization in transfer pricing.
+                </Typography>
+                <Typography variant="body8" paragraph>
+                    The recent publication, coauthored with Abdul Rauf Shakoori and Huzaima Bukhari is <strong>Pakistan Tackling FATF: Challenges & Solutions</strong>, available at:{" "}
+                    <Typography variant="body8">
+                        <Link
+                            href="https://www.amazon.com/dp/B08RXH8W46"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            underline="hover"
+                            color="primary"
+                        >
+                            Amazon
+                        </Link>
+                        <Box component="span" ml={1} mr={1}>
+                            and
+                        </Box>
+                        <Link
+                            href="https://aacp.com.pk/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            underline="hover"
+                            color="primary"
+                        >
+                            AACP Pakistan
+                        </Link>
+                    </Typography>
+
+                </Typography>
+            </>
+        ),
+        experience: (
+            <>
+                <Typography variant="h4" paragraph>
+                    <strong>About Dr. Ikram Ul Haq</strong>
+                </Typography>
+                <Typography variant="body8" paragraph>
+                    Dr. Ikramul Haq, Advocate Supreme Court, specializes in constitutional, corporate, media, and cyber laws, ML/CFT, IT, intellectual property, arbitration, and international taxation. He holds an LLD in tax law with a specialization in transfer pricing. He was a full-time journalist from 1979 to 1984 with Viewpoint and Dawn. He served Civil Services of Pakistan from 1984 to 1996. He established Huzaima & Ikram in 1996 and is presently its chief partner as well as a partner in Huzaima Ikram & Ijaz. He studied journalism, English literature, and law. He is the Chief Editor of Taxation. He is the country editor and correspondent of the International Bureau of Fiscal Documentation (IBFD) and a member of the International Fiscal Association (IFA). He is a Visiting Faculty at the Lahore University of Management Sciences (LUMS) and member Advisory Board and a Visiting Senior Fellow of the Pakistan Institute of Development Economics (PIDE).
+                </Typography>
+                <Typography variant="body8" paragraph>
+                    He has co-authored with Huzaima Bukhari many books that include Tax Reforms in Pakistan: Historic & Critical Review, Towards Flat, Low-rate, Broad and Predictable Taxes (Revised & Expanded Edition, Pakistan: Enigma of Taxation, Towards Flat, Low-rate, Broad and Predictable Taxes (revised/enlarged edition of December 2020), Law & Practice of Income Tax, Law, Practice of Sales Tax, Law and Practice of Corporate Law, Law & Practice of Federal Excise, Law & Practice of Sales Tax on Services, Federal Tax Laws of Pakistan, Provincial Tax Laws, Practical Handbook of Income Tax, Tax Laws of Pakistan, Principles of Income Tax with Glossary and Master Tax Guide, Income Tax Digest 1886-2011 (with judicial analysis).
+                </Typography>
+                <Typography variant="body8" paragraph>
+                    He is the author of Commentary on Avoidance of Double Taxation Agreements signed by Pakistan, Pakistan: From Hash to Heroin, its sequel Pakistan: Drug-trap to Debt-trap and Practical Handbook of Income Tax. He regularly writes columns for many Pakistani newspapers and international journals and has contributed over 2500 articles on a variety of issues of public interest, printed in various journals, magazines, and newspapers at home and abroad.
+                </Typography>
+            </>
+        )
+
+
+    },
+    {
         name: "Tahir Hassan Qureshi",
         title: "Senior Partner",
         email: "tahir@irthadvisors.com",
@@ -170,122 +286,6 @@ const teamMembers = [
                 </Typography>
                 <Typography variant="body8" paragraph>
                     He has authored numerous articles, including: <em>Revenue Collection: Contemporary Targets vs. Orthodox Approach</em>, <em>It is Time to Say Goodbye to Our Past</em>, <em>FATF and unjustly grey listed Pakistan</em>, <em>Pakistan’s Long Road towards FATF Compliance</em>, and many more addressing compliance, governance, and financial crime issues.
-                </Typography>
-            </>
-        )
-
-
-    },
-    {
-        name: "Huzaima Bukhari",
-        title: "Chief Partner",
-        email: "huzaima@irthadvisors.com",
-        image: profile3,
-        bio: (
-            <>
-                <Typography variant="body8" paragraph>
-                    <strong>Ms. Huzaima Bukhari</strong>, MA, LLB, Advocate High Court, Visiting Faculty at Lahore University of Management Sciences (LUMS), member Advisory Board and Visiting Senior Fellow of Pakistan Institute of Development Economics (PIDE)
-                </Typography>
-                <Typography variant="body8" paragraph>
-                    The recent publication, coauthored with Abdul Rauf Shakoori and IKRAM UL HAQ, is <strong>Pakistan Tackling FATF: Challenges & Solutions</strong>, available at:{" "}
-                    <Typography variant="body8">
-                        <Link
-                            href="https://www.amazon.com/dp/B08RXH8W46"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            underline="hover"
-                            color="primary"
-                        >
-                            Amazon
-                        </Link>
-                        <Box component="span" ml={1} mr={1}>
-                            and
-                        </Box>
-                        <Link
-                            href="https://aacp.com.pk/"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            underline="hover"
-                            color="primary"
-                        >
-                            AACP Pakistan
-                        </Link>
-                    </Typography>
-
-                </Typography>
-            </>
-        ),
-        experience: (
-            <>
-                <Typography variant="h4" paragraph>
-                    <strong>About Huzaima</strong>
-                </Typography>
-                <Typography variant="body8" paragraph>
-                    Ms. Huzaima Bukhari, MA, LLB, Advocate High Court, Visiting Faculty at Lahore University of Management Sciences (LUMS), member Advisory Board and Visiting Senior Fellow of Pakistan Institute of Development Economics (PIDE), is the author of numerous books and articles on Pakistani tax laws. She is the editor of Taxation and partner in Huzaima & Ikram, and Huzaima, Ikram & Ijaz, leading law firms in Pakistan. From 1984 to 2003, she was associated with the Civil Services of Pakistan. Since 1987, she has been teaching tax laws at various institutions including government-run training institutes in Lahore. She specializes in the areas of international tax laws, ML/CFT-related laws, and corporate and commercial laws. She is a co-author and review editor for many publications of the International Bureau of Fiscal Documentation (IBFD).
-                </Typography>
-                <Typography variant="body8" paragraph>
-                    She has co-authored with IKRAM UL HAQ many books that include Tax Reforms in Pakistan: Historic & Critical Review, Towards Flat, Low-rate, Broad and Predictable Taxes (Revised & Expanded Edition, Pakistan: Enigma of Taxation, Towards Flat, Low-rate, Broad and Predictable Taxes (revised/enlarged edition of December 2020), Law & Practice of Income Tax, Law, Practice of Sales Tax, Law and Practice of Corporate Law, Law & Practice of Federal Excise, Law & Practice of Sales Tax on Services, Federal Tax Laws of Pakistan, Provincial Tax Laws, Practical Handbook of Income Tax, Tax Laws of Pakistan, Principles of Income Tax with Glossary and Master Tax Guide, Income Tax Digest 1886-2011 (with judicial analysis).
-                </Typography>
-                <Typography variant="body8" paragraph>
-                    She regularly writes columns/articles/features/papers for Pakistani newspapers/journals and international journals/magazines. She has contributed over 1800 articles on issues of public finance, taxation, economy, and various social issues in various journals, magazines, and newspapers at home and abroad.
-                </Typography>
-            </>
-        )
-
-
-    },
-    {
-        name: "Dr. Ikram Ul Haq",
-        title: "Managing Partner",
-        email: "ikram@huzaimaikram.com",
-        image: profile4,
-        bio: (
-            <>
-                <Typography variant="body8" paragraph>
-                    <strong>Dr. Ikramul Haq</strong>, Advocate Supreme Court, specialises in constitutional, corporate, media and cyber laws, ML/CFT, IT, intellectual property, arbitration and international taxation. He holds LLD in tax laws with specialization in transfer pricing.
-                </Typography>
-                <Typography variant="body8" paragraph>
-                    The recent publication, coauthored with Abdul Rauf Shakoori and Huzaima Bukhari is <strong>Pakistan Tackling FATF: Challenges & Solutions</strong>, available at:{" "}
-                    <Typography variant="body8">
-                        <Link
-                            href="https://www.amazon.com/dp/B08RXH8W46"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            underline="hover"
-                            color="primary"
-                        >
-                            Amazon
-                        </Link>
-                        <Box component="span" ml={1} mr={1}>
-                            and
-                        </Box>
-                        <Link
-                            href="https://aacp.com.pk/"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            underline="hover"
-                            color="primary"
-                        >
-                            AACP Pakistan
-                        </Link>
-                    </Typography>
-
-                </Typography>
-            </>
-        ),
-        experience: (
-            <>
-                <Typography variant="h4" paragraph>
-                    <strong>About Dr. Ikram Ul Haq</strong>
-                </Typography>
-                <Typography variant="body8" paragraph>
-                    Dr. Ikramul Haq, Advocate Supreme Court, specializes in constitutional, corporate, media, and cyber laws, ML/CFT, IT, intellectual property, arbitration, and international taxation. He holds an LLD in tax law with a specialization in transfer pricing. He was a full-time journalist from 1979 to 1984 with Viewpoint and Dawn. He served Civil Services of Pakistan from 1984 to 1996. He established Huzaima & Ikram in 1996 and is presently its chief partner as well as a partner in Huzaima Ikram & Ijaz. He studied journalism, English literature, and law. He is the Chief Editor of Taxation. He is the country editor and correspondent of the International Bureau of Fiscal Documentation (IBFD) and a member of the International Fiscal Association (IFA). He is a Visiting Faculty at the Lahore University of Management Sciences (LUMS) and member Advisory Board and a Visiting Senior Fellow of the Pakistan Institute of Development Economics (PIDE).
-                </Typography>
-                <Typography variant="body8" paragraph>
-                    He has co-authored with Huzaima Bukhari many books that include Tax Reforms in Pakistan: Historic & Critical Review, Towards Flat, Low-rate, Broad and Predictable Taxes (Revised & Expanded Edition, Pakistan: Enigma of Taxation, Towards Flat, Low-rate, Broad and Predictable Taxes (revised/enlarged edition of December 2020), Law & Practice of Income Tax, Law, Practice of Sales Tax, Law and Practice of Corporate Law, Law & Practice of Federal Excise, Law & Practice of Sales Tax on Services, Federal Tax Laws of Pakistan, Provincial Tax Laws, Practical Handbook of Income Tax, Tax Laws of Pakistan, Principles of Income Tax with Glossary and Master Tax Guide, Income Tax Digest 1886-2011 (with judicial analysis).
-                </Typography>
-                <Typography variant="body8" paragraph>
-                    He is the author of Commentary on Avoidance of Double Taxation Agreements signed by Pakistan, Pakistan: From Hash to Heroin, its sequel Pakistan: Drug-trap to Debt-trap and Practical Handbook of Income Tax. He regularly writes columns for many Pakistani newspapers and international journals and has contributed over 2500 articles on a variety of issues of public interest, printed in various journals, magazines, and newspapers at home and abroad.
                 </Typography>
             </>
         )
