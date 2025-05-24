@@ -6,7 +6,12 @@ export default function Insights() {
   
   return (
     <>
-      <FeaturedInsights isInteractive={true} selectedPost={postTitle} />
+<FeaturedInsights 
+  isInteractive={true} 
+  selectedPost={postTitle} 
+  overlayText={false} 
+/>
+
     </>
   )
 }
