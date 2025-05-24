@@ -1,120 +1,248 @@
+import React, { useState } from "react";
+import {
+    Tabs,
+    Tab,
+    Box,
+    Typography,
+    Card,
+    CardContent,
+    Avatar
+} from "@mui/material";
 import profile1 from "../assets/team1.jpg";
 import profile2 from "../assets/team2.jpg";
 import profile3 from "../assets/team3.jpg";
 import profile4 from "../assets/team4.jpg";
+import { Link } from "@mui/material";
 
-// Import your social icon images
-import instagramImg from "../assets/instagram.png";
-import twitterXImg from "../assets/twitterx.png";
-import facebookImg from "../assets/facebook.png";
 
-const TeamSection = () => {
-    const team = [
+const teamMembers = [
+    {
+        name: "Huzaima Bukhari",
+        title: "Chief Partner",
+        email: "huzaima@irthadvisors.com",
+        image: profile3,
+        bio: (
+            <>
+                <Typography variant="body8" paragraph>
+                    <strong>Ms. Huzaima Bukhari</strong>, MA, LLB, Advocate High Court, Visiting Faculty at Lahore University of Management Sciences (LUMS), member Advisory Board and Visiting Senior Fellow of Pakistan Institute of Development Economics (PIDE)
+                </Typography>
+                <Typography variant="body8" paragraph>
+                    The recent publication, coauthored with Abdul Rauf Shakoori and IKRAM UL HAQ, is <strong>Pakistan Tackling FATF: Challenges & Solutions</strong>, available at:{" "}
+                    <Typography variant="body8">
+                        <Link
+                            href="https://www.amazon.com/dp/B08RXH8W46"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            underline="hover"
+                            color="primary"
+                        >
+                            Amazon
+                        </Link>
+                        <Box component="span" ml={1} mr={1}>
+                            and
+                        </Box>
+                        <Link
+                            href="https://aacp.com.pk/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            underline="hover"
+                            color="primary"
+                        >
+                            AACP Pakistan
+                        </Link>
+                    </Typography>
 
-        {
-            name: "Huzaima Bukhari",
-            title: "Chief Partner",
-            image: profile3,
-            description:
-                "Ms. Huzaima is a tax policy expert and academic writer, contributing to national discussions on fiscal reforms and economic law.",
-            socials: {
-                instagram: "#",
-                twitter: "https://x.com/Huzaimabukhari",
-                facebook: "#",
-            },
-        },
-        {
-            name: "Dr. Ikram Ul Haq",
-            title: "Managing Partner",
-            image: profile4,
-            description:
-                "Dr. Ikram is an authority on tax law and public policy. His work in taxation and governance has made a substantial impact at both national and international levels.",
-            socials: {
-                instagram: "#",
-                twitter: "https://x.com/DrIkramulHaq",
-                facebook: "#",
-            },
-        },
-        {
-            name: "Tahir Hassan Qureshi",
-            title: "Senior Partner",
-            image: profile1,
-            description:
-                "Mr. Tahir is a seasoned professional based in the UK, and a fellow member of the Institute of Chartered Accountants of Pakistan. He brings decades of experience in financial consultancy and leadership.",
-            socials: {
-                instagram: "#",
-                twitter: "https://x.com/thqabl1",
-                facebook: "#",
-            },
-        },
-        {
-            name: "Abdul Rauf Shakoori",
-            title: "Senior Partner",
-            image: profile2,
-            description:
-                "Mr. Abdul Rauf is known for his legal expertise and strategic planning. Based internationally, he has a significant presence in corporate law and compliance.",
-            socials: {
-                instagram: "#",
-                twitter: "https://x.com/RaufAaeq",
-                facebook: "#",
-            },
-        },
-    ];
+                </Typography>
+            </>
+        )
+    },
+    {
+        name: "Dr. Ikram Ul Haq",
+        title: "Managing Partner",
+        email: "ikram@huzaimaikram.com",
+        image: profile4,
+        bio: (
+            <>
+                <Typography variant="body8" paragraph>
+                    <strong>Dr. Ikramul Haq</strong>, Advocate Supreme Court, specialises in constitutional, corporate, media and cyber laws, ML/CFT, IT, intellectual property, arbitration and international taxation. He holds LLD in tax laws with specialization in transfer pricing.
+                </Typography>
+                <Typography variant="body8" paragraph>
+                    The recent publication, coauthored with Abdul Rauf Shakoori and Huzaima Bukhari is <strong>Pakistan Tackling FATF: Challenges & Solutions</strong>, available at:{" "}
+                    <Typography variant="body8">
+                        <Link
+                            href="https://www.amazon.com/dp/B08RXH8W46"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            underline="hover"
+                            color="primary"
+                        >
+                            Amazon
+                        </Link>
+                        <Box component="span" ml={1} mr={1}>
+                            and
+                        </Box>
+                        <Link
+                            href="https://aacp.com.pk/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            underline="hover"
+                            color="primary"
+                        >
+                            AACP Pakistan
+                        </Link>
+                    </Typography>
+
+                </Typography>
+            </>
+        )
+    },
+    {
+        name: "Tahir Hassan Qureshi",
+        title: "Senior Partner",
+        email: "tahir@irthadvisors.com",
+        image: profile1,
+        bio: (
+            <>
+                <Typography variant="body8" paragraph>
+                    <strong>Mr. Tahir Hassan Qureshi</strong>, based in the UK, is a fellow of the Institute of Chartered Accountants of Pakistan and a member of the UK’s Institute of Chartered Public Finance and Accountancy. With over 33 years of diverse experience—including 28 in senior banking roles (CEO, COO, CFO, CIA)—he has led one of Pakistan’s major banks with 4.5 million customers, ensuring effective compliance, customer due diligence, and AML/CFT measures, including trade-based money laundering controls. He serves on ICAP’s AML Supervisory and Appellate Boards, supporting FATF Asia Pacific Group recommendations, and advises Pakistan Credit Rating Agency on Moody’s International Analytics Risk Management Solutions.
+                </Typography>
+                <Typography variant="body8" paragraph>
+                    As a Certified Director and independent board member, he helps
+                    organizations enhance governance, oversight, and strategic direction.
+                </Typography>
+            </>
+        )
+    },
+    {
+        name: "Abdul Rauf Shakoori",
+        title: "Senior Partner",
+        email: "rauf@irthadvisors.com",
+        image: profile2,
+        bio: (
+            <>
+                <Typography variant="body8" paragraph>
+                    <strong>Abdul Rauf Shakoori</strong>, Advocate High Court, is a subject-matter expert on AML-CFT, Compliance, Cyber Crime, and Risk Management. He has been providing AML-CFT advisory and training services to financial institutions (banks, DNFBPs, Investment companies, Money Service Businesses, insurance companies, and securities), and government institutions including law enforcement agencies located in North America (USA & CANADA), Middle East and Pakistan.
+                </Typography>
+                <Typography variant="body8" paragraph>
+                    His recent book, co-authored with Huzaima Bukhari & Dr. Ikramul Haq, is titled <strong>Pakistan Tackling FATF: Challenges & Solutions</strong>, available at:{" "}
+                    <Typography variant="body8">
+                        <Link
+                            href="https://www.amazon.com/dp/B08RXH8W46"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            underline="hover"
+                            color="primary"
+                        >
+                            Amazon
+                        </Link>
+                        <Box component="span" ml={1} mr={1}>
+                            and
+                        </Box>
+                        <Link
+                            href="https://aacp.com.pk/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            underline="hover"
+                            color="primary"
+                        >
+                            AACP Pakistan
+                        </Link>
+                    </Typography>
+
+                </Typography>
+            </>
+        )
+    }
+];
+
+const TeamPage = () => {
+    const [selectedTab, setSelectedTab] = useState(0);
 
     return (
-        <section className="bg-[#c8a890] py-16 text-center">
-            <h2 className="text-4xl font-bold text-[#0f1e3c] mb-2">Meet Our Team</h2>
-            <p className="text-lg text-[#333333] mb-12">Explore Our Success Stories and Innovative Projects</p>
+        <Box sx={{ maxWidth: "1000px", mx: "auto", mt: 8, px: 2 }}>
+            <Typography variant="h4" align="center" gutterBottom>
+                Meet our Team
+            </Typography>
+            <Typography variant="subtitle1" align="center" gutterBottom>
+                We Help To Create Visual Strategies
+            </Typography>
 
-            <div className="max-w-6xl mx-auto space-y-12">
-                {[0, 2].map((startIdx) => (
-                    <div
-                        key={startIdx}
-                        className="flex flex-col md:flex-row justify-center md:space-x-24 space-y-12 md:space-y-0 px-4"
-                    >
-                        {team.slice(startIdx, startIdx + 2).map((member, idx) => (
-                            <div key={idx} className="flex items-start text-left">
-                                <img
-                                    src={member.image}
-                                    alt={member.name}
-                                    className="w-40 h-40 rounded-full object-cover"
-                                />
-                                <div className="ml-6 max-w-xs">
-                                    <h4 className="text-xl font-semibold text-[#0f1e3c]">{member.name}</h4>
-                                    <p className="text-sm text-gray-700">{member.title}</p>
-                                    <hr className="my-2 w-16 border-gray-600" />
-                                    <p className="text-sm text-gray-800">{member.description}</p>
-                                    <div className="flex space-x-4 mt-3 text-[#0f1e3c]">
-                                        <a href={member.socials.instagram} target="_blank" rel="noopener noreferrer">
-                                            <img
-                                                src={instagramImg}
-                                                alt="Instagram"
-                                                className="w-8 h-8 hover:scale-110 cursor-pointer"
-                                            />
-                                        </a>
-                                        <a href={member.socials.twitter} target="_blank" rel="noopener noreferrer">
-                                            <img
-                                                src={twitterXImg}
-                                                alt="Twitter X"
-                                                className="w-8 h-8 hover:scale-110 cursor-pointer"
-                                            />
-                                        </a>
-                                        <a href={member.socials.facebook} target="_blank" rel="noopener noreferrer">
-                                            <img
-                                                src={facebookImg}
-                                                alt="Facebook"
-                                                className="w-8 h-8 hover:scale-110 cursor-pointer"
-                                            />
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                ))}
-            </div>
-        </section>
+            <Box sx={{ display: "flex", justifyContent: "center" }}>
+                <Tabs
+                    value={selectedTab}
+                    onChange={(e, newValue) => setSelectedTab(newValue)}
+                    variant="scrollable"
+                    scrollButtons="auto"
+                    sx={{
+                        mt: 3,
+                        borderBottom: 1,
+                        borderColor: "divider",
+                        "& .MuiTab-root": {
+                            textTransform: "none",
+                            fontWeight: 500,
+                            color: "#000", // default color
+                            transition: "color 0.3s ease",
+                            "&:hover": {
+                                color: "#BC9A87", // hover effect
+                            },
+                        },
+                        "& .Mui-selected": {
+                            color: "#BC9A87 !important", // selected tab text color
+                            fontWeight: "bold",
+                        },
+                        "& .MuiTabs-indicator": {
+                            backgroundColor: "#BC9A87", // tab underline
+                        },
+                    }}
+                >
+                    {teamMembers.map((member, index) => (
+                        <Tab key={index} label={member.name} />
+                    ))}
+                </Tabs>
+            </Box>
+
+
+            <Box sx={{ mt: 4 }}>
+                <Card sx={{ display: "flex", flexDirection: ["column", "row"], p: 2 }}>
+                    <Avatar
+                        src={teamMembers[selectedTab].image}
+                        alt={teamMembers[selectedTab].name}
+                        sx={{
+                            width: 150,
+                            height: 150,
+                            mr: [0, 3],
+                            mb: [2, 0],
+                            alignSelf: "center"
+                        }}
+                    />
+                    <CardContent>
+                        <Typography variant="h4" gutterBottom>
+                            {teamMembers[selectedTab].name}
+                        </Typography>
+                        <Typography variant="h5" gutterBottom>
+                            {teamMembers[selectedTab].title}
+                        </Typography>
+                        {teamMembers[selectedTab].bio}
+                        <Typography variant="body8" sx={{ mt: 2 }}>
+                            <strong>Email:</strong>{" "}
+                            <Link
+                                href={`mailto:${teamMembers[selectedTab].email}`}
+                                underline="hover"
+                                color="primary"
+                            >
+                                {teamMembers[selectedTab].email}
+                            </Link>
+                        </Typography>
+
+                    </CardContent>
+                </Card>
+
+                {teamMembers[selectedTab].experience && (
+                    <Box sx={{ mt: 4 }}>{teamMembers[selectedTab].experience}</Box>
+                )}
+            </Box>
+        </Box>
     );
 };
 
-export default TeamSection;
+export default TeamPage;

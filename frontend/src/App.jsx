@@ -1,14 +1,10 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 import { ThemeProvider, createTheme, CssBaseline, Typography } from "@mui/material";
-// import '@fontsource/poppins'; // Defaults to weight 400
-// import '@fontsource/poppins/300.css';
-// import '@fontsource/poppins/600.css';
 
 // Layout Components
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
-// import PageTop from "./components/PageTop";
 import ScrollToTop from './components/ScrollToTop';
 
 
@@ -22,6 +18,8 @@ import ServicesPage from "./pages/ServicesPage";
 import TeamPage from "./pages/TeamPage";
 import TrainingDetail from "./pages/TrainingDetail";
 import TrainingPage from "./pages/TrainingPage";
+import Login from "./pages/Login";
+import Signup from "./pages/Signup";
 
 // Theme configuration
 const theme = createTheme({
@@ -47,6 +45,8 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/team" element={<TeamPage />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
 
         {/* Services */}
         <Route path="/services" element={<ServicesPage />} />
@@ -60,21 +60,7 @@ function App() {
         <Route path="/:category/:postTitle" element={<Insights />} />
         <Route path="/featured" element={<Insights />} />
 
-        {/* 404 Not Found */}
-        {/* <Route
-          path="*"
-          element={
-            <Box sx={{ p: 4, textAlign: "center" }}>
-              <Typography variant="h4" gutterBottom>
-                404 - Page Not Found
-              </Typography>
-              <Typography variant="body1">
-                Sorry, the page you are looking for does not exist.
-              </Typography>
-            </Box>
-          }
-            
-        /> */}
+     
       </Routes>
 
       <Footer />

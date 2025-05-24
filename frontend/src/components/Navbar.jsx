@@ -12,20 +12,49 @@ import image4 from "../assets/team4.jpg";
 // import SearchBar from "../components/SearchBar"; // adjust path as needed
 
 const services = [
-  "ESG Strategy and Implementation Services",
-  "Investigative and Business Intelligence Services",
-  "Independent and Pre-Regulatory Examinations",
-  "Strategic Assurance and Policies Development",
-  "Testing",
-];
+  {
+    label: "Advisory",
+    sublinks: [
+      "Business Restructuring/Reorganisation",
+      "Cybersecurity & Data Privacy",
+      "Developing Corporate/Commercial/ /Retail/SME Business Strategy",
+      "Forensic & Investigations Advisory",
+      "Legal Analytics & Transaction Advisory",
+      "Risk Management & Compliance"
+    ]
+  },
+  {
+    label: "Technology Transformation",
+    sublinks: [
+      "Core Banking Solution Migration Strategy – Designing Functional Design Documents",
+      "Digital Transformation",
+      "Financial & Budget Planning Automation",
+      "Blockchain and Digital Assets",
+      "Business Transformation, Process Re-Engineering/Automation"
+    ]
+  },
+  {
+    label: "ESG",
+    sublinks: ["ESG Strategy"]
+  },
+  {
+    label: "Tax Advisory",
+    sublinks: ["Local Tax", "International Tax", "Payroll Tax", "Transaction-specific Tax"]
+  },
+  {
+    label: "Training",
+    sublinks: ["Please use IRTH material here"]
+  }
+]
 const trainings = [
-  "Training Needs Analysis",
-  "Training Manuals",
-  "Customized Training Syllabi",
-  "Practical Workshops",
-  "Compliance Training",
-  "Ongoing Support",
+  { label: "Training Needs Analysis" },
+  { label: "Training Manuals" },
+  { label: "Customized Training Syllabi" },
+  { label: "Practical Workshops" },
+  { label: "Compliance Training" },
+  { label: "Ongoing Support" },
 ];
+
 const insights = [
   {
     label: "Magazines",
@@ -34,9 +63,9 @@ const insights = [
       "IRTH Regulatory Updates – Jan 2025 Edition",
     ],
   },
-  {
-    label: "Newspapers",
-  },
+  // {
+  //   label: "Newspapers",
+  // },
   {
     label: "Articles",
     sublinks: [
@@ -76,10 +105,10 @@ const Navbar = () => {
               Contact & Appointment
             </Link>
             <Link
-              to="/get-started"
+              to="/login"
               className="bg-[#814d35] text-white px-4 py-2 rounded-full text-sm font-semibold hover:bg-[#6e3f2a] transition"
             >
-              Get Started
+              Login
             </Link>
           </div>
         </div>
