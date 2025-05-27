@@ -18,9 +18,6 @@ import ServicesPage from "./pages/ServicesPage";
 import TeamPage from "./pages/TeamPage";
 import TrainingDetail from "./pages/TrainingDetail";
 import TrainingPage from "./pages/TrainingPage";
-import Login from "./pages/Login";
-import Signup from "./pages/Signup";
-
 // Theme configuration
 const theme = createTheme({
   palette: {
@@ -45,8 +42,6 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/team" element={<TeamPage />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
 
         {/* Services */}
         <Route path="/services" element={<ServicesPage />} />
