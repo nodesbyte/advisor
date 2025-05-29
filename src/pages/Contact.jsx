@@ -25,7 +25,7 @@ export default function Contact() {
         <div
           ref={calendlyRef}
           className="calendly-inline-widget"
-          data-url="https://calendly.com/chaudharyabdulrahimamir"
+          data-url="https://calendly.com/irthadvisors-support?primary_color=a34e0f"
           style={{ minWidth: "320px", height: "700px" }}
         ></div>
       </div>
