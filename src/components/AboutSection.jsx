@@ -55,8 +55,8 @@ export default function AboutSection({ isHomePage = false }) {
       {/* aboutus */}
       <div className="flex flex-col lg:flex-row justify-center items-center gap-8">
         <div className="flex flex-col">
-          <h2 className="text-4xl font-bold mb-6">Who we Are?</h2>
-          <p className="mr-12">
+          <h2 className="text-2xl sm:text-4xl  font-bold mb-6">Who we Are?</h2>
+          <p className="text-base">
             Irth Advisors LLC is a distinguished management consulting firm
             renowned for its extensive experience and unwavering commitment to
             integrity. With a proven track record of delivering exceptional
@@ -98,7 +98,7 @@ export default function AboutSection({ isHomePage = false }) {
             )}
           </p>
         </div>
-        <img src={about} className="h-[60vh] rounded-md" alt="About Us" />
+        <img src={about} className="h-[30vh] sm:h-[60vh] object-fit rounded-md" alt="About Us" />
       </div>
 
       {/* Only show below sections if not on Home Page */}

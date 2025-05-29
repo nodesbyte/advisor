@@ -33,25 +33,27 @@ export default function FeaturedInsights({ isInteractive = false, selectedPost, 
     <div className="grid grid-cols-1 md:grid-cols-3 gap-6 p-6 bg-white">
       {/* Left - Featured Post */}
       <div className="flex flex-col col-span-1 md:col-span-2 gap-6">
-        <h1 className="text-4xl font-bold top-6">Featured Insights</h1>
+        <h1 className="text-2xl sm:text-4xl font-bold top-6">Featured Insights</h1>
 
-        <div className="col-span-1 md:col-span-2 relative rounded-lg overflow-hidden shadow-md">
+        <div className="relative col-span-1 md:col-span-2  
+        rounded-lg overflow-hidden shadow-none sm:shadow-md">
           <img
             src={mainPost.image}
             alt={mainPost.title}
-            className="w-full h-98 object-cover"
+            className="w-full h-[28vh] sm:h-98 object-cover"
           />
 
           {overlayText ? (
-            <div className="absolute inset-0 bg-[#0000007c] bg-opacity-50 p-6 flex flex-col justify-end text-white">
+            <div className="absolute inset-0 bg-[#0000007c] 
+            bg-opacity-50 p-3 sm:p-6 flex flex-col justify-center sm:justify-end  text-white">
               <p className="text-sm mb-1">{mainPost.time}</p>
-              <h2 className="text-3xl font-bold">{mainPost.title}</h2>
+              <h2 className=" text-2xl sm:text-3xl font-bold">{mainPost.title}</h2>
               {mainPost.description && (
                 <p className="text-lg font-semibold mt-1 line-clamp-3">{mainPost.description}</p>
               )}
             </div>
           ) : (
-            <div className="p-4 bg-white text-gray-900">
+            <div className="p-2 sm:p-4 bg-white text-gray-900">
               <p className="text-sm text-gray-500">{mainPost.time}</p>
               <h2 className="text-3xl font-bold mt-2">{mainPost.title}</h2>
               {mainPost.description && (
@@ -77,11 +79,12 @@ export default function FeaturedInsights({ isInteractive = false, selectedPost, 
               <img
                 src={post.image}
                 alt={post.title}
-                className="w-24 h-20 object-cover rounded-md"
+                className="w-auto h-20 object-cover rounded-md"
               />
               <div className="flex flex-col justify-between">
                 <p className="text-xs text-gray-500">{post.time}</p>
-                <h4 className="text-md font-semibold text-gray-800">{post.title}</h4>
+                <h4 className="text-base sm:text-md 
+                font-semibold text-gray-800">{post.title}</h4>
                 <p className="text-xs text-gray-600">{post.category}</p>
               </div>
             </div>

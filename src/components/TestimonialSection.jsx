@@ -24,7 +24,7 @@ const testimonials = [
 ];
 
 const TestimonialCard = ({ image, name, feedback }) => (
-  <div className="bg-white border border-[#9b5c38] rounded-lg p-4 w-72 shadow-md my-4">
+  <div className="bg-white border border-[#9b5c38] rounded-lg p-4 w-72 shadow-md my-4 mx-4 flex-shrink-0">
     <div className="flex flex-col items-center mb-2">
       <img
         src={image}
@@ -46,20 +46,18 @@ const VerticalMarquee = ({ direction = "up" }) => {
     const container = containerRef.current;
     const content = contentRef.current;
 
-    const scrollStep = 1; // pixels per interval
-    const intervalDelay = 30; // ms
+    const scrollStep = 1; 
+    const intervalDelay = 30;
 
     const intervalId = setInterval(() => {
       if (!paused) {
         if (direction === "up") {
-          // Scroll upward (bottom to top)
           if (container.scrollTop >= content.scrollHeight / 2) {
             container.scrollTop = 0;
           } else {
             container.scrollTop += scrollStep;
           }
         } else {
-          // Scroll downward (top to bottom)
           if (container.scrollTop <= 0) {
             container.scrollTop = content.scrollHeight / 2;
           } else {
@@ -94,15 +92,68 @@ const VerticalMarquee = ({ direction = "up" }) => {
   );
 };
 
+const HorizontalMarquee = () => {
+  const containerRef = useRef(null);
+  const contentRef = useRef(null);
+  const [paused, setPaused] = useState(false);
+
+  useEffect(() => {
+    const container = containerRef.current;
+    const content = contentRef.current;
+
+    const scrollStep = 1;
+    const intervalDelay = 30;
+
+    const intervalId = setInterval(() => {
+      if (!paused) {
+        if (container.scrollLeft >= content.scrollWidth / 2) {
+          container.scrollLeft = 0;
+        } else {
+          container.scrollLeft += scrollStep;
+        }
+      }
+    }, intervalDelay);
+
+    return () => clearInterval(intervalId);
+  }, [paused]);
+
+  return (
+    <div
+      ref={containerRef}
+      className="w-full overflow-hidden"
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+    >
+      <div ref={contentRef} className="flex">
+        {/* Duplicate testimonials to create infinite loop */}
+        {[...testimonials, ...testimonials].map((t, i) => (
+          <TestimonialCard
+            key={`horizontal-testimonial-${i}`}
+            image={t.image}
+            name={t.name}
+            feedback={t.feedback}
+          />
+        ))}
+      </div>
+    </div>
+  );
+};
+
 const TestimonialSection = () => {
   return (
     <section className="bg-[#f9fafb] py-16 px-4 text-center">
       <h2 className="text-4xl font-semibold text-[#9b5c38] mb-10">Testimonials</h2>
-      <div className="flex justify-center items-start gap-10 flex-wrap">
-          <VerticalMarquee direction="up" />
-          <VerticalMarquee direction="down" />
-          <VerticalMarquee direction="up" />
-       
+      
+      {/* Mobile view: Single horizontal marquee */}
+      <div className="block sm:block xl:hidden ">
+        <HorizontalMarquee />
+      </div>
+      
+      {/* Desktop view: Multiple vertical marquees */}
+      <div className="hidden xl:flex justify-center items-start gap-10 flex-wrap">
+        <VerticalMarquee direction="up" />
+        <VerticalMarquee direction="down" />
+        <VerticalMarquee direction="up" />
       </div>
     </section>
   );

@@ -5,13 +5,40 @@ export default function Contact() {
 
   useEffect(() => {
     const scriptId = "calendly-widget-script";
+
+    // Check if script already exists
     if (!document.getElementById(scriptId)) {
       const script = document.createElement("script");
       script.id = scriptId;
       script.src = "https://assets.calendly.com/assets/external/widget.js";
       script.async = true;
+
+      // Load Calendly widget only after script is fully loaded
+      script.onload = () => {
+        if (window.Calendly && calendlyRef.current) {
+          window.Calendly.initInlineWidget({
+            url: "https://calendly.com/irthadvisors-support?primary_color=9b5d13",
+            parentElement: calendlyRef.current,
+            prefill: {}, // Optional: Pre-fill form data
+          });
+        }
+      };
+
       document.body.appendChild(script);
+    } else if (window.Calendly && calendlyRef.current) {
+      // If script is already loaded, initialize immediately
+      window.Calendly.initInlineWidget({
+        url: "https://calendly.com/irthadvisors-support?primary_color=9b5d13",
+        parentElement: calendlyRef.current,
+      });
     }
+
+    // Cleanup to prevent memory leaks
+    return () => {
+      if (window.Calendly) {
+        window.Calendly.destroyBadgeWidget();
+      }
+    };
   }, []);
 
   return (
@@ -21,11 +48,9 @@ export default function Contact() {
           Book an Appointment
         </h2>
 
-        {/* Calendly Inline Widget */}
+        {/* Calendly Inline Widget Container */}
         <div
           ref={calendlyRef}
-          className="calendly-inline-widget"
-          data-url="https://calendly.com/irthadvisors-support?primary_color=a34e0f"
           style={{ minWidth: "320px", height: "700px" }}
         ></div>
       </div>
