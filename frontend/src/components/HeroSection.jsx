@@ -24,10 +24,10 @@ const HeroSection = () => {
             <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 items-center mt-10">
                 {/* Left Content */}
                 <div>
-                    <h2 className="text-3xl sm:text-4xl lg:text-6xl font-bold text-[#814d35] leading-tight mb-4">
+                    <h2 className="text-3xl   sm:text-4xl lg:text-4xl xl:text-6xl font-bold text-[#814d35] leading-tight mb-4">
                         Building Trust. <br /> Driving Growth
                     </h2>
-                    <p className="text-base sm:text-lg text-gray-700 mb-6">
+                    <p className="text-sm sm:text-lg text-gray-700 mb-6">
                         IRTH Advisors partners with organizations to craft ESG strategies that drive sustainable growth, stakeholder trust, and long-term value.
                     </p>
                 </div>
