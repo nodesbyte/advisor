@@ -1,54 +1,57 @@
 import { Link } from "react-router-dom";
-import { LuPresentation } from "react-icons/lu";
 import { FaChalkboardTeacher, FaUserTie, FaUsersCog, FaLayerGroup } from "react-icons/fa";
 
 const trainingServices = [
     {
         title: "Training Needs Assessment (TNA)",
-        icon: <FaChalkboardTeacher className="text-4xl mb-4" />,
+        icon: <FaChalkboardTeacher className="text-3xl text-[#814d35]" />,
     },
     {
         title: "Capacity Building Programs",
-        icon: <FaUsersCog className="text-4xl mb-4" />,
+        icon: <FaUsersCog className="text-3xl text-[#814d35]" />,
     },
     {
         title: "Leadership & Team Building",
-        icon: <FaUserTie className="text-4xl mb-4" />,
+        icon: <FaUserTie className="text-3xl text-[#814d35]" />,
     },
     {
         title: "Customized Training Modules",
-        icon: <FaLayerGroup className="text-4xl mb-4" />,
+        icon: <FaLayerGroup className="text-3xl text-[#814d35]" />,
     },
 ];
 
 const TrainingServices = () => {
     return (
-        <section className="bg-white py-16 px-6 text-black">
+        <section className="bg-gradient-to-br from-[#f9f9f9] to-[#f1f5f9] py-20 px-6 text-black">
             <div className="max-w-7xl mx-auto text-center">
-                <h2 className="text-2xl md:text-3xl font-bold mb-12 font-lisu">
-                    Provide Training Services With Our Tools
+                <h2 className="text-3xl md:text-4xl font-bold mb-4 font-lisu text-[#0f1e3c]">
+                    Training Services That Empower Growth
                 </h2>
+                <p className="text-gray-600 max-w-xl mx-auto mb-12 text-lg">
+                    Elevate your team's skills with our targeted and customizable training programs.
+                </p>
 
-                {/* Cards with icons and links */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
                     {trainingServices.map((service, index) => (
                         <Link
                             to="/trainings"
                             key={index}
-                            className="bg-[#0f1e3c] w-full flex flex-col justify-center items-center text-center px-6 py-10 rounded-xl h-56 text-white hover:bg-[#1c2d57] transition duration-200"
+                            className="bg-white hover:shadow-2xl shadow-md transform hover:-translate-y-2 transition duration-300 p-6 rounded-2xl flex flex-col items-center text-center"
                         >
-                            {service.icon}
-                            <p className="font-semibold">{service.title}</p>
+                            <div className="bg-[#f0e7df] p-4 rounded-full mb-4">
+                                {service.icon}
+                            </div>
+                            <p className="font-semibold text-lg text-[#0f1e3c]">{service.title}</p>
                         </Link>
                     ))}
                 </div>
 
-                <div className="mt-12">
+                <div className="mt-14">
                     <Link
                         to="/trainings"
-                        className="border border-[#0f1e3c] text-[#0f1e3c] font-medium px-6 py-2 rounded-full hover:bg-[#0f1e3c] hover:text-white transition"
+                        className="inline-block border border-[#0f1e3c] text-[#0f1e3c] font-medium px-8 py-3 rounded-full hover:bg-[#0f1e3c] hover:text-white transition-all duration-300"
                     >
-                        View All Trainings →
+                        Explore All Trainings →
                     </Link>
                 </div>
             </div>

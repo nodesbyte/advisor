@@ -1,12 +1,16 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import { ThemeProvider, createTheme, CssBaseline, Typography } from "@mui/material";
+import {
+  ThemeProvider,
+  createTheme,
+  CssBaseline
+} from "@mui/material";
 
 // Layout Components
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
-import ScrollToTop from './components/ScrollToTop';
-
+import ScrollToTop from "./components/ScrollToTop";
+import WhatsAppButton from "./components/WhatsAppButton";
 
 // Pages
 import Home from "./pages/Home";
@@ -18,6 +22,7 @@ import ServicesPage from "./pages/ServicesPage";
 import TeamPage from "./pages/TeamPage";
 import TrainingDetail from "./pages/TrainingDetail";
 import TrainingPage from "./pages/TrainingPage";
+
 // Theme configuration
 const theme = createTheme({
   palette: {
@@ -26,7 +31,7 @@ const theme = createTheme({
     },
   },
   typography: {
-    fontFamily: 'Poppins, Arial, sans-serif',
+    fontFamily: "Poppins, Arial, sans-serif",
   },
 });
 
@@ -54,11 +59,10 @@ function App() {
         {/* Insights */}
         <Route path="/:category/:postTitle" element={<Insights />} />
         <Route path="/featured" element={<Insights />} />
-
-     
       </Routes>
 
       <Footer />
+      <WhatsAppButton />
     </ThemeProvider>
   );
 }

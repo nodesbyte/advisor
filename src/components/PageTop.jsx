@@ -1,17 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { FaArrowUp } from 'react-icons/fa'; // using Font Awesome arrow icon
+import { FaArrowUp } from 'react-icons/fa';
 
 export default function PageTop() {
   const [isVisible, setIsVisible] = useState(false);
 
-  // Show the button when user scrolls down 300px
   useEffect(() => {
     const toggleVisibility = () => {
-      if (window.scrollY > 300) {
-        setIsVisible(true);
-      } else {
-        setIsVisible(false);
-      }
+      setIsVisible(window.scrollY > 300);
     };
 
     window.addEventListener('scroll', toggleVisibility);
@@ -19,23 +14,18 @@ export default function PageTop() {
   }, []);
 
   const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+  if (!isVisible) return null;
+
   return (
-    <>
-      {isVisible && (
-        <button
-          onClick={scrollToTop}
-          className="fixed bottom-6 cursor-pointer right-6 p-3 bg-[#814d35] text-white rounded-full shadow-lg hover:bg-[#9a5f45] transition duration-300"
-          aria-label="Scroll to top"
-        >
-          <FaArrowUp size={20} />
-        </button>
-      )}
-    </>
+    <button
+      onClick={scrollToTop}
+      className="fixed bottom-6 right-20 p-3 bg-[#814d35] text-white rounded-full shadow-lg hover:bg-[#9a5f45] transition duration-300 z-[9999]"
+      aria-label="Scroll to top"
+    >
+      <FaArrowUp size={20} />
+    </button>
   );
 }

@@ -15,7 +15,7 @@ export default function Footer() {
             <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left">
                 {/* Logo & Social */}
                 <div className="flex flex-col items-center md:items-start">
-                    <img src={logo} alt="Logo" className="h-14 mb-4" />
+                    <Link to="/"><img src={logo} alt="Logo" className="h-14 mb-4" /></Link>
                     <p className="text-sm mb-4 opacity-70">Connecting You Globally</p>
                     <div className="flex gap-3">
                         {[FaFacebookF, FaEnvelope, FaGlobe, FaTelegramPlane, FaInstagram, FaPinterestP].map((Icon, i) => (
@@ -42,7 +42,7 @@ export default function Footer() {
                     <Link to="/trainings" className="text-sm hover:text-[#BC9A87] transition-colors">
                         Trainings
                     </Link>
-                    <Link to="/insights" className="text-sm hover:text-[#BC9A87] transition-colors">
+                    <Link to="/featured" className="text-sm hover:text-[#BC9A87] transition-colors">
                         Insights
                     </Link>
                 </div>
@@ -54,7 +54,7 @@ export default function Footer() {
                         Have questions? We’d love to hear from you.
                     </p>
                     <Link to="/contact">
-                        <button className="bg-[#BC9A87] text-white px-6 py-2 rounded-full border border-transparent hover:bg-[#a37f6e] transition-all">
+                        <button className="bg-[#8d471f] text-white px-6 py-2 rounded-full border border-transparent hover:bg-[#a37f6e] transition-all">
                             Contact Us
                         </button>
                     </Link>

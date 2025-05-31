@@ -177,8 +177,7 @@ const Navbar = () => {
           
           {/* Desktop Auth Links */}
           <div className="hidden md:flex items-center space-x-4">
-            <Link to="/contact" className="text-sm font-semibold text-[#814d35] hover:underline">Contact & Appointment</Link>
-            <Link to="/login" className="bg-[#814d35] text-white px-4 py-2 rounded-full text-sm font-semibold hover:bg-[#6e3f2a] transition">Login</Link>
+            <Link to="/contact" className="text-md font-semibold text-[#814d35] hover:underline">Contact & Appointment</Link>
           </div>
 
           {/* Mobile Hamburger */}

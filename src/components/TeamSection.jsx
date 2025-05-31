@@ -159,7 +159,7 @@ const TeamPage = () => {
     const [selectedTab, setSelectedTab] = useState(0);
 
     return (
-        <Box sx={{ maxWidth: "1000px", mx: "auto", mt: 8, px: 2 }}>
+        <Box sx={{ maxWidth: "1000px", mx: "auto", mt: 8, px: 2, pb: 12 }}>
             <Typography variant="h4" align="center" gutterBottom>
                 Meet our Team
             </Typography>
