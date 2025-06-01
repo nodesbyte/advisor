@@ -17,11 +17,13 @@ import Home from "./pages/Home";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Insights from "./pages/Insights";
+import InsightDetailPage from "./pages/InsightDetailPage";
 import ServiceDetail from "./pages/ServiceDetail";
 import ServicesPage from "./pages/ServicesPage";
 import TeamPage from "./pages/TeamPage";
 import TrainingDetail from "./pages/TrainingDetail";
 import TrainingPage from "./pages/TrainingPage";
+
 
 // Theme configuration
 const theme = createTheme({
@@ -57,7 +59,8 @@ function App() {
         <Route path="/trainings/:slug" element={<TrainingDetail />} />
 
         {/* Insights */}
-        <Route path="/:category/:postTitle" element={<Insights />} />
+        <Route path="/insights" element={<Insights />} />
+        <Route path="/insight/:slug" element={<InsightDetailPage />} />
         <Route path="/featured" element={<Insights />} />
       </Routes>
 

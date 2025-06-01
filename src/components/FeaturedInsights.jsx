@@ -1,96 +1,113 @@
-import React, { useState, useEffect } from "react";
-import postsData from "../data";
+import React, { useState } from "react";
+import magzine1 from "../assets/magzine1.jpg";
+import magzine2 from "../assets/magzine2.png";
+import recent1 from "../assets/recent1.png";
+import recent2 from "../assets/recent2.png";
 
-export default function FeaturedInsights({ isInteractive = false, selectedPost, overlayText = true }) {
-  const [mainPost, setMainPost] = useState(postsData[0]);
-  const [sidePosts, setSidePosts] = useState(postsData.slice(1, 5));
+const initialPosts = [
+  {
+    id: 1,
+    title: "IRTH Regulatory Updates – Jan 2025 Edition",
+    time: "Posted on 21 Feb at 1:08 pm",
+    category: "Economy & Policy",
+    image: magzine1,
+    isFeatured: true,
+  },
+  {
+    id: 2,
+    title: "E-Magazine April 2025 Edition (Pakistan’s Roadmap to Crypto Legalization)",
+    time: "Posted on 23 Apr at 5:48 pm",
+    category: "Magzine",
+    image: magzine2,
+    isFeatured: false,
+  },
+  {
+    id: 3,
+    title: "Transforming FBR",
+    time: "Posted on May 31, 2024",
+    category: "Article",
+    image: recent1,
+    isFeatured: false,
+  },
+  {
+    id: 4,
+    title: "Taxes for growth & prosperity",
+    time: "Posted on May 31, 2024",
+    category: "Article",
+    image: recent2,
+    isFeatured: false,
+  },
+];
 
-  useEffect(() => {
-    if (selectedPost) {
-      const foundPost = postsData.find(post => 
-        post.title.toLowerCase().replace(/\s+/g, "-") === selectedPost.toLowerCase().replace(/\s+/g, "-")
-      );
-      
-      if (foundPost) {
-        setMainPost(foundPost);
-        setSidePosts(postsData.filter(post => post.title !== foundPost.title).slice(0, 4));
-      }
-    }
-  }, [selectedPost]);
+const FeaturedInsights = () => {
+  const [posts, setPosts] = useState(initialPosts);
 
-  const handlePostClick = (index) => {
-    if (!isInteractive) return;
+  const featured = posts.find((post) => post.isFeatured);
+  const recentPosts = posts.filter((post) => !post.isFeatured);
 
-    const clickedPost = sidePosts[index];
-    const updatedSidePosts = [...sidePosts];
-    updatedSidePosts[index] = mainPost;
+  const handlePostClick = (clickedPostId) => {
+    const newPosts = posts.map((post) => {
+      if (post.id === clickedPostId) return { ...post, isFeatured: true };
+      if (post.id === featured.id) return { ...post, isFeatured: false };
+      return post;
+    });
 
-    setMainPost(clickedPost);
-    setSidePosts(updatedSidePosts);
+    setPosts(newPosts);
   };
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 p-6 bg-white">
-      {/* Left - Featured Post */}
-      <div className="flex flex-col col-span-1 md:col-span-2 gap-6">
-        <h1 className="text-2xl sm:text-4xl font-bold top-6">Featured Insights</h1>
-
-        <div className="relative col-span-1 md:col-span-2  
-        rounded-lg overflow-hidden shadow-none sm:shadow-md">
+    <div className="bg-white py-10 px-6 sm:px-12 lg:px-20">
+      <h1 className="text-6xl font-bold mb-8 text-[#9C6950]">Featured Insights</h1>
+      <div className="grid md:grid-cols-2 gap-8">
+        {/* Featured Post */}
+        <div className="relative rounded-xl overflow-hidden">
           <img
-            src={mainPost.image}
-            alt={mainPost.title}
-            className="w-full h-[28vh] sm:h-98 object-cover"
+            src={featured.image}
+            alt={featured.title}
+            className="w-full h-96 object-cover"
           />
-
-          {overlayText ? (
-            <div className="absolute inset-0 bg-[#0000007c] 
-            bg-opacity-50 p-3 sm:p-6 flex flex-col justify-center sm:justify-end  text-white">
-              <p className="text-sm mb-1">{mainPost.time}</p>
-              <h2 className=" text-2xl sm:text-3xl font-bold">{mainPost.title}</h2>
-              {mainPost.description && (
-                <p className="text-lg font-semibold mt-1 line-clamp-3">{mainPost.description}</p>
-              )}
-            </div>
-          ) : (
-            <div className="p-2 sm:p-4 bg-white text-gray-900">
-              <p className="text-sm text-gray-500">{mainPost.time}</p>
-              <h2 className="text-3xl font-bold mt-2">{mainPost.title}</h2>
-              {mainPost.description && (
-                <p className="text-lg mt-1">{mainPost.description}</p>
-              )}
-            </div>
-          )}
+          <div className="absolute inset-0 px-8 py-14 flex flex-col justify-end text-white space-y-2" style={{ textShadow: '0 1px 4px rgba(0,0,0,0.6)' }}>
+            <p className="text-sm">{featured.time}</p>
+            <h2 className="text-2xl sm:text-3xl font-bold leading-tight">
+              {featured.title}
+            </h2>
+            <button className="mt-3 px-4 py-1.5 border border-white rounded-full text-sm font-medium hover:bg-white hover:text-black transition-all duration-300 w-fit">
+              Learn More
+            </button>
+          </div>
         </div>
-      </div>
 
-      {/* Right - Recent Posts */}
-      <div className="col-span-1">
-        <h3 className="text-xl font-bold mb-4 text-gray-800">Recent Posts</h3>
-        <div className="space-y-4">
-          {sidePosts.map((post, index) => (
-            <div
-              key={index}
-              className={`flex gap-3 border-b pb-3 transition ${
-                isInteractive ? "cursor-pointer hover:bg-gray-100" : ""
-              }`}
-              onClick={() => handlePostClick(index)}
-            >
-              <img
-                src={post.image}
-                alt={post.title}
-                className="w-auto h-20 object-cover rounded-md"
-              />
-              <div className="flex flex-col justify-between">
-                <p className="text-xs text-gray-500">{post.time}</p>
-                <h4 className="text-base sm:text-md 
-                font-semibold text-gray-800">{post.title}</h4>
-                <p className="text-xs text-gray-600">{post.category}</p>
+        {/* Recent Posts */}
+        <div>
+          <h3 className="text-lg font-semibold text-gray-900 mb-4">Recent Posts</h3>
+          <div className="space-y-5">
+            {recentPosts.map((post) => (
+              <div
+                key={post.id}
+                onClick={() => handlePostClick(post.id)}
+                className="flex gap-4 hover:bg-gray-100 p-3 rounded-md border-b pb-4 cursor-pointer transition-all duration-300"
+              >
+                <img
+                  src={post.image}
+                  alt={post.title}
+                  className="w-28 h-20 object-cover rounded"
+                />
+                <div className="flex flex-col justify-between">
+                  <p className="text-sm text-gray-500">{post.time}</p>
+                  <h4 className="text-md font-semibold text-gray-900 leading-snug">
+                    {post.title}
+                  </h4>
+                  <span className="inline-block mt-2 px-3 py-0.5 text-xs border border-gray-400 rounded-full text-gray-700 w-fit">
+                    {post.category}
+                  </span>
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
     </div>
   );
-}
+};
+
+export default FeaturedInsights;

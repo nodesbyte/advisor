@@ -4,7 +4,7 @@ import { ChevronDown, ChevronRight, Menu, X } from "lucide-react";
 import logo from "../assets/logo.png";
 import serviceImage from "../assets/service.png";
 import trainingImage from "../assets/training.png";
-import insightsImg from "../assets/insight.jpg";
+import insightsImg from "../assets/Insight.jpg";
 import image1 from "../assets/team1.jpg";
 import image2 from "../assets/team2.jpg";
 import image3 from "../assets/team3.jpg";
@@ -12,25 +12,24 @@ import image4 from "../assets/team4.jpg";
 
 const data = {
   services: [
-    { label: "Advisory", sublinks: ["Business Restructuring/Reorganisation", "Cybersecurity & Data Privacy", "Developing Corporate/Commercial/ /Retail/SME Business Strategy", "Forensic & Investigations Advisory", "Legal Analytics & Transaction Advisory", "Risk Management & Compliance"] },
-    { label: "Technology Transformation", sublinks: ["Core Banking Solution Migration Strategy – Designing Functional Design Documents", "Digital Transformation", "Financial & Budget Planning Automation", "Blockchain and Digital Assets", "Business Transformation, Process Re-Engineering/Automation"] },
+    { label: "Advisory", sublinks: ["Business Restructuring", "Cybersecurity & Data Privacy", "Developing Corporate", "Forensic & Investigations Advisory", "Legal Analytics & Transaction Advisory", "Risk Management & Compliance"] },
+    { label: "Technology Transformation", sublinks: ["Core Banking Solution Migration Strategy", "Digital Transformation", "Financial & Budget Planning Automation", "Blockchain and Digital Assets", "Business Transformation"] },
     { label: "ESG", sublinks: ["ESG Strategy"] },
     { label: "Tax Advisory", sublinks: ["Local Tax", "International Tax", "Payroll Tax", "Transaction-specific Tax"] },
-    { label: "Training", sublinks: ["Please use IRTH material here"] }
   ],
   trainings: [
-    { label: "Training Needs Analysis" }, { label: "Training Manuals" }, { label: "Customized Training Syllabi" }, 
+    { label: "Training Needs Analysis" }, { label: "Training Manuals" }, { label: "Customized Training Syllabi" },
     { label: "Practical Workshops" }, { label: "Compliance Training" }, { label: "Ongoing Support" }
   ],
-  insights: [
-    { label: "Magazines", sublinks: ["E-Magazine April 2025 Edition", "IRTH Regulatory Updates – Jan 2025 Edition"] },
+  Insight: [
+    { label: "Magazines", sublinks: ["E-Magazine April 2025", "IRTH Regulatory Updates-Jan 2025"] },
     { label: "Articles", sublinks: ["Transforming FBR", "Taxes for growth & prosperity", "Reform agenda for 2024 budget", "NAB & Judiciary", "Inevitable tax reforms", "Fundamental reforms for survival", "Budgets 2024: thinking a fresh", "Budget, taxes & growth", "Budget & tax policy"] }
   ]
 };
 
 const descriptions = {
   "Our Team": "Meet our team of dedicated professionals driving impactful change.",
-  Insights: "Provide Excellent Customer Service",
+  Insight: "Provide Excellent Customer Service",
   Trainings: "From personalized training plans to hands-on workshops, we offer tools to enhance skills and build expertise.",
   Services: "From compliance to intelligence, we offer reliable, transparent services to help you mitigate risk."
 };
@@ -169,12 +168,12 @@ const Navbar = () => {
       <div className="bg-white px-4 py-4">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           <Link to="/"><img src={logo} alt="Logo" className="w-24 sm:w-32 h-auto" /></Link>
-          
+
           {/* Desktop Search */}
           <div className="hidden md:flex flex-1 justify-center px-4">
             <input type="text" placeholder="Search by services, trainings, and more..." className="w-full max-w-xl px-4 py-2 rounded-full border border-gray-500 text-md focus:outline-none bg-[#F0F0F0]" />
           </div>
-          
+
           {/* Desktop Auth Links */}
           <div className="hidden md:flex items-center space-x-4">
             <Link to="/contact" className="text-md font-semibold text-[#814d35] hover:underline">Contact & Appointment</Link>
@@ -199,7 +198,7 @@ const Navbar = () => {
           <Dropdown title="Our Team" label={<span className="flex items-center gap-1 hover:underline">Our Team <ChevronDown size={14} /></span>} link="/team" imageGroup={[image3, image4, image1, image2]} />
           <Dropdown title="Services" label={<span className="flex items-center gap-1 hover:underline">Services <ChevronDown size={14} /></span>} items={data.services} link="/services" image={serviceImage} />
           <Dropdown title="Trainings" label={<span className="flex items-center gap-1 hover:underline">Trainings <ChevronDown size={14} /></span>} items={data.trainings} link="/trainings" image={trainingImage} />
-          <Dropdown title="Insights" label={<span className="flex items-center gap-1 hover:underline">Insights <ChevronDown size={14} /></span>} items={data.insights} link="/featured" image={insightsImg} />
+          <Dropdown title="Insight" label={<span className="flex items-center gap-1 hover:underline">Insight <ChevronDown size={14} /></span>} items={data.Insight} link="/featured" image={insightsImg} />
         </div>
       </div>
 
@@ -208,12 +207,12 @@ const Navbar = () => {
         <div className="md:hidden fixed inset-0 top-[120px] bg-[#814d35] z-40 overflow-y-auto">
           <div className="px-4 py-4">
             <Link to="/about" className="block py-3 px-4 text-lg text-white hover:bg-[#6e4b3a] rounded" onClick={closeMobileMenu}>About Us</Link>
-            
+
             <Dropdown title="Our Team" items={[]} link="/team" isMobile={true} onClose={closeMobileMenu} />
             <Dropdown title="Services" items={data.services} link="/services" isMobile={true} onClose={closeMobileMenu} />
             <Dropdown title="Trainings" items={data.trainings} link="/trainings" isMobile={true} onClose={closeMobileMenu} />
-            <Dropdown title="Insights" items={data.insights} link="/featured" isMobile={true} onClose={closeMobileMenu} />
-            
+            <Dropdown title="Insight" items={data.Insight} link="/featured" isMobile={true} onClose={closeMobileMenu} />
+
             <div className="mt-6 pt-6 border-t border-gray-600 space-y-3">
               <Link to="/contact" className="block py-3 px-4 text-lg text-white hover:bg-[#6e4b3a] rounded" onClick={closeMobileMenu}>Contact & Appointment</Link>
               <Link to="/login" className="block py-3 px-4 text-lg text-white bg-[#6e4b3a] hover:bg-[#5a3d2f] rounded transition" onClick={closeMobileMenu}>Login</Link>
