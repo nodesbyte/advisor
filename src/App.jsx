@@ -23,6 +23,8 @@ import ServicesPage from "./pages/ServicesPage";
 import TeamPage from "./pages/TeamPage";
 import TrainingDetail from "./pages/TrainingDetail";
 import TrainingPage from "./pages/TrainingPage";
+import Events from "./pages/Events";
+
 
 
 // Theme configuration
@@ -62,6 +64,7 @@ function App() {
         <Route path="/insights" element={<Insights />} />
         <Route path="/insight/:slug" element={<InsightDetailPage />} />
         <Route path="/featured" element={<Insights />} />
+        <Route path="/events" element={<Events />} />
       </Routes>
 
       <Footer />

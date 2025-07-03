@@ -199,6 +199,9 @@ const Navbar = () => {
           <Dropdown title="Services" label={<span className="flex items-center gap-1 hover:underline">Services <ChevronDown size={14} /></span>} items={data.services} link="/services" image={serviceImage} />
           <Dropdown title="Trainings" label={<span className="flex items-center gap-1 hover:underline">Trainings <ChevronDown size={14} /></span>} items={data.trainings} link="/trainings" image={trainingImage} />
           <Dropdown title="Insight" label={<span className="flex items-center gap-1 hover:underline">Insight <ChevronDown size={14} /></span>} items={data.Insight} link="/featured" image={insightsImg} />
+
+          {/* ✅ New Events Link */}
+          <Link to="/events" className="hover:underline">Events</Link>
         </div>
       </div>
 
@@ -212,6 +215,9 @@ const Navbar = () => {
             <Dropdown title="Services" items={data.services} link="/services" isMobile={true} onClose={closeMobileMenu} />
             <Dropdown title="Trainings" items={data.trainings} link="/trainings" isMobile={true} onClose={closeMobileMenu} />
             <Dropdown title="Insight" items={data.Insight} link="/featured" isMobile={true} onClose={closeMobileMenu} />
+
+            {/* ✅ New Events Link for Mobile */}
+            <Link to="/events" className="block py-3 px-4 text-lg text-white hover:bg-[#6e4b3a] rounded" onClick={closeMobileMenu}>Events</Link>
 
             <div className="mt-6 pt-6 border-t border-gray-600 space-y-3">
               <Link to="/contact" className="block py-3 px-4 text-lg text-white hover:bg-[#6e4b3a] rounded" onClick={closeMobileMenu}>Contact & Appointment</Link>

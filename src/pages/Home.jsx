@@ -15,8 +15,8 @@ export default function Home() {
       <FeaturedInsights  />
       <ServicesSection />
       <TrainingServices />
-      <TestimonialSection />
       <TeamSection />
+      <TestimonialSection />
     </>
   );
 }

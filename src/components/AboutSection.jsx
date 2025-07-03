@@ -67,7 +67,7 @@ export default function AboutSection({ isHomePage = false }) {
               <>
                 <Link
                   to="/about"
-                  className="bg-[#814d35] text-white px-4 py-2 rounded-full text-sm font-semibold hover:bg-[#6e3f2a] transition"
+                  className="bg-[#814d35] text-white px-6 py-4 rounded-full text-sm font-semibold hover:bg-[#6e3f2a] transition"
                 >
                   Read more
                 </Link>

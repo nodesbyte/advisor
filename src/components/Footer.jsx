@@ -45,6 +45,9 @@ export default function Footer() {
                     <Link to="/featured" className="text-sm hover:text-[#BC9A87] transition-colors">
                         Insights
                     </Link>
+                    <Link to="/events" className="text-sm hover:text-[#BC9A87] transition-colors">
+                        Events
+                    </Link>
                 </div>
 
                 {/* Contact + CTA */}
