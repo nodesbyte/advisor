@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { ChevronDown, ChevronRight, Menu, X } from "lucide-react";
 import logo from "../assets/logo.png";
 import serviceImage from "../assets/service.png";
-import trainingImage from "../assets/training.png";
+import trainingImage from "../assets/webinar5.jpg";
 import insightsImg from "../assets/Insight.jpg";
 import image1 from "../assets/team1.jpg";
 import image2 from "../assets/team2.jpg";
@@ -98,15 +98,14 @@ const Dropdown = ({ title, items = [], link, image, label, imageGroup, isMobile 
       <button className="cursor-pointer flex items-center gap-1 h-full" onClick={() => setIsOpen(!isOpen)}>
         {label || title}
       </button>
-
       {isOpen && (
-        <div className="fixed left-0 w-screen bg-[#814d35] shadow-xl z-50">
+        <div className="fixed left-0 top-20 w-screen bg-[#814d35] shadow-xl z-50">
           <div className="px-4 md:px-6 py-8 mx-auto max-w-6xl">
             {title === "Our Team" ? (
               <div className="flex flex-col md:flex-row gap-16">
                 <div className="md:w-1/2 pr-6 border-r border-white flex flex-col justify-center">
-                  <h2 className="text-5xl font-bold">{title}</h2>
-                  <p className="mt-4 text-lg leading-relaxed">{descriptions[title]}</p>
+                  <h2 className="text-5xl font-bold text-white">{title}</h2>
+                  <p className="mt-4 text-lg leading-relaxed text-white">{descriptions[title]}</p>
                   <Link to={link} onClick={handleClose} className="mt-6 inline-flex items-center gap-2 px-4 py-4 w-fit rounded-full border border-white bg-[#6e4b3a] text-white text-sm hover:bg-[#5a3d2f] transition">
                     View Full Team <ChevronRight size={20} />
                   </Link>
@@ -120,8 +119,8 @@ const Dropdown = ({ title, items = [], link, image, label, imageGroup, isMobile 
             ) : (
               <div className="flex flex-col md:flex-row gap-6">
                 <div className="md:w-1/3 pr-6 border-r border-white flex flex-col justify-center">
-                  <h2 className="text-5xl font-bold">{title}</h2>
-                  <p className="mt-5 text-xl leading-relaxed">{descriptions[title]}</p>
+                  <h2 className="text-5xl font-bold text-white">{title}</h2>
+                  <p className="mt-5 text-xl leading-relaxed text-white">{descriptions[title]}</p>
                   <Link to={link} onClick={handleClose} className="mt-6 inline-flex items-center gap-2 px-5 py-4 w-fit rounded-full border border-white bg-[#6e4b3a] text-white text-sm hover:bg-[#5a3d2f] transition">
                     View More <ChevronRight size={18} />
                   </Link>
@@ -130,8 +129,8 @@ const Dropdown = ({ title, items = [], link, image, label, imageGroup, isMobile 
                   {items.map((item, i) => (
                     <div key={i}>
                       <div className="flex justify-between items-center cursor-pointer" onClick={() => setActiveItem(activeItem === i ? null : i)}>
-                        <span className="text-lg font-semibold">{item.label}</span>
-                        {item.sublinks && <ChevronDown size={18} className={`transition-transform ${activeItem === i ? "rotate-180" : ""}`} />}
+                        <span className="text-lg font-semibold text-white">{item.label}</span>
+                        {item.sublinks && <ChevronDown size={18} className={`transition-transform text-white ${activeItem === i ? "rotate-180" : ""}`} />}
                       </div>
                       {item.sublinks && activeItem === i && (
                         <div className="mt-1 ml-4">
@@ -159,24 +158,40 @@ const Dropdown = ({ title, items = [], link, image, label, imageGroup, isMobile 
 
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-
   const closeMobileMenu = () => setIsMobileMenuOpen(false);
 
   return (
     <header className="sticky top-0 z-50 bg-white shadow-sm">
-      {/* Top Section */}
       <div className="bg-white px-4 py-4">
-        <div className="max-w-7xl mx-auto flex items-center justify-between">
-          <Link to="/"><img src={logo} alt="Logo" className="w-24 sm:w-32 h-auto" /></Link>
+        <div className="max-w-7xl mx-auto w-full flex items-center justify-between">
+          {/* Logo */}
+          <Link to="/">
+            <img src={logo} alt="Logo" className="w-24 sm:w-32 h-auto" />
+          </Link>
 
-          {/* Desktop Search */}
-          <div className="hidden md:flex flex-1 justify-center px-4">
-            <input type="text" placeholder="Search by services, trainings, and more..." className="w-full max-w-xl px-4 py-2 rounded-full border border-gray-500 text-md focus:outline-none bg-[#F0F0F0]" />
+          {/* Navigation Links */}
+          <div className="hidden md:flex items-center gap-6 ml-10">
+            <Link to="/about" className="text-md font-medium text-[#814d35] hover:underline">About Us</Link>
+            <Dropdown title="Our Team" label={<span className="flex items-center gap-1 text-[#814d35] hover:underline">Our Team <ChevronDown size={14} /></span>} link="/team" imageGroup={[image3, image4, image1, image2]} />
+            <Dropdown title="Services" label={<span className="flex items-center gap-1 text-[#814d35] hover:underline">Services <ChevronDown size={14} /></span>} items={data.services} link="/services" image={serviceImage} />
+            <Dropdown title="Trainings" label={<span className="flex items-center gap-1 text-[#814d35] hover:underline">Trainings <ChevronDown size={14} /></span>} items={data.trainings} link="/trainings" image={trainingImage} />
+            <Dropdown title="Insight" label={<span className="flex items-center gap-1 text-[#814d35] hover:underline">Insight <ChevronDown size={14} /></span>} items={data.Insight} link="/featured" image={insightsImg} />
+            <Link to="/events" className="text-md font-medium text-[#814d35] hover:underline">Events</Link>
           </div>
 
-          {/* Desktop Auth Links */}
-          <div className="hidden md:flex items-center space-x-4">
-            <Link to="/contact" className="text-md font-semibold text-[#814d35] hover:underline">Contact & Appointment</Link>
+          {/* Search & Button */}
+          <div className="hidden md:flex items-center gap-4 ml-auto">
+            <input
+              type="text"
+              placeholder="Search..."
+              className="px-3 py-1.5 w-48 border border-gray-400 rounded-full text-sm focus:outline-none bg-[#F0F0F0]"
+            />
+            <Link
+              to="/contact"
+              className="px-4 py-2 text-sm font-semibold text-white bg-[#814d35] rounded-full hover:bg-[#6e4b3a] transition"
+            >
+              Contact & Appointment
+            </Link>
           </div>
 
           {/* Mobile Hamburger */}
@@ -191,34 +206,16 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Desktop Navigation */}
-      <div className="hidden md:block bg-[#814d35] border-b">
-        <div className="max-w-7xl mx-auto px-4 py-8 flex justify-center space-x-8 text-md font-medium text-white">
-          <Link to="/about" className="hover:underline">About Us</Link>
-          <Dropdown title="Our Team" label={<span className="flex items-center gap-1 hover:underline">Our Team <ChevronDown size={14} /></span>} link="/team" imageGroup={[image3, image4, image1, image2]} />
-          <Dropdown title="Services" label={<span className="flex items-center gap-1 hover:underline">Services <ChevronDown size={14} /></span>} items={data.services} link="/services" image={serviceImage} />
-          <Dropdown title="Trainings" label={<span className="flex items-center gap-1 hover:underline">Trainings <ChevronDown size={14} /></span>} items={data.trainings} link="/trainings" image={trainingImage} />
-          <Dropdown title="Insight" label={<span className="flex items-center gap-1 hover:underline">Insight <ChevronDown size={14} /></span>} items={data.Insight} link="/featured" image={insightsImg} />
-
-          {/* ✅ New Events Link */}
-          <Link to="/events" className="hover:underline">Events</Link>
-        </div>
-      </div>
-
       {/* Mobile Menu */}
       {isMobileMenuOpen && (
         <div className="md:hidden fixed inset-0 top-[120px] bg-[#814d35] z-40 overflow-y-auto">
           <div className="px-4 py-4">
             <Link to="/about" className="block py-3 px-4 text-lg text-white hover:bg-[#6e4b3a] rounded" onClick={closeMobileMenu}>About Us</Link>
-
             <Dropdown title="Our Team" items={[]} link="/team" isMobile={true} onClose={closeMobileMenu} />
             <Dropdown title="Services" items={data.services} link="/services" isMobile={true} onClose={closeMobileMenu} />
             <Dropdown title="Trainings" items={data.trainings} link="/trainings" isMobile={true} onClose={closeMobileMenu} />
             <Dropdown title="Insight" items={data.Insight} link="/featured" isMobile={true} onClose={closeMobileMenu} />
-
-            {/* ✅ New Events Link for Mobile */}
             <Link to="/events" className="block py-3 px-4 text-lg text-white hover:bg-[#6e4b3a] rounded" onClick={closeMobileMenu}>Events</Link>
-
             <div className="mt-6 pt-6 border-t border-gray-600 space-y-3">
               <Link to="/contact" className="block py-3 px-4 text-lg text-white hover:bg-[#6e4b3a] rounded" onClick={closeMobileMenu}>Contact & Appointment</Link>
               <Link to="/login" className="block py-3 px-4 text-lg text-white bg-[#6e4b3a] hover:bg-[#5a3d2f] rounded transition" onClick={closeMobileMenu}>Login</Link>

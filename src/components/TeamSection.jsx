@@ -99,16 +99,15 @@ const teamMembers = [
     {
         name: "Tahir Hassan Qureshi",
         title: "Senior Partner",
-        email: "tahir@irthadvisors.com",
+        email: "thqabl1@gmail.com",
         image: profile1,
         bio: (
             <>
                 <Typography variant="body8" paragraph>
-                    <strong>Mr. Tahir Hassan Qureshi</strong>, based in the UK, is a fellow of the Institute of Chartered Accountants of Pakistan and a member of the UK’s Institute of Chartered Public Finance and Accountancy. With over 33 years of diverse experience—including 28 in senior banking roles (CEO, COO, CFO, CIA)—he has led one of Pakistan’s major banks with 4.5 million customers, ensuring effective compliance, customer due diligence, and AML/CFT measures, including trade-based money laundering controls. He serves on ICAP’s AML Supervisory and Appellate Boards, supporting FATF Asia Pacific Group recommendations, and advises Pakistan Credit Rating Agency on Moody’s International Analytics Risk Management Solutions.
+                    Mr. Tahir Hassan Qureshi is a Fellow Chartered Accountant (FCA), UK Certified Public Finance Accountant (CPFA), and Certified Director with over 36 years of experience, including 31 years in senior executive roles (CEO/President, COO, CFO) in listed banks and financial institutions in Pakistan and the UK. He brings a unique blend of executive and non-executive experience, enabling him to bridge communication between management and the board effectively.
                 </Typography>
                 <Typography variant="body8" paragraph>
-                    As a Certified Director and independent board member, he helps
-                    organizations enhance governance, oversight, and strategic direction.
+                    He has held key roles on various regulatory and advisory boards including the AML/CFT Supervisory Board for DNFBPs, Appellate Board for Chartered Accountants, and the Audit Oversight Board. His expertise spans strategy, financial control, risk management, compliance, and corporate governance.
                 </Typography>
             </>
         )

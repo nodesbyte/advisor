@@ -1,26 +1,10 @@
-import heroImage from "../assets/hero.png";
+import heroImage from "../assets/heroteam.png";
 import partner1 from "../assets/partner1.png";
 import partner2 from "../assets/partner2.png";
 
 const HeroSection = () => {
     return (
         <section className="bg-[#f4f6f7] py-10 px-4 sm:px-6 md:px-12 relative overflow-hidden">
-            {/* Marquee bar at top */}
-            <div className=" py-2 border-b border-gray-300 overflow-hidden">
-                <div className="whitespace-nowrap animate-marquee flex items-center gap-8 sm:gap-12">
-                    {[...Array(3)].map((_, i) => (
-                        <div key={i} className="flex gap-8 sm:gap-12">
-                            <a href="https://huzaimaikram.com/" target="_blank" rel="noopener noreferrer">
-                                <img src={partner1} alt="Partner 1" className="h-8 sm:h-10 object-contain" />
-                            </a>
-                            <a href="https://aacp.com.pk/" target="_blank" rel="noopener noreferrer">
-                                <img src={partner2} alt="Partner 2" className="h-8 sm:h-10 object-contain" />
-                            </a>
-                        </div>
-                    ))}
-                </div>
-            </div>
-
             <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 items-center mt-10">
                 {/* Left Content */}
                 <div>
@@ -30,6 +14,16 @@ const HeroSection = () => {
                     <p className="font-poppins text-md sm:text-lg text-gray-700 mb-6">
                         IRTH Advisors partners with organizations to craft ESG strategies that drive sustainable growth, stakeholder trust, and long-term value.
                     </p>
+
+                    {/* Partner Logos Below Paragraph */}
+                    <div className="flex flex-wrap items-center gap-6 sm:gap-10 mt-4">
+                        <a href="https://huzaimaikram.com/" target="_blank" rel="noopener noreferrer">
+                            <img src={partner1} alt="Partner 1" className="h-10 sm:h-12 object-contain" />
+                        </a>
+                        <a href="https://aacp.com.pk/" target="_blank" rel="noopener noreferrer">
+                            <img src={partner2} alt="Partner 2" className="h-10 sm:h-12 object-contain" />
+                        </a>
+                    </div>
                 </div>
 
                 {/* Right Image */}

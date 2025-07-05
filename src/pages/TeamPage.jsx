@@ -135,96 +135,102 @@ const teamMembers = [
     {
         name: "Tahir Hassan Qureshi",
         title: "Senior Partner",
-        email: "tahir@irthadvisors.com",
+        email: "thqabl1@gmail.com",
         image: profile1,
         bio: (
             <>
                 <Typography variant="body8" paragraph>
-                    <strong>Mr. Tahir Hassan Qureshi</strong>, based in the UK, is a fellow of the Institute of Chartered Accountants of Pakistan and a member of the UK’s Institute of Chartered Public Finance and Accountancy. With over 33 years of diverse experience—including 28 in senior banking roles (CEO, COO, CFO, CIA)—he has led one of Pakistan’s major banks with 4.5 million customers, ensuring effective compliance, customer due diligence, and AML/CFT measures, including trade-based money laundering controls. He serves on ICAP’s AML Supervisory and Appellate Boards, supporting FATF Asia Pacific Group recommendations, and advises Pakistan Credit Rating Agency on Moody’s International Analytics Risk Management Solutions.
+                    <strong>Mr. Tahir Hassan Qureshi</strong> is a Fellow Chartered Accountant (FCA), UK Certified Public Finance Accountant (CPFA), and Certified Director with over 36 years of experience, including 31 years in senior executive roles (CEO/President, COO, CFO) in listed banks and financial institutions in Pakistan and the UK. He brings a unique blend of executive and non-executive experience, enabling him to bridge communication between management and the board effectively.
                 </Typography>
                 <Typography variant="body8" paragraph>
-                    As a Certified Director and independent board member, he helps
-                    organizations enhance governance, oversight, and strategic direction.
+                    He has held key roles on various regulatory and advisory boards including the AML/CFT Supervisory Board for DNFBPs, Appellate Board for Chartered Accountants, and the Audit Oversight Board. His expertise spans strategy, financial control, risk management, compliance, and corporate governance.
                 </Typography>
             </>
         ),
         experience: (
             <>
-                <Typography variant="h4" fontWeight="bold">
-                    About Tahir Hassan Qureshi
+                <Typography variant="h4" fontWeight="bold" gutterBottom>
+                    Profile
                 </Typography>
                 <Typography variant="body8" paragraph>
-                    <strong>Mr. Tahir Hassan Qureshi</strong>, based in the UK, a fellow member of the Institute of Chartered Accountants of Pakistan, and a member of the Institute of Chartered Public Finance and Accountancy UK is a seasoned professional with a diversified experience of over 33 years including 28 years of experience in banking, holding senior management positions (CEO/President, COO, CFO, CIA) including non-executive/independent directorships. As CEO of one of the big banks, with a customer base of 4.5 million, ensured effective compliance risk management including customer due diligence, AML/CFT, and trade-based money laundering. He is a member of the Institute of Chartered Accountants of Pakistan AML supervisory board [constituted to ensure compliance with the Financial Action Task Force (FATF) Asia Pacific Group’s recommendations (Risk based Approach, Customer Due Diligence)] and a member Appellate board. Advisor to Pakistan Credit Rating Agency in implementing Moody’s Int’l Analytics Risk Management Solutions
+                    <strong>Tahir Hassan Qureshi</strong><br />
+                    FCA, CPFA - UK, Certified Director<br />
+                    <strong>Email/LinkedIn:</strong> thqabl1@gmail.com /{" "}
+                    <a href="https://www.linkedin.com/in/tahir-hassan-qureshi-8976b5185" target="_blank" rel="noopener noreferrer">
+                        LinkedIn Profile
+                    </a>
                 </Typography>
                 <Typography variant="body8" paragraph>
-                    Being a Certified Director and working as a non-executive and Independent Director he has expertise in helping organizations achieve vision and targets through holistic, integrated, consultative, and coordinated approaches helping them to strengthen governance and oversight. With valuable insights & skills, he carried out his fiduciary duty with a sense of objective judgment and independence in the best interest of the organization.
-                </Typography>
-                <Typography variant="h4" fontWeight="bold">
-                    Board & Advisory Experience
-                </Typography>
-                <Typography variant="h6" paragraph>
-                    <strong>Non-Executive Director:</strong>
-                </Typography>
-                <Typography variant="body8" paragraph>
-                    <strong>Habib Allied Holding Bank UK – UK (2017–2020)</strong><br />
-                    Holding Company of Habib Bank UK<br />
-                    <strong>ABL Asset Management Company (2017–2020)</strong><br />
-                    Wholly owned subsidiary of Allied Bank Limited<br />
-                    <strong>1-Link (Private) Limited (2016–2017) </strong><br />
-                    Pakistan’s first fully licensed PSO/PSP (Payment Service Operator/Payment Service Provider)<br />
-                    <strong>Akhuwat Housing Finance Company Limited (June 2021 – Present)</strong><br />
-                    Member – Board’s Risk Management Committee & Audit Committee<br />
-                    Business – Lending to lower & middle-income individuals under Islamic Modes of Financing
+                    Mr. Qureshi has served in both executive and non-executive leadership roles, including advisory services, volunteer mental health work in the UK, and member of the Council of Governors at Pennine Care NHS Foundation Trust, UK.
                 </Typography>
 
-                <Typography variant="h6" paragraph>
-                    <strong>Independent Director:</strong>
-                </Typography>
-                <Typography variant="body8" component="div" paragraph>
-                    <ul style={{ listStyleType: 'disc', paddingLeft: '1.5rem', margin: 0 }}>
-                        <li>Pakistan Corporate Restructuring Company Limited (Jan – Jun 2020)</li>
-                        <li>
-                            Pakistan Security Printing Corporation (PSPC) (2021 – Present)
-                            <ul style={{ listStyleType: 'circle', paddingLeft: '1.5rem' }}>
-                                <li>Chairman – Board’s Risk Management Committee</li>
-                                <li>Member – Procurement Committee</li>
-                                <li>Wholly Owned Subsidiary of State Bank of Pakistan (SBP), established 1949</li>
-                                <li>Joint Venture with M/S Thomas De La Rue UK</li>
-                                <li>Business – Production of banknotes from printing to packing</li>
-                            </ul>
-                        </li>
-                        <li>
-                            AML/CFT Supervisory Board – ICAP (March 2020 – Present)
-                            <ul style={{ listStyleType: 'circle', paddingLeft: '1.5rem' }}>
-                                <li>Ensures compliance with FATF Asia Pacific Group’s recommendations (Risk Based Approach, Customer Due Diligence)</li>
-                            </ul>
-                        </li>
-                        <li>
-                            Appellate Board Member – ICAP (January 01, 2022 – Present)
-                            <ul style={{ listStyleType: 'circle', paddingLeft: '1.5rem' }}>
-                                <li>Under Quality Control Review Framework – hears appeals against Quality Assurance Board decisions</li>
-                            </ul>
-                        </li>
-                    </ul>
-                </Typography>
-                <Typography variant="h6" paragraph>
-                    <strong>Committee Memberships:</strong>
-                </Typography>
-                <Typography variant="body8" paragraph>
-                    Various Committees – Institute of Chartered Accountants of Pakistan (ICAP)<br />
-                    Pakistan Banks’ Association<br />
-                    Council Member – Institute of Bankers Pakistan (IBP)<br />
-                    Member – Finance and Investment Committee (IBP)
+                <Typography variant="h4" fontWeight="bold" gutterBottom>
+                    Executive Proficiency
                 </Typography>
 
-                <Typography variant="h6" paragraph>
-                    <strong>Advisory Role:</strong>
-                </Typography>
+                <Typography variant="h6" fontWeight="bold">Customer Franchise</Typography>
                 <Typography variant="body8" paragraph>
-                    The Pakistan Credit Rating Agency (July 01, 2022 – Present)<br />
-                    Advisor for Moody’s International Risk Management Products Implementation
+                    • Market share growth via customer-centric automated products<br />
+                    • Improved customer experience using digital banking and omnichannel strategies<br />
+                    • Led core banking system migration projects
                 </Typography>
 
+                <Typography variant="h6" fontWeight="bold">Enterprise Risk Management</Typography>
+                <Typography variant="body8" paragraph>
+                    • Defined risk appetite and implemented tech-enabled ERM<br />
+                    • Strengthened AML/CFT compliance and risk monitoring systems
+                </Typography>
+
+                <Typography variant="h6" fontWeight="bold">Cost Management Efficiency</Typography>
+                <Typography variant="body8" paragraph>
+                    • Introduced RPA for automation, improved TATs, and reduced costs<br />
+                    • Promoted paperless workflows, renewable energy adoption, and virtual collaboration<br />
+                    • Automated procure-to-pay (P2P) cycle
+                </Typography>
+
+                <Typography variant="h6" fontWeight="bold">People Management</Typography>
+                <Typography variant="body8" paragraph>
+                    • Capacity building, job rotation, and succession planning<br />
+                    • Risk-based compensation models and e-learning platforms<br />
+                    • Digitized HR functions for operational efficiency
+                </Typography>
+
+                <Typography variant="h6" fontWeight="bold">Financial Strategy</Typography>
+                <Typography variant="body8" paragraph>
+                    • Raised Tier I & II capital including GDRs on LSE and subordinated TFCs<br />
+                    • Executed privatization, due diligence, and acquisitions<br />
+                    • Strengthened balance sheet quality, automated finance & budgeting, and enhanced MIS
+                </Typography>
+
+                <Typography variant="h6" fontWeight="bold">ESG / CSR</Typography>
+                <Typography variant="body8" paragraph>
+                    • Established governance frameworks<br />
+                    • Created CSR policies for workforce and community impact
+                </Typography>
+
+                <Typography variant="h4" fontWeight="bold" gutterBottom>
+                    Strategic Projects & One-Off Assignments
+                </Typography>
+                <Typography variant="body8" paragraph>
+                    • Restructured a provincial bank and obtained a commercial banking license<br />
+                    • Advocated taxation reform as part of Pakistan Banking Association<br />
+                    • Proposed and contributed to Pakistan’s national Shared KYC platform via blockchain<br />
+                    • Successfully led the wind-down of a loss-generating public sector bank
+                </Typography>
+
+                <Typography variant="h4" fontWeight="bold" gutterBottom>
+                    Non-Executive & Independent Director Roles
+                </Typography>
+                <Typography variant="body8" paragraph>
+                    • Helped organizations achieve targets through strategic, governance-centric approaches<br />
+                    • Served on multiple boards, including Pakistan Security Printing Corporation, Akhuwat Housing Finance, and others<br />
+                    • Chairman – Risk Management Committee, Member – Audit & Strategic Oversight Committees
+                </Typography>
+
+                <Typography variant="h6" fontWeight="bold">Skills</Typography>
+                <Typography variant="body8" paragraph>
+                    Leadership • Strategy • Risk Management • Banking (Corporate, Retail, SME) • Treasury • People Development • Restructuring • Compliance (AML/CFT) • ESG • Digital Transformation • Financial Control • Taxation • Audit Oversight
+                </Typography>
             </>
         )
     },

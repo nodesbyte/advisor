@@ -1,4 +1,6 @@
 import logo from "../assets/logo.png";
+import partner1 from "../assets/partner1.png";
+import partner2 from "../assets/partner2.png";
 import {
     FaFacebookF,
     FaEnvelope,
@@ -15,7 +17,9 @@ export default function Footer() {
             <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left">
                 {/* Logo & Social */}
                 <div className="flex flex-col items-center md:items-start">
-                    <Link to="/"><img src={logo} alt="Logo" className="h-14 mb-4" /></Link>
+                    <Link to="/">
+                        <img src={logo} alt="Logo" className="h-14 mb-4" />
+                    </Link>
                     <p className="text-sm mb-4 opacity-70">Connecting You Globally</p>
                     <div className="flex gap-3">
                         {[FaFacebookF, FaEnvelope, FaGlobe, FaTelegramPlane, FaInstagram, FaPinterestP].map((Icon, i) => (
@@ -30,24 +34,12 @@ export default function Footer() {
                 {/* Navigation Links */}
                 <div className="flex flex-col justify-center space-y-2">
                     <h3 className="text-lg font-semibold mb-2">Quick Links</h3>
-                    <Link to="/about" className="text-sm hover:text-[#BC9A87] transition-colors">
-                        About
-                    </Link>
-                    <Link to="/team" className="text-sm hover:text-[#BC9A87] transition-colors">
-                        Team
-                    </Link>
-                    <Link to="/services" className="text-sm hover:text-[#BC9A87] transition-colors">
-                        Services
-                    </Link>
-                    <Link to="/trainings" className="text-sm hover:text-[#BC9A87] transition-colors">
-                        Trainings
-                    </Link>
-                    <Link to="/featured" className="text-sm hover:text-[#BC9A87] transition-colors">
-                        Insights
-                    </Link>
-                    <Link to="/events" className="text-sm hover:text-[#BC9A87] transition-colors">
-                        Events
-                    </Link>
+                    <Link to="/about" className="text-sm hover:text-[#BC9A87] transition-colors">About</Link>
+                    <Link to="/team" className="text-sm hover:text-[#BC9A87] transition-colors">Team</Link>
+                    <Link to="/services" className="text-sm hover:text-[#BC9A87] transition-colors">Services</Link>
+                    <Link to="/trainings" className="text-sm hover:text-[#BC9A87] transition-colors">Trainings</Link>
+                    <Link to="/featured" className="text-sm hover:text-[#BC9A87] transition-colors">Insights</Link>
+                    <Link to="/events" className="text-sm hover:text-[#BC9A87] transition-colors">Events</Link>
                 </div>
 
                 {/* Contact + CTA */}
@@ -61,6 +53,19 @@ export default function Footer() {
                             Contact Us
                         </button>
                     </Link>
+                </div>
+            </div>
+
+            {/* Partner Logos Section */}
+            <div className="max-w-7xl mx-auto mt-12 pt-8 border-t border-gray-300 text-center">
+                <h4 className="text-md font-semibold text-gray-700 mb-4">Trusted Partners</h4>
+                <div className="flex flex-wrap justify-center gap-8">
+                    <a href="https://huzaimaikram.com/" target="_blank" rel="noopener noreferrer">
+                        <img src={partner1} alt="Partner 1" className="h-10 sm:h-12 object-contain hover:opacity-80 transition" />
+                    </a>
+                    <a href="https://aacp.com.pk/" target="_blank" rel="noopener noreferrer">
+                        <img src={partner2} alt="Partner 2" className="h-10 sm:h-12 object-contain hover:opacity-80 transition" />
+                    </a>
                 </div>
             </div>
 
