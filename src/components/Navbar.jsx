@@ -12,20 +12,88 @@ import image4 from "../assets/team4.jpg";
 
 const data = {
   services: [
-    { label: "Advisory", sublinks: ["Business Restructuring", "Cybersecurity & Data Privacy", "Developing Corporate", "Forensic & Investigations Advisory", "Legal Analytics & Transaction Advisory", "Risk Management & Compliance"] },
-    { label: "Technology Transformation", sublinks: ["Core Banking Solution Migration Strategy", "Digital Transformation", "Financial & Budget Planning Automation", "Blockchain and Digital Assets", "Business Transformation"] },
-    { label: "ESG", sublinks: ["ESG Strategy"] },
-    { label: "Tax Advisory", sublinks: ["Local Tax", "International Tax", "Payroll Tax", "Transaction-specific Tax"] },
+    {
+      label: "Advisory",
+      sublinks: [
+        { title: "Business Restructuring", slug: "business-restructuring" },
+        { title: "Cybersecurity & Data Privacy", slug: "cybersecurity-data-privacy" },
+        { title: "Developing Corporate", slug: "developing-corporate" },
+        { title: "Forensic & Investigations Advisory", slug: "forensic-investigations-advisory" },
+        { title: "Legal Analytics & Transaction Advisory", slug: "legal-analytics-transaction-advisory" },
+        { title: "Risk Management & Regulatory Compliance", slug: "risk-management-regulatory-compliance" }
+      ]
+    },
+    {
+      label: "Technology Transformation",
+      sublinks: [
+        { title: "Core Banking Solution Migration Strategy", slug: "core-banking-solution-migration-strategy" },
+        { title: "Digital Transformation", slug: "digital-transformation" },
+        { title: "Financial Analytics Services", slug: "financial-analytics-services" },
+        { title: "Financial & Budget Planning Automation", slug: "financial-budget-planning-automation" },
+        { title: "Blockchain & Digital Assets", slug: "blockchain-digital-assets" },
+        { title: "Business Transformation", slug: "business-transformation" },
+        { title: "Business Process Outsourcing (BPO) Services", slug: "business-process-outsourcing-bpo-services" }
+      ]
+    },
+    {
+      label: "ESG Strategy",
+      sublinks: [
+        { title: "ESG Strategy Development Services", slug: "esg-strategy-development-services" }
+      ]
+    },
+    {
+      label: "Tax Advisory",
+      sublinks: [
+        { title: "Local & International Tax Advisory", slug: "local-international-tax-advisory" },
+        { title: "Payroll Tax Compliance", slug: "payroll-tax-compliance" },
+        { title: "Transaction-specific Tax Advisory", slug: "transaction-specific-tax-advisory" }
+      ]
+    },
+    {
+      label: "Training & Capacity Building",
+      sublinks: [
+        { title: "Customized Corporate Training", slug: "customized-corporate-training" },
+        { title: "Professional Certification Courses", slug: "professional-certification-courses" },
+        { title: "Workshops, Bootcamps & Seminars", slug: "workshops-bootcamps-seminars" },
+        { title: "Train-the-Trainer Programs", slug: "train-the-trainer-programs" }
+      ]
+    }
   ],
+
   trainings: [
-    { label: "Training Needs Analysis" }, { label: "Training Manuals" }, { label: "Customized Training Syllabi" },
-    { label: "Practical Workshops" }, { label: "Compliance Training" }, { label: "Ongoing Support" }
+    { label: "Training Needs Analysis" },
+    { label: "Training Manuals" },
+    { label: "Customized Training Syllabi" },
+    { label: "Practical Workshops" },
+    { label: "Compliance Training" },
+    { label: "Ongoing Support" }
   ],
+
   Insight: [
-    { label: "Magazines", sublinks: ["E-Magazine April 2025", "IRTH Regulatory Updates-Jan 2025"] },
-    { label: "Articles", sublinks: ["Transforming FBR", "Taxes for growth & prosperity", "Reform agenda for 2024 budget", "NAB & Judiciary", "Inevitable tax reforms", "Fundamental reforms for survival", "Budgets 2024: thinking a fresh", "Budget, taxes & growth", "Budget & tax policy"] }
+    {
+      label: "Magazines",
+      sublinks: ["E-Magazine April 2025", "IRTH Regulatory Updates-Jan 2025"]
+    },
+    {
+      label: "Articles",
+      sublinks: [
+        "Transforming FBR",
+        "Taxes for growth & prosperity",
+        "Reform agenda for 2024 budget",
+        "NAB & Judiciary",
+        "Inevitable tax reforms",
+        "Fundamental reforms for survival",
+        "Budgets 2024: thinking a fresh",
+        "Budget, taxes & growth",
+        "Budget & tax policy"
+      ]
+    }
   ]
 };
+
+// rest of the code remains unchanged
+
+
 
 const descriptions = {
   "Our Team": "Meet our team of dedicated professionals driving impactful change.",
@@ -135,8 +203,13 @@ const Dropdown = ({ title, items = [], link, image, label, imageGroup, isMobile 
                       {item.sublinks && activeItem === i && (
                         <div className="mt-1 ml-4">
                           {item.sublinks.map((sub, j) => (
-                            <Link key={j} to={`/${title.toLowerCase()}/${sub.toLowerCase().replace(/\s+/g, "-")}`} className="block px-4 py-2 text-md text-white rounded" onClick={handleClose}>
-                              {sub}
+                            <Link
+                              key={j}
+                              to={`/${title.toLowerCase()}/${sub.slug}`}
+                              className="block px-4 py-2 text-md text-white rounded"
+                              onClick={handleClose}
+                            >
+                              {sub.title}
                             </Link>
                           ))}
                         </div>

@@ -1,215 +1,193 @@
-import { useParams } from "react-router-dom";
-// import { gsap } from 'gsap';
-// import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import service1 from "../assets/services/aml-cft.png";
-import service2 from "../assets/services/business-intel.png";
-import service3 from "../assets/services/esg-glass.png";
-import service4 from "../assets/services/service 4.jpg";
-import service5 from "../assets/services/service 5.jpg";
-import service6 from "../assets/services/service 6.jpg";
-import service7 from "../assets/services/service 7.jpg";
-import service8 from "../assets/services/service 8.jpg";
-import service9 from "../assets/services/service 9.jpg";
-import service10 from "../assets/services/service 10.jpg";
-import service11 from "../assets/services/service 11.jpg";
-import service12 from "../assets/services/service 12.jpg";
-import service13 from "../assets/services/service 13.jpg";
-import service14 from "../assets/services/service 14.jpg";
-import service15 from "../assets/services/service 15.jpg";
-import service16 from "../assets/services/service 16.jpg";
-import service17 from "../assets/services/service 17.jpg";
-import service18 from "../assets/services/service 18.jpg";
-import service19 from "../assets/services/service 19.jpg";
-import service20 from "../assets/services/service 20.jpg";
-import service21 from "../assets/services/service 21.jpg";
-import service22 from "../assets/services/service 22.jpg";
-import service23 from "../assets/services/service 231.jpg";
-import service24 from "../assets/services/service 241.jpg";
-import service25 from "../assets/services/service 251.jpg";
-import service26 from "../assets/services/service 26.jpg";
+    import React from "react";
+    import { useParams } from "react-router-dom";
 
-// gsap.registerPlugin(ScrollTrigger);
-
-// Sample services (same as Services.jsx)
-const services = [
-    {
-        title: "ESG Strategy and Implementation Services",
-        description:
-            "ESG (Environmental, Social, and Governance) strategy and implementation services are designed to help companies develop and execute plans to incorporate ESG factors into their business operations.",
-        image: service1,
-    },
-    {
-        title: "AML–CFT and Sanctions Compliance",
-        description:
-            "AML–CFT and Sanctions Compliance services consist of robust risk assessment and monitoring mechanisms to help institutions align with regulatory frameworks on anti-money laundering and counter-financing of terrorism. We also provide training and reporting support to financial institutions and international sanctions regimes.",
-        image: service2,
-    },
-    {
-        title: "Investigative and Business Intelligence Services",
-        description:
-            "Investigations and business intelligence services to enhance transparency and reduce risks in corporate business operations.",
-        image: service3,
-    },
-    {
-        title: "Independent and Pre-Regulatory Examinations",
-        description:
-            "Independent and Pre-Regulatory Examinations are important tools for organizations to improve or evaluate compliance with various regulatory requirements.",
-        image: service4,
-    },
-    {
-        title: "Risk, Compliance, and Controls",
-        description:
-            "Risk, Compliance, and Controls are a governance framework for effective organizational risk assessment and enforcement.",
-        image: service5,
-    },
-    {
-        title: "Strategic Assurance and Policies Development",
-        description:
-            "Strategic Assurance and Policies Development involves formulating risk-aware strategies and internal policies to build a strong governance framework for organizations.",
-        image: service6,
-    },
-    {
-        title: "Testing",
-        description:
-            "The testing phase is an important part of the verification process for IT systems and applications. Testing helps to ensure that applications are properly configured and compliant with the required specifications and quality standards.",
-        image: service7,
-    },
-    {
-        title: "Systems Modeling and Evaluations",
-        description:
-            "Modeling and verification are the best way for organizations to analyze their operations through a data-driven approach to assess interdependencies and complex systems.",
-        image: service8,
-    },
-    {
-        title: "Cyber Security & Information Security Services",
-        description:
-            "Cybersecurity and information security services include threat intelligence, vulnerability assessment, and risk mitigation strategies to guard organizations from internal and external threats as cybercrime continues to grow.",
-        image: service9,
-    },
-    {
-        title: "GDPR Implementation",
-        description:
-            "The General Data Protection Regulation (GDPR) is designed to protect the privacy of EU citizens. GDPR implementation includes aligning systems and processes to ensure compliance and avoid significant penalties and revenue loss.",
-        image: service10,
-    },
-    {
-        title: "Fraud Detection and Preventive Services",
-        description:
-            "Fraud is still a core risk for institutions of all sizes and industries. Robust fraud detection and prevention mechanisms help organizations detect fraud early, prevent reputational, and legal consequences.",
-        image: service11,
-    },
-    {
-        title: "Corporate Governance",
-        description:
-            "Corporate governance is the system of rules, practices, and processes by which a company is directed and controlled to ensure accountability, fairness, and transparency.",
-        image: service12,
-    },
-    {
-        title: "Operational and Organizational Restructuring",
-        description:
-            "Operational and organizational restructuring involves streamlining existing operations to enhance business processes and improve overall performance.",
-        image: service13,
-    },
-    {
-        title: "Restructuring and Privatization",
-        description:
-            "Restructuring and privatization are holistic solutions for state-owned enterprises seeking to change ownership models, optimize their operations, and drive growth.",
-        image: service14,
-    },
-    {
-        title: "Mergers and Acquisitions",
-        description:
-            "Mergers and acquisitions services help companies combine their operations to achieve strategic objectives.",
-        image: service15,
-    },
-    {
-        title: "Energy Resource and Industrial",
-        description:
-            "The energy and industrial sectors are critical drivers of global economic growth and development.",
-        image: service16,
-    },
-    {
-        title: "Block Chain and Digital Assets",
-        description:
-            "Blockchain technology and digital assets are rapidly expanding the way businesses record and transact, improving the security and reliability of their financial assets and data.",
-        image: service17,
-    },
-    {
-        title: "E-commerce",
-        description:
-            "E-commerce is the buying and selling of goods and services online through web-based digital channels.",
-        image: service18,
-    },
-    {
-        title: "Diversity, Equity & Inclusion",
-        description:
-            "Diversity, equity, and inclusion (DEI) programs support organizational commitment to recognizing, accepting, and valuing diverse backgrounds that drive innovation and business value.",
-        image: service19,
-    },
-    {
-        title: "Employment and Workforce Evaluations",
-        description:
-            "Employment and workforce evaluations focus on assessing the effectiveness and efficiency of an organization’s workforce to ensure they adhere to performance policies and procedures.",
-        image: service20,
-    },
-    {
-        title: "Marketing Strategies",
-        description:
-            "Marketing strategies are essential for promoting organizational objectives and building brand equity. We create strategies that support customer experience and generate revenue.",
-        image: service21,
-    },
-    {
-        title: "Training and Workshops",
-        description:
-            "Trainings and workshops are essential for capacity building, professional development, and performance enhancement.",
-        image: service22,
-    },
-    {
-        title: "Financial Advisory Services",
-        description:
-            "At IRTH, we provide comprehensive financial advisory services to meet the unique needs of clients across sectors.",
-        image: service23,
-    },
-    {
-        title: "Aircraft Leasing & Financing Solutions by IRTH",
-        description:
-            "We offer end-to-end aircraft leasing and financing solutions to meet the unique demands of clients in the aviation industry.",
-        image: service24,
-    },
-    {
-        title: "Our Legal Services",
-        description:
-            "At IRTH Aviation Advisory, we specialize in providing top-tier legal services tailored to the unique needs of the aviation industry.",
-        image: service25,
-    },
-    {
-        title: "Taxation",
-        description:
-            "Partnering with IRTH was a game-changer for our aviation business. Their legal expertise and industry knowledge helped us navigate complex transactions successfully.",
-        image: service26,
-    },
-];
-
-const slugify = (str) =>
-    str.toLowerCase().replace(/ /g, "-").replace(/[^\w-]+/g, "");
-
+    const services = [
+        {
+            label: "Advisory",
+            sublinks: [
+                {
+                    title: "Business Restructuring",
+                    slug: "business-restructuring",
+                    details:
+                        "The IRTH team advises distressed or underperforming entities on turnaround strategies and help in building sustainable organizational structure. We provide:\n• Developing strategy to achieve optimized financial leverage; restructuring/rescheduling debt financing, issuing sub-ordinated debt and public offering. Post-merger integration, amalgamation and carve-out support\n• Strategic workforce and governance realignment; developing and implementing agile organization structure"
+                },
+                {
+                    title: "Cybersecurity & Data Privacy",
+                    slug: "cybersecurity-data-privacy",
+                    details:
+                        "The need for cybersecurity resilience and privacy assurance is paramount in today’s digital-first economy. Our advisory ensures:\n• Cyber risk and vulnerability assessments\n• Data protection compliance (GDPR, PDPA, etc.)\n• Development of cybersecurity policies and protocols\n• Incident response planning and simulation"
+                },
+                {
+                    title: "Developing Corporate",
+                    slug: "developing-corporate",
+                    details:
+                        "IRTH enables businesses to identify, formulate, and execute growth-centric strategies. We support:\n• Market entry feasibility and opportunity analysis\n• Customer acquisition and retention planning\n• Business model innovation and scenario mapping\n• Strategic planning workshops and execution roadmaps"
+                },
+                {
+                    title: "Forensic & Investigations Advisory",
+                    slug: "forensic-investigations-advisory",
+                    details:
+                        "The forensic services team supports legal counsel and boards during internal investigations and complex disputes. We offer:\n• Financial fraud detection and asset tracing\n• Corporate misconduct and whistleblower case reviews\n• Litigation support and expert testimony\n• Regulatory and anti-corruption compliance reviews"
+                },
+                {
+                    title: "Legal Analytics & Transaction Advisory",
+                    slug: "legal-analytics-transaction-advisory",
+                    details:
+                        "From deal origination to post-transaction compliance, we provide:\n• Transactional due diligence and legal risk profiling\n• Contract structuring and compliance analytics\n• Valuation and regulatory approval guidance\n• Joint venture governance design"
+                },
+                {
+                    title: "Risk Management & Regulatory Compliance",
+                    slug: "risk-management-regulatory-compliance",
+                    details:
+                        "We work with organizations to develop integrated risk and compliance frameworks that meet evolving domestic and international standards. Our services include:\n• Enterprise Risk Management (ERM) design\n• AML / CFT program development\n• FATCA, CRS, and KYC compliance readiness\n• Regulatory health checks and internal audits"
+                }
+            ]
+        },
+        {
+            label: "Technology Transformation",
+            sublinks: [
+                {
+                    title: "Core Banking Solution Migration Strategy",
+                    slug: "core-banking-solution-migration-strategy",
+                    details:
+                        "We assist financial institutions with:\n• End-to-end core banking system migration planning, including development of Functional Design Document\n• Data cleansing, mapping, migration, testing, and go-live coordination\n• Regulatory compliance readiness"
+                },
+                {
+                    title: "Digital Transformation",
+                    slug: "digital-transformation",
+                    details:
+                        "IRTH enables organizations to modernize operating models and customer journeys through:\n• Help in devising Omnichannel strategy, to provide a consistent and integrated customer experience across all touchpoints\n• Process digitization and back-office automation\n• Cloud migration services and IT governance"
+                },
+                {
+                    title: "Financial Analytics Services",
+                    slug: "financial-analytics-services",
+                    details:
+                        "We unlock business intelligence through:\n• Real-time KPI dashboards and scorecards\n• Predictive analytics and scenario planning\n• Profitability, variance, and liquidity analysis"
+                },
+                {
+                    title: "Financial & Budget Planning Automation",
+                    slug: "financial-budget-planning-automation",
+                    details:
+                        "• Budget, forecasts planning automation solutions implementation Developing Medium to Long-term strategic financial modeling\n• CAPEX and OPEX optimization roadmaps"
+                },
+                {
+                    title: "Blockchain & Digital Assets",
+                    slug: "blockchain-digital-assets",
+                    details:
+                        "We support Web3 readiness and regulatory alignment through:\n• Blockchain use-case assessment and tokenomics\n• Smart contract design and audit readiness\n• Virtual asset compliance (Travel Rule, VASP registration)"
+                },
+                {
+                    title: "Business Transformation",
+                    slug: "business-transformation",
+                    details:
+                        "We help clients reinvent their operating models by:\n• Conducting process diagnostics and redesign\n• Process re-engineering to rationalize cost to achieve performance excellence\n• Deploying ERP and BPM tools\n• Introducing Robotic Process Automation (RPA)"
+                },
+                {
+                    title: "Business Process Outsourcing (BPO) Services",
+                    slug: "business-process-outsourcing-bpo-services",
+                    details:
+                        "Our managed services model supports:\n• Finance & Accounting, Payroll, and HR outsourcing\n• SLA-based service delivery and operational oversight\n• Customer service and procurement back-office models"
+                }
+            ]
+        },
+        {
+            label: "ESG Strategy",
+            sublinks: [
+                {
+                    title: "ESG Strategy Development Services",
+                    slug: "esg-strategy-development-services",
+                    details:
+                        "Our ESG services deliver:\n• ESG baseline maturity assessments\n• Stakeholder and materiality analysis\n• ESG goal setting and KPI framework\n• Climate risk scenario analysis and TCFD reporting\n• ESG-linked governance integration"
+                }
+            ]
+        },
+        {
+            label: "Tax Advisory",
+            sublinks: [
+                {
+                    title: "Local & International Tax Advisory",
+                    slug: "local-international-tax-advisory",
+                    details:
+                        "IRTH helps clients manage their tax exposure through:\n• Domestic tax planning and compliance management\n• Sector-specific tax structuring\n• Global mobility and expatriate taxation\n• Double Tax Treaty and BEPS compliance analysis"
+                },
+                {
+                    title: "Payroll Tax Compliance",
+                    slug: "payroll-tax-compliance",
+                    details:
+                        "We enable employers to remain audit-ready by:\n• Ensuring accurate withholding and social security treatment\n• Managing benefits-in-kind and tax statements\n• Automating payroll tax calculations and filings"
+                },
+                {
+                    title: "Transaction-specific Tax Advisory",
+                    slug: "transaction-specific-tax-advisory",
+                    details:
+                        "For corporate deals, we offer:\n• Tax due diligence and integration planning\n• Reorganization tax mapping and relief claims\n• Cross-border M&A tax optimization"
+                }
+            ]
+        },
+        {
+            label: "Training & Capacity Building",
+            sublinks: [
+                {
+                    title: "Customized Corporate Training",
+                    slug: "customized-corporate-training",
+                    details:
+                        "We deliver bespoke learning solutions for:\n• Regulatory compliance and financial reporting\n• Leadership and organizational development\n• Risk management and internal audit proficiency"
+                },
+                {
+                    title: "Professional Certification Courses",
+                    slug: "professional-certification-courses",
+                    details:
+                        "Our learning tracks prepare professionals for:\n• Certified AML/CFT compliance credentials\n• ESG and sustainability leadership certifications\n• Financial modeling and data analytics diplomas"
+                },
+                {
+                    title: "Workshops, Bootcamps & Seminars",
+                    slug: "workshops-bootcamps-seminars",
+                    details:
+                        "These interactive sessions include:\n• Regulatory updates and market trend briefings\n• Tech enablement and digital transformation seminars\n• Audit, ESG, and data governance bootcamps"
+                },
+                {
+                    title: "Train-the-Trainer Programs",
+                    slug: "train-the-trainer-programs",
+                    details:
+                        "We support internal L&D teams by:\n• Training delivery method refinement\n• Content development and learner engagement\n• LMS integration and evaluation models"
+                }
+            ]
+        }
+    ];
 const ServiceDetail = () => {
     const { slug } = useParams();
-    const service = services.find((s) => slugify(s.title) === slug);
 
-    if (!service) {
-        return <div className="text-center py-20 text-xl">Service not found.</div>;
+    let matchedService = null;
+    for (const service of services) {
+        const sublink = service.sublinks.find(s => s.slug === slug);
+        if (sublink) {
+            matchedService = { ...sublink, category: service.label };
+            break;
+        }
+    }
+
+    if (!matchedService) {
+        return <div className="p-10 text-center text-xl text-red-500">Service not found</div>;
     }
 
     return (
-        <div className="max-w-4xl mx-auto px-4 py-20">
-            <img
-                src={service.image}
-                alt={service.title}
-                className="w-full h-96 object-cover rounded-lg mb-10"
-            />
-            <h1 className="text-4xl font-bold mb-6">{service.title}</h1>
-            <p className="text-lg text-gray-700">{service.description}</p>
+        <div className="max-w-5xl mx-auto px-6 py-12">
+            <div className="bg-white shadow-xl rounded-xl overflow-hidden border border-gray-200">
+                {/* Header Section */}
+                <div className="bg-[#814d35] px-8 py-6">
+                    <h1 className="text-3xl font-bold text-white mb-1">
+                        {matchedService.title}
+                    </h1>
+                    <p className="text-sm text-orange-100">
+                        Category: {matchedService.category}
+                    </p>
+                </div>
+
+                {/* Details Section */}
+                <div className="px-8 py-6 text-gray-800 text-lg leading-relaxed whitespace-pre-line">
+                    <p>{matchedService.details}</p>
+                </div>
+            </div>
         </div>
     );
 };
