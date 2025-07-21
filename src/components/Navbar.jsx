@@ -2,9 +2,9 @@ import { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { ChevronDown, ChevronRight, Menu, X } from "lucide-react";
 import logo from "../assets/logo.png";
-import serviceImage from "../assets/service.png";
+import serviceImage from "../assets/servicenavbar.png";
 import trainingImage from "../assets/webinar5.jpg";
-import insightsImg from "../assets/Insight.jpg";
+import insightsImg from "../assets/insightnav.jpg";
 import image1 from "../assets/team1.jpg";
 import image2 from "../assets/team2.jpg";
 import image3 from "../assets/team3.jpg";
@@ -61,31 +61,34 @@ const data = {
   ],
 
   trainings: [
-    { label: "Training Needs Analysis" },
-    { label: "Training Manuals" },
-    { label: "Customized Training Syllabi" },
-    { label: "Practical Workshops" },
-    { label: "Compliance Training" },
-    { label: "Ongoing Support" }
+    { label: "Training Needs Analysis", slug: "training-needs-analysis" },
+    { label: "Training Manuals", slug: "training-manuals" },
+    { label: "Customized Training Syllabi", slug: "customized-training-syllabi" },
+    { label: "Practical Workshops", slug: "practical-workshops" },
+    { label: "Compliance Training", slug: "compliance-training" },
+    { label: "Ongoing Support", slug: "ongoing-support" }
   ],
 
   Insight: [
     {
       label: "Magazines",
-      sublinks: ["E-Magazine April 2025", "IRTH Regulatory Updates-Jan 2025"]
+      sublinks: [
+        { title: "E-Magazine April 2025", slug: "e-magazine-april-2025" },
+        { title: "IRTH Regulatory Updates-Jan 2025", slug: "irth-regulatory-updates-jan-2025" }
+      ]
     },
     {
       label: "Articles",
       sublinks: [
-        "Transforming FBR",
-        "Taxes for growth & prosperity",
-        "Reform agenda for 2024 budget",
-        "NAB & Judiciary",
-        "Inevitable tax reforms",
-        "Fundamental reforms for survival",
-        "Budgets 2024: thinking a fresh",
-        "Budget, taxes & growth",
-        "Budget & tax policy"
+        { title: "Transforming FBR", slug: "transforming-fbr" },
+        { title: "Taxes for growth & prosperity", slug: "taxes-for-growth-and-prosperity" },
+        { title: "Reform agenda for 2024 budget", slug: "reform-agenda-2024-budget" },
+        { title: "NAB & Judiciary", slug: "nab-and-judiciary" },
+        { title: "Inevitable tax reforms", slug: "inevitable-tax-reforms" },
+        { title: "Fundamental reforms for survival", slug: "fundamental-reforms-for-survival" },
+        { title: "Budgets 2024: thinking a fresh", slug: "budgets-2024-thinking-afresh" },
+        { title: "Budget, taxes & growth", slug: "budget-taxes-growth" },
+        { title: "Budget & tax policy", slug: "budget-tax-policy" }
       ]
     }
   ]

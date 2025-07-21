@@ -5,6 +5,7 @@ import TrainingServices from "../components/TrainingServices";
 import AboutSection from "../components/AboutSection";
 import TeamSection from "../components/TeamSection";
 import TestimonialSection from "../components/TestimonialSection";
+import FeedbackFormImage from "../components/FeedbackFormImage";
 
 
 export default function Home() {
@@ -17,6 +18,8 @@ export default function Home() {
       <TrainingServices />
       <TeamSection />
       <TestimonialSection />
+      <FeedbackFormImage />
+
     </>
   );
 }

@@ -2,6 +2,7 @@ import { useState } from "react";
 import webinar1 from "../assets/webinar1.jpg";
 import webinar2 from "../assets/webinar2.jpg";
 import webinar3 from "../assets/webinar3.jpg";
+import strongestBanksAward from "../assets/strongest-banks-award.jpg"; // Add your image here
 import { X } from "lucide-react";
 
 const Events = () => {
@@ -12,15 +13,20 @@ const Events = () => {
     return (
         <div className="max-w-7xl mx-auto py-12 px-4">
             <h1 className="text-4xl font-bold text-[#814d35]">Upcoming Events</h1>
-            <p className="mt-4 text-lg text-gray-700">Check out our latest workshops, conferences, and more.</p>
+            <p className="mt-4 text-lg text-gray-700">
+                Check out our latest workshops, conferences, and more.
+            </p>
 
             <div className="mt-10 space-y-12">
                 {/* ✅ Event 1: Image-based Webinar */}
                 <div className="bg-white rounded-lg shadow-md p-6">
-                    <h2 className="text-2xl font-semibold text-[#814d35] mb-4">Webinar on Digital Transformation in Finance</h2>
+                    <h2 className="text-2xl font-semibold text-[#814d35] mb-4">
+                        Webinar on Digital Transformation in Finance
+                    </h2>
                     <p className="text-gray-700 mb-4">
-                        Join our expert panel as we explore how digital transformation is reshaping financial services.
-                        Learn best practices, success stories, and technologies that are driving this change.
+                        Join our expert panel as we explore how digital transformation is
+                        reshaping financial services. Learn best practices, success stories,
+                        and technologies that are driving this change.
                     </p>
                     <div className="mb-6">
                         <p className="text-md font-medium text-[#814d35]">Speaker:</p>
@@ -39,32 +45,52 @@ const Events = () => {
                     </div>
                 </div>
 
-                {/* ✅ Event 2: Video-based Webinar with Detailed Description */}
+                {/* ✅ Event 2: Video-based Webinar */}
                 <div className="bg-white rounded-lg shadow-md p-6">
                     <h2 className="text-2xl font-semibold text-[#814d35] mb-4">
-                        Webinar: Response by Mr. Tahir Hassan Qureshi – President & CEO, Allied Bank Limited
+                        Webinar: Response by Mr. Tahir Hassan Qureshi – President & CEO,
+                        Allied Bank Limited
                     </h2>
                     <p className="text-gray-700 mb-4">
-                        Panel Discussion Theme: <strong>“Realising the Immensity of Threat and Insulating the Stakeholders’ Value”</strong>
+                        Panel Discussion Theme:{" "}
+                        <strong>
+                            “Realising the Immensity of Threat and Insulating the
+                            Stakeholders’ Value”
+                        </strong>{" "}
                         in the 2nd Financial Crime Conference.
                     </p>
                     <div className="mb-6">
                         <p className="text-md font-medium text-[#814d35]">Speaker:</p>
-                        <p className="text-gray-800">Mr. Tahir Hassan Qureshi – President & CEO, Allied Bank Limited</p>
+                        <p className="text-gray-800">
+                            Mr. Tahir Hassan Qureshi – President & CEO, Allied Bank Limited
+                        </p>
                     </div>
                     <ul className="list-disc list-inside text-gray-700 space-y-2 mb-6">
-                        <li>Sensitizing the financial crime compliance agenda across the industry</li>
+                        <li>
+                            Sensitizing the financial crime compliance agenda across the
+                            industry
+                        </li>
                         <li>National Risk Assessment awareness</li>
-                        <li>Institutional threats, vulnerabilities and risk assessments based on National Risk Assessment</li>
+                        <li>
+                            Institutional threats, vulnerabilities and risk assessments based
+                            on National Risk Assessment
+                        </li>
                         <li>Compliance-led holistic institutional transformation</li>
-                        <li>Tightening the risk appetite and sponsors’ awareness on implications</li>
+                        <li>
+                            Tightening the risk appetite and sponsors’ awareness on
+                            implications
+                        </li>
                         <li>De-risking strategies and challenges</li>
-                        <li>Banks propelling the national capacity-building programmes</li>
-                        <li>Leadership strategies – forward-looking approach to stay ahead in the wake of emerging and disruptive trends</li>
+                        <li>
+                            Banks propelling the national capacity-building programmes
+                        </li>
+                        <li>
+                            Leadership strategies – forward-looking approach to stay ahead in
+                            the wake of emerging and disruptive trends
+                        </li>
                         <li>Thoughts on enforcement regime</li>
                     </ul>
 
-                    {/* YouTube Video Embed */}
                     <div className="aspect-w-16 aspect-h-9 mb-4">
                         <iframe
                             className="w-full h-96 rounded-md"
@@ -74,6 +100,34 @@ const Events = () => {
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                             allowFullScreen
                         ></iframe>
+                    </div>
+                </div>
+
+                {/* ✅ Event 3: Award Ceremony with Image */}
+                <div className="bg-white rounded-lg shadow-md p-6">
+                    <h2 className="text-2xl font-semibold text-[#814d35] mb-4">
+                        Award Presented by Bret King to Mr. Tahir Hassan Qureshi
+                    </h2>
+                    <p className="text-gray-700 mb-4">
+                        Mr. Tahir Hassan Qureshi (President & CEO, Allied Bank Limited) was
+                        honored by renowned banking futurist and author{" "}
+                        <strong>Bret King</strong> during a high-profile recognition
+                        ceremony in Singapore. The award reflects his leadership and
+                        contributions to the banking sector in Pakistan.
+                    </p>
+                    <div className="mb-6">
+                        <p className="text-md font-medium text-[#814d35]">Awardee:</p>
+                        <p className="text-gray-800">
+                            Mr. Tahir Hassan Qureshi – President & CEO, Allied Bank Limited
+                        </p>
+                    </div>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mb-4">
+                        <img
+                            src={strongestBanksAward}
+                            alt="Award Ceremony with Bret King"
+                            onClick={() => openImage(strongestBanksAward)}
+                            className="w-full h-52 object-cover rounded-md cursor-pointer transition-transform hover:scale-105"
+                        />
                     </div>
                 </div>
             </div>

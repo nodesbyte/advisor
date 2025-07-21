@@ -26,7 +26,6 @@ import TrainingPage from "./pages/TrainingPage";
 import Events from "./pages/Events";
 
 
-
 // Theme configuration
 const theme = createTheme({
   palette: {
