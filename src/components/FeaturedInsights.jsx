@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import magzine1 from "../assets/magzine1.jpg";
 import magzine2 from "../assets/magzine2.png";
 import recent1 from "../assets/recent1.png";
@@ -7,6 +8,7 @@ import recent2 from "../assets/recent2.png";
 const initialPosts = [
   {
     id: 1,
+    slug: "irth-regulatory-updates-jan-2025",
     title: "IRTH Regulatory Updates – Jan 2025 Edition",
     time: "Posted on 21 Feb at 1:08 pm",
     category: "Economy & Policy",
@@ -15,6 +17,7 @@ const initialPosts = [
   },
   {
     id: 2,
+    slug: "e-magazine-april-2025",
     title: "E-Magazine April 2025 Edition (Pakistan’s Roadmap to Crypto Legalization)",
     time: "Posted on 23 Apr at 5:48 pm",
     category: "Magzine",
@@ -23,6 +26,7 @@ const initialPosts = [
   },
   {
     id: 3,
+    slug: "transforming-fbr",
     title: "Transforming FBR",
     time: "Posted on May 31, 2024",
     category: "Article",
@@ -31,6 +35,7 @@ const initialPosts = [
   },
   {
     id: 4,
+    slug: "taxes-for-growth-&-prosperity",
     title: "Taxes for growth & prosperity",
     time: "Posted on May 31, 2024",
     category: "Article",
@@ -66,14 +71,20 @@ const FeaturedInsights = () => {
             alt={featured.title}
             className="w-full h-96 object-cover"
           />
-          <div className="absolute inset-0 px-8 py-14 flex flex-col justify-end text-white space-y-2" style={{ textShadow: '0 1px 4px rgba(0,0,0,0.6)' }}>
+          <div
+            className="absolute inset-0 px-8 py-14 flex flex-col justify-end text-white space-y-2"
+            style={{ textShadow: "0 1px 4px rgba(0,0,0,0.6)" }}
+          >
             <p className="text-sm">{featured.time}</p>
             <h2 className="text-2xl sm:text-3xl font-bold leading-tight">
               {featured.title}
             </h2>
-            <button className="mt-3 px-4 py-1.5 border border-white rounded-full text-sm font-medium hover:bg-white hover:text-black transition-all duration-300 w-fit">
+            <Link
+              to={`/insight/${featured.slug}`}
+              className="mt-3 px-4 py-1.5 border border-white rounded-full text-sm font-medium hover:bg-white hover:text-black transition-all duration-300 w-fit"
+            >
               Learn More
-            </button>
+            </Link>
           </div>
         </div>
 

@@ -5,10 +5,10 @@ import logo from "../assets/logo.png";
 import serviceImage from "../assets/servicenavbar.png";
 import trainingImage from "../assets/webinar5.jpg";
 import insightsImg from "../assets/insightnav.jpg";
-import image1 from "../assets/team1.jpg";
-import image2 from "../assets/team2.jpg";
-import image3 from "../assets/team3.jpg";
-import image4 from "../assets/team4.jpg";
+// import image1 from "../assets/team1.jpg";
+// import image2 from "../assets/team2.jpg";
+// import image3 from "../assets/team3.jpg";
+// import image4 from "../assets/team4.jpg";
 
 const data = {
   services: [
@@ -81,14 +81,14 @@ const data = {
       label: "Articles",
       sublinks: [
         { title: "Transforming FBR", slug: "transforming-fbr" },
-        { title: "Taxes for growth & prosperity", slug: "taxes-for-growth-and-prosperity" },
-        { title: "Reform agenda for 2024 budget", slug: "reform-agenda-2024-budget" },
-        { title: "NAB & Judiciary", slug: "nab-and-judiciary" },
+        { title: "Taxes for growth & prosperity", slug: "taxes-for-growth-&-prosperity" },
+        { title: "Reform agenda for 2024 budget", slug: "reform-agenda-for-2024-budget" },
+        { title: "NAB & Judiciary", slug: "nab-&-judiciary" },
         { title: "Inevitable tax reforms", slug: "inevitable-tax-reforms" },
         { title: "Fundamental reforms for survival", slug: "fundamental-reforms-for-survival" },
-        { title: "Budgets 2024: thinking a fresh", slug: "budgets-2024-thinking-afresh" },
-        { title: "Budget, taxes & growth", slug: "budget-taxes-growth" },
-        { title: "Budget & tax policy", slug: "budget-tax-policy" }
+        { title: "Budgets 2024: thinking a fresh", slug: "budgets-2024:-thinking-a-fresh" },
+        { title: "Budget, taxes & growth", slug: "budget,-taxes-&-growth" },
+        { title: "Budget & tax policy", slug: "budget-&-tax-policy" }
       ]
     }
   ]
@@ -248,7 +248,7 @@ const Navbar = () => {
           {/* Navigation Links */}
           <div className="hidden md:flex items-center gap-6 ml-10">
             <Link to="/about" className="text-md font-medium text-[#814d35] hover:underline">About Us</Link>
-            <Dropdown title="Our Team" label={<span className="flex items-center gap-1 text-[#814d35] hover:underline">Our Team <ChevronDown size={14} /></span>} link="/team" imageGroup={[image3, image4, image1, image2]} />
+            <Link to="/team" className="text-md font-medium text-[#814d35] hover:underline">Our Team</Link>
             <Dropdown title="Services" label={<span className="flex items-center gap-1 text-[#814d35] hover:underline">Services <ChevronDown size={14} /></span>} items={data.services} link="/services" image={serviceImage} />
             <Dropdown title="Trainings" label={<span className="flex items-center gap-1 text-[#814d35] hover:underline">Trainings <ChevronDown size={14} /></span>} items={data.trainings} link="/trainings" image={trainingImage} />
             <Dropdown title="Insight" label={<span className="flex items-center gap-1 text-[#814d35] hover:underline">Insight <ChevronDown size={14} /></span>} items={data.Insight} link="/featured" image={insightsImg} />
@@ -287,7 +287,7 @@ const Navbar = () => {
         <div className="md:hidden fixed inset-0 top-[120px] bg-[#814d35] z-40 overflow-y-auto">
           <div className="px-4 py-4">
             <Link to="/about" className="block py-3 px-4 text-lg text-white hover:bg-[#6e4b3a] rounded" onClick={closeMobileMenu}>About Us</Link>
-            <Dropdown title="Our Team" items={[]} link="/team" isMobile={true} onClose={closeMobileMenu} />
+            <Link to="/team" className="block py-3 px-4 text-lg text-white hover:bg-[#6e4b3a] rounded" onClick={closeMobileMenu}>Our Team</Link>
             <Dropdown title="Services" items={data.services} link="/services" isMobile={true} onClose={closeMobileMenu} />
             <Dropdown title="Trainings" items={data.trainings} link="/trainings" isMobile={true} onClose={closeMobileMenu} />
             <Dropdown title="Insight" items={data.Insight} link="/featured" isMobile={true} onClose={closeMobileMenu} />

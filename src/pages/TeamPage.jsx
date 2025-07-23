@@ -12,6 +12,7 @@ import profile1 from "../assets/team1.jpg";
 import profile2 from "../assets/team2.jpg";
 import profile3 from "../assets/team3.jpg";
 import profile4 from "../assets/team4.jpg";
+import profile5 from "../assets/team5.jpg";
 import { Link } from "@mui/material";
 
 
@@ -297,7 +298,37 @@ const teamMembers = [
         )
 
 
+    },
+    {
+        name: "Syed Nayyar Uddin Ahmad",
+        title: "Head - Strategic & Global Affairs",
+        email: "nayyar@irth.advisors.com",
+        image: profile5, // You can replace this with his actual image if available
+        bio: (
+            <>
+                <Typography variant="body8" paragraph>
+                    <strong>Syed Nayyar Uddin Ahmad</strong> is a seasoned senior corporate executive with over 50 years of impactful leadership in strategic analysis and policy advocacy. His influential writings and thought leadership have reached global policymakers, including heads of state, significantly contributing to shaping foreign policy in the United States and internationally.
+                </Typography>
+                <Typography variant="body8" paragraph>
+                    <strong>Phone:</strong> +92 321 9402157<br />
+                </Typography>
+            </>
+        ),
+        experience: (
+            <>
+                <Typography variant="h4" paragraph>
+                    <strong>About Syed Nayyar Uddin Ahmad</strong>
+                </Typography>
+                <Typography variant="body8" paragraph>
+                    With a distinguished career spanning more than five decades, Syed Nayyar Uddin Ahmad has provided transformative leadership across various domains. His strategic insights and commentary have been instrumental in influencing international policy and discourse.
+                </Typography>
+                <Typography variant="body8" paragraph>
+                    Renowned for his visionary approach, he continues to be a guiding force in global strategic affairs, with a particular emphasis on policy formulation, diplomatic relations, and international collaboration.
+                </Typography>
+            </>
+        )
     }
+
 ];
 
 const TeamPage = () => {

@@ -2,6 +2,9 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import magzine1 from "../assets/magzine1.jpg";
 import magzine2 from "../assets/magzine2.png";
+import pdfCryptoMagazine from "../assets/E-Magazine-April-2025-Edition-Pakistans-Roadmap-to-Crypto-Legalization.pdf";
+import pdfFinCrimMagazine from "../assets/IRTH-Fin-Crim-Feb-25-V2.pdf";
+
 import recent1 from "../assets/recent1.png";
 import recent2 from "../assets/recent2.png";
 import recent3 from "../assets/recent3.jpg";
@@ -11,6 +14,19 @@ import recent6 from "../assets/recent6.jpg";
 import recent7 from "../assets/recent7.jpg";
 import recent8 from "../assets/recent8.jpg";
 import recent9 from "../assets/recent9.jpg";
+
+// Import article contents
+import {
+  transformingFBRContent,
+  taxesForGrowthandProsperity,
+  reformAgendaFor2024Budget,
+  NABandJudiciary,
+  inevitableTaxReforms,
+  fundamentalReformsForSurvival,
+  budgets2024thinkingAfresh,
+  budgetTaxesandGrowth,
+  budgetandTaxPolicy,
+} from "../data/articleContents"; // Make sure path is correct
 
 const posts = [
   {
@@ -41,8 +57,7 @@ const posts = [
     time: "Posted on May 31, 2024",
     category: "Article",
     image: recent1,
-    content:
-      "In the light of dynamic shifts in business and advancements in technology, Transforming FBR outlines a modern strategy for more transparent and efficient tax systems.",
+    content: transformingFBRContent,
   },
   {
     id: 4,
@@ -51,8 +66,7 @@ const posts = [
     time: "Posted on May 31, 2024",
     category: "Article",
     image: recent2,
-    content:
-      "This article dives deep into the importance of tax reforms and how fair taxation can lead to sustainable economic development and national prosperity.",
+    content: taxesForGrowthandProsperity,
   },
   {
     id: 203,
@@ -61,8 +75,7 @@ const posts = [
     time: "Posted on Apr 10, 2024",
     category: "Article",
     image: recent3,
-    content:
-      "This article explores the key elements of reform required in Pakistan’s 2024 federal budget and proposes a practical path forward.",
+    content: reformAgendaFor2024Budget,
   },
   {
     id: 204,
@@ -71,8 +84,7 @@ const posts = [
     time: "Posted on Apr 12, 2024",
     category: "Article",
     image: recent4,
-    content:
-      "A critical overview of the role of the National Accountability Bureau and the judiciary in Pakistan's institutional reform landscape.",
+    content: NABandJudiciary,
   },
   {
     id: 205,
@@ -81,8 +93,7 @@ const posts = [
     time: "Posted on Apr 14, 2024",
     category: "Article",
     image: recent5,
-    content:
-      "This article outlines why tax reforms in Pakistan are no longer optional and what steps need to be taken urgently.",
+    content: inevitableTaxReforms,
   },
   {
     id: 206,
@@ -91,8 +102,7 @@ const posts = [
     time: "Posted on Apr 16, 2024",
     category: "Article",
     image: recent6,
-    content:
-      "Discusses the foundational reforms required to ensure Pakistan’s economic survival in the face of global uncertainty.",
+    content: fundamentalReformsForSurvival,
   },
   {
     id: 207,
@@ -101,8 +111,7 @@ const posts = [
     time: "Posted on Apr 18, 2024",
     category: "Article",
     image: recent7,
-    content:
-      "An insightful take on how the 2024 budget can break from the past and offer a fresh economic direction.",
+    content: budgets2024thinkingAfresh,
   },
   {
     id: 208,
@@ -111,8 +120,7 @@ const posts = [
     time: "Posted on Apr 20, 2024",
     category: "Article",
     image: recent8,
-    content:
-      "An analytical approach to understanding how budget decisions impact tax collection and economic growth.",
+    content: budgetTaxesandGrowth,
   },
   {
     id: 209,
@@ -121,8 +129,7 @@ const posts = [
     time: "Posted on Apr 22, 2024",
     category: "Article",
     image: recent9,
-    content:
-      "This piece highlights the critical link between budget planning and effective tax policy for long-term economic health.",
+    content: budgetandTaxPolicy,
   },
 ];
 
@@ -164,8 +171,43 @@ const InsightDetailPage = () => {
       </div>
 
       {/* Content */}
-      <div className="max-w-3xl mx-auto text-gray-800 text-base leading-relaxed">
-        <p>{post.content}</p>
+      <div className="text-black text-base leading-relaxed text-justify w-full">
+        <div className="w-full">
+          <p className="mb-4 whitespace-pre-line">{post.content}</p>
+
+          {/* Conditional PDF buttons */}
+          {post.slug === "e-magazine-april-2025" && (
+            <div className="flex flex-col gap-3 mt-4">
+              <a
+                href={pdfCryptoMagazine}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block bg-[#814d35] text-white px-6 py-2 rounded-md hover:bg-[#6e3e2c] transition"
+              >
+                View / Download Crypto PDF
+              </a>
+              <a
+                href={pdfFinCrimMagazine}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block bg-[#814d35] text-white px-6 py-2 rounded-md hover:bg-[#6e3e2c] transition"
+              >
+                View / Download Fin-Crim PDF
+              </a>
+            </div>
+          )}
+
+          {post.slug === "irth-regulatory-updates-jan-2025" && (
+            <a
+              href={pdfFinCrimMagazine}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block bg-[#814d35] text-white px-6 py-2 rounded-md hover:bg-[#6e3e2c] transition mt-4"
+            >
+              View / Download Fin-Crim PDF
+            </a>
+          )}
+        </div>
       </div>
     </div>
   );
