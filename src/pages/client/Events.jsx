@@ -1,8 +1,8 @@
 import { useState } from "react";
-import webinar1 from "../assets/webinar1.jpg";
-import webinar2 from "../assets/webinar2.jpg";
-import webinar3 from "../assets/webinar3.jpg";
-import strongestBanksAward from "../assets/strongest-banks-award.jpg"; // Add your image here
+import webinar1 from "../../assets/webinar1.jpg";
+import webinar2 from "../../assets/webinar2.jpg";
+import webinar3 from "../../assets/webinar3.jpg";
+import strongestBanksAward from "../../assets/strongest-banks-award.jpg"; // Add your image here
 import { X } from "lucide-react";
 
 const Events = () => {

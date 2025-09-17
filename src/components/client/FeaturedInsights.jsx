@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import magzine1 from "../assets/magzine1.jpg";
-import magzine2 from "../assets/magzine2.png";
-import recent1 from "../assets/recent1.png";
-import recent2 from "../assets/recent2.png";
+import magzine1 from "../../assets/magzine1.jpg";
+import magzine2 from "../../assets/magzine2.png";
+import recent1 from "../../assets/recent1.png";
+import recent2 from "../../assets/recent2.png";
 
 const initialPosts = [
   {

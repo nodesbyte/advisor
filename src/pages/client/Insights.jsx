@@ -2,17 +2,17 @@ import React from "react";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 
-import magzine1 from "../assets/magzine1.jpg";
-import magzine2 from "../assets/magzine2.png";
-import recent1 from "../assets/recent1.png";
-import recent2 from "../assets/recent2.png";
-import recent3 from "../assets/recent3.jpg";
-import recent4 from "../assets/recent4.jpg";
-import recent5 from "../assets/recent5.jpg";
-import recent6 from "../assets/recent6.jpg";
-import recent7 from "../assets/recent7.jpg";
-import recent8 from "../assets/recent8.jpg";
-import recent9 from "../assets/recent9.jpg";
+import magzine1 from "../../assets/magzine1.jpg";
+import magzine2 from "../../assets/magzine2.png";
+import recent1 from "../../assets/recent1.png";
+import recent2 from "../../assets/recent2.png";
+import recent3 from "../../assets/recent3.jpg";
+import recent4 from "../../assets/recent4.jpg";
+import recent5 from "../../assets/recent5.jpg";
+import recent6 from "../../assets/recent6.jpg";
+import recent7 from "../../assets/recent7.jpg";
+import recent8 from "../../assets/recent8.jpg";
+import recent9 from "../../assets/recent9.jpg";
 
 const magazines = [
   {

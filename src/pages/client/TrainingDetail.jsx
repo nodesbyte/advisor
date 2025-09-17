@@ -12,12 +12,12 @@ import {
 } from "@mui/material";
 
 // Local images
-import tna from "../assets/trainings/tna.jpg";
-import manuals from "../assets/trainings/trainingm.png";
-import syllabi from "../assets/trainings/Customized-Training-Syllabi.jpg";
-import workshops from "../assets/trainings/Practical-Application.jpg";
-import compliance from "../assets/trainings/compliance.jpg";
-import support from "../assets/trainings/ongoing.jpg";
+import tna from "../../assets/trainings/tna.jpg";
+import manuals from "../../assets/trainings/trainingm.png";
+import syllabi from "../../assets/trainings/Customized-Training-Syllabi.jpg";
+import workshops from "../../assets/trainings/Practical-Application.jpg";
+import compliance from "../../assets/trainings/compliance.jpg";
+import support from "../../assets/trainings/ongoing.jpg";
 
 const trainings = [
   {

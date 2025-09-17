@@ -1,5 +1,5 @@
 import React from "react";
-import feedbackFormImage from "../assets/FeedbackForm.png"; // Update the filename as needed
+import feedbackFormImage from "../../assets/FeedbackForm.png"; // Update the filename as needed
 
 const FeedbackFormImage = () => {
     return (

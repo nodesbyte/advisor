@@ -1,6 +1,6 @@
-import logo from "../assets/logo.png";
-import partner1 from "../assets/partner1.png";
-import partner2 from "../assets/partner2.png";
+import logo from "../../assets/logo.png";
+import partner1 from "../../assets/partner1.png";
+import partner2 from "../../assets/partner2.png";
 import {
     FaFacebookF,
     FaEnvelope,

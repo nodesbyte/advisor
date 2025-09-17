@@ -1,13 +1,13 @@
 // src/pages/About.jsx
 import React from "react";
-import AboutSection from "../components/AboutSection";
-import whatWeDoImage from "../assets/whatwedo.png"; // your image path
+import AboutSection from "../../components/client/AboutSection";
+import whatWeDoImage from "../../assets/whatwedo.png"; // your image path
 // Add images for each item (replace with your actual paths)
-import expertiseImg from "../assets/expertise.jpg";
-import tailoredSolutionsImg from "../assets/tailored-solutions.jpg";
-import resultsDrivenImg from "../assets/results-driven.jpg";
-import innovationImg from "../assets/innovation.jpg";
-import partnershipImg from "../assets/partnership.png";
+import expertiseImg from "../../assets/expertise.jpg";
+import tailoredSolutionsImg from "../../assets/tailored-solutions.jpg";
+import resultsDrivenImg from "../../assets/results-driven.jpg";
+import innovationImg from "../../assets/innovation.jpg";
+import partnershipImg from "../../assets/partnership.png";
 
 const chooseUsItems = [
     {

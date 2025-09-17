@@ -1,14 +1,14 @@
 import { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { ChevronDown, ChevronRight, Menu, X } from "lucide-react";
-import logo from "../assets/logo.png";
-import serviceImage from "../assets/servicenavbar.png";
-import trainingImage from "../assets/webinar5.jpg";
-import insightsImg from "../assets/insightnav.jpg";
-// import image1 from "../assets/team1.jpg";
-// import image2 from "../assets/team2.jpg";
-// import image3 from "../assets/team3.jpg";
-// import image4 from "../assets/team4.jpg";
+import logo from "../../assets/logo.png";
+import serviceImage from "../../assets/servicenavbar.png";
+import trainingImage from "../../assets/webinar5.jpg";
+import insightsImg from "../../assets/insightnav.jpg";
+// import image1 from "../../assets/team1.jpg";
+// import image2 from "../../assets/team2.jpg";
+// import image3 from "../../assets/team3.jpg";
+// import image4 from "../../assets/team4.jpg";
 
 const data = {
   services: [

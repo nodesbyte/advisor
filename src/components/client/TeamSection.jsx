@@ -8,11 +8,11 @@ import {
     CardContent,
     Avatar
 } from "@mui/material";
-import profile1 from "../assets/team1.jpg";
-import profile2 from "../assets/team2.jpg";
-import profile3 from "../assets/team3.jpg";
-import profile4 from "../assets/team4.jpg";
-import profile5 from "../assets/team5.jpg";
+import profile1 from "../../assets/team1.jpg";
+import profile2 from "../../assets/team2.jpg";
+import profile3 from "../../assets/team3.jpg";
+import profile4 from "../../assets/team4.jpg";
+import profile5 from "../../assets/team5.jpg";
 import { Link } from "@mui/material";
 
 

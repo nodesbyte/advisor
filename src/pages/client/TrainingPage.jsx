@@ -2,12 +2,12 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 
 // Images
-import tna from "../assets/trainings/tna.jpg";
-import manuals from "../assets/trainings/trainingm.png";
-import syllabi from "../assets/trainings/Customized-Training-Syllabi.jpg";
-import workshops from "../assets/trainings/Practical-Application.jpg";
-import compliance from "../assets/trainings/compliance.jpg";
-import support from "../assets/trainings/ongoing.jpg";
+import tna from "../../assets/trainings/tna.jpg";
+import manuals from "../../assets/trainings/trainingm.png";
+import syllabi from "../../assets/trainings/Customized-Training-Syllabi.jpg";
+import workshops from "../../assets/trainings/Practical-Application.jpg";
+import compliance from "../../assets/trainings/compliance.jpg";
+import support from "../../assets/trainings/ongoing.jpg";
 
 // Trainings data
 const trainings = [

@@ -1,19 +1,19 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import magzine1 from "../assets/magzine1.jpg";
-import magzine2 from "../assets/magzine2.png";
-import pdfCryptoMagazine from "../assets/E-Magazine-April-2025-Edition-Pakistans-Roadmap-to-Crypto-Legalization.pdf";
-import pdfFinCrimMagazine from "../assets/IRTH-Fin-Crim-Feb-25-V2.pdf";
+import magzine1 from "../../assets/magzine1.jpg";
+import magzine2 from "../../assets/magzine2.png";
+import pdfCryptoMagazine from "../../assets/E-Magazine-April-2025-Edition-Pakistans-Roadmap-to-Crypto-Legalization.pdf";
+import pdfFinCrimMagazine from "../../assets/IRTH-Fin-Crim-Feb-25-V2.pdf";
 
-import recent1 from "../assets/recent1.png";
-import recent2 from "../assets/recent2.png";
-import recent3 from "../assets/recent3.jpg";
-import recent4 from "../assets/recent4.jpg";
-import recent5 from "../assets/recent5.jpg";
-import recent6 from "../assets/recent6.jpg";
-import recent7 from "../assets/recent7.jpg";
-import recent8 from "../assets/recent8.jpg";
-import recent9 from "../assets/recent9.jpg";
+import recent1 from "../../assets/recent1.png";
+import recent2 from "../../assets/recent2.png";
+import recent3 from "../../assets/recent3.jpg";
+import recent4 from "../../assets/recent4.jpg";
+import recent5 from "../../assets/recent5.jpg";
+import recent6 from "../../assets/recent6.jpg";
+import recent7 from "../../assets/recent7.jpg";
+import recent8 from "../../assets/recent8.jpg";
+import recent9 from "../../assets/recent9.jpg";
 
 // Import article contents
 import {
@@ -26,7 +26,7 @@ import {
   budgets2024thinkingAfresh,
   budgetTaxesandGrowth,
   budgetandTaxPolicy,
-} from "../data/articleContents"; // Make sure path is correct
+} from "../../data/articleContents"; // Make sure path is correct
 
 const posts = [
   {
