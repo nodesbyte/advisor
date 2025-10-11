@@ -1,32 +1,18 @@
 import React from "react";
 import { Navigate } from "react-router-dom";
+import { useAuth } from "../../context/AuthContext";
+import LoadingSpinner from "./LoadingSpinner"; // ✅ import spinner
 
 export default function ProtectedRoute({ children }) {
-  // Check if user is authenticated and has valid credentials
-  const isAuthenticated = localStorage.getItem("irth-auth") === "true";
-  const isValidated = localStorage.getItem("irth-validated") === "true";
-  const userData = JSON.parse(localStorage.getItem("irth-user") || "{}");
-  
-  // Valid credentials for verification
-  const VALID_CREDENTIALS = {
-    email: "admin@irthadvisors.com",
-    password: "irth2024"
-  };
+  const { user, loading } = useAuth();
 
-  // Check if user has valid credentials
-  const hasValidCredentials = userData.email === VALID_CREDENTIALS.email && 
-                             userData.password === VALID_CREDENTIALS.password;
+  if (loading) {
+    // ✅ Show spinner instead of plain text
+    return <LoadingSpinner isVisible={true} message="Checking authentication..." />;
+  }
 
-  // Check if login is not too old (24 hours)
-  const loginTime = userData.loginTime;
-  const isLoginValid = loginTime && (Date.now() - loginTime) < (24 * 60 * 60 * 1000);
-
-  if (!isAuthenticated || !isValidated || !hasValidCredentials || !isLoginValid) {
-    // Clear invalid authentication data
-    localStorage.removeItem("irth-auth");
-    localStorage.removeItem("irth-validated");
-    localStorage.removeItem("irth-user");
-    return <Navigate to="/login" replace />;
+  if (!user) {
+    return <Navigate to="/admin/login" replace />;
   }
 
   return children;

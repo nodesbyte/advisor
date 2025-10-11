@@ -1,0 +1,489 @@
+import React, { useEffect, useState } from "react";
+import {
+  getServices,
+  deleteSublink,
+  updateSublink,
+  addServiceWithSublink,
+  addSublink,
+  checkCategoryExists,
+} from "../../services/firestore";
+import Filter from "../../components/admin/Filter";
+
+const Services = () => {
+  const [services, setServices] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState(null);
+  const [editing, setEditing] = useState(null);
+  const [formData, setFormData] = useState({ title: "", details: "" });
+  const [showAddForm, setShowAddForm] = useState(false);
+  const [newData, setNewData] = useState({
+    category: "",
+    newCategoryName: "",
+    title: "",
+    details: "",
+  });
+  const [loading, setLoading] = useState(false);
+  const [deleteConfirm, setDeleteConfirm] = useState(null);
+  const [tableHeaders, setTableHeaders] = useState([]);
+
+  // Load services and generate dynamic headers
+  useEffect(() => {
+    fetchServices();
+  }, []);
+
+  const fetchServices = async () => {
+    try {
+      setLoading(true);
+      const data = await getServices();
+      setServices(data);
+      
+      // Generate dynamic headers from the data structure
+      generateTableHeaders(data);
+    } catch (error) {
+      console.error("Failed to fetch services:", error);
+      alert("Failed to load services. Please try again.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // Generate table headers dynamically from data structure
+  const generateTableHeaders = (servicesData) => {
+    const headers = [
+      {
+        key: "label",
+        label: "label",
+        field: "label"
+      },
+      {
+        key: "title", 
+        label: "title",
+        field: "title"
+      },
+      {
+        key: "description",
+        label: "description", 
+        field: "details"
+      },
+      {
+        key: "actions",
+        label: "actions",
+        field: "actions"
+      }
+    ];
+    
+    setTableHeaders(headers);
+  };
+
+  // ✅ Show delete confirmation
+  const handleDeleteClick = (serviceId, index, sublink) => {
+    setDeleteConfirm({ serviceId, index, title: sublink.title });
+  };
+
+  // ✅ Delete a sublink (with auto-delete category feedback)
+  const handleDelete = async () => {
+    if (!deleteConfirm) return;
+    
+    try {
+      setLoading(true);
+      const result = await deleteSublink(deleteConfirm.serviceId, deleteConfirm.index);
+      
+      // Show appropriate message based on what happened
+      if (result?.categoryDeleted) {
+        alert("Item deleted successfully. The category was also removed because it had no remaining items.");
+        // Reset filter if the deleted category was selected
+        if (selectedCategory && services.find(s => s.id === deleteConfirm.serviceId)?.label === selectedCategory) {
+          setSelectedCategory(null);
+        }
+      } else {
+        // Just a regular sublink deletion
+        console.log("Item deleted successfully.");
+      }
+      
+      setDeleteConfirm(null);
+      fetchServices();
+    } catch (error) {
+      console.error("Failed to delete sublink:", error);
+      alert("Failed to delete item. Please try again.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // ✅ Start editing
+  const handleEdit = (serviceId, index, sublink) => {
+    setEditing({ serviceId, index });
+    setFormData(sublink);
+  };
+
+  // ✅ Save edited sublink
+  const handleSave = async () => {
+    try {
+      setLoading(true);
+      await updateSublink(editing.serviceId, editing.index, formData);
+      setEditing(null);
+      fetchServices();
+    } catch (error) {
+      console.error("Failed to update sublink:", error);
+      alert("Failed to save changes. Please try again.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // ✅ Add new sublink or category+sublink
+  const handleAdd = async () => {
+    if (!newData.title) {
+      alert("Please enter a title");
+      return;
+    }
+
+    const sublink = {
+      title: newData.title,
+      slug: newData.title.toLowerCase().replace(/\s+/g, "-"),
+      details: newData.details,
+    };
+
+    try {
+      setLoading(true);
+      
+      if (newData.category === "new") {
+        // Create new category with this sublink
+        if (!newData.newCategoryName) {
+          alert("Enter new category name!");
+          return;
+        }
+        
+        // Check if category already exists
+        const categoryExists = await checkCategoryExists(newData.newCategoryName);
+        if (categoryExists) {
+          alert(`Category "${newData.newCategoryName}" already exists. Please choose a different name.`);
+          return;
+        }
+        
+        await addServiceWithSublink(newData.newCategoryName, sublink);
+      } else {
+        // Add to existing category
+        if (!newData.category) {
+          alert("Please select a category");
+          return;
+        }
+        await addSublink(newData.category, sublink);
+      }
+
+      setShowAddForm(false);
+      setNewData({ category: "", newCategoryName: "", title: "", details: "" });
+      fetchServices();
+    } catch (error) {
+      console.error("Failed to add content:", error);
+      
+      // Show specific error message if available
+      if (error.message.includes("already exists")) {
+        alert(error.message);
+      } else {
+        alert("Failed to add content. Please try again.");
+      }
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // Helper function to render cell content based on header type
+  const renderCellContent = (header, service, sublink) => {
+    switch (header.key) {
+      case "label":
+        return service.label;
+      case "title":
+        return sublink.title;
+      case "description":
+        return sublink.details.length > 100 ? (
+          <div>{sublink.details.substring(0, 100)}...</div>
+        ) : (
+          sublink.details.split("\n").map((line, i) => (
+            <div key={i}>{line}</div>
+          ))
+        );
+      case "actions":
+        return (
+          <>
+            <button
+              className="px-3 py-1 bg-blue-500 text-white rounded mr-2 hover:bg-blue-600 transition-colors disabled:opacity-50"
+              onClick={() => handleEdit(service.id, services.findIndex(s => s.id === service.id), sublink)}
+              disabled={loading}
+            >
+              Edit
+            </button>
+            <button
+              className="px-3 py-1 bg-red-500 text-white rounded hover:bg-red-600 transition-colors disabled:opacity-50"
+              onClick={() => handleDeleteClick(service.id, services.findIndex(s => s.id === service.id), sublink)}
+              disabled={loading}
+            >
+              Delete
+            </button>
+          </>
+        );
+      default:
+        // Handle any other dynamic fields
+        return sublink[header.field] || "-";
+    }
+  };
+
+  // ✅ Filtered list - Fixed logic
+  const filteredServices = selectedCategory 
+    ? services.filter((s) => s.label === selectedCategory)
+    : services;
+
+  return (
+    <div className="p-6">
+      {loading && (
+        <div className="fixed inset-0 bg-black/30 flex items-center justify-center z-50">
+          <div className="bg-white p-4 rounded-lg shadow-lg">
+            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto"></div>
+            <p className="mt-2 text-gray-600">Loading...</p>
+          </div>
+        </div>
+      )}
+
+      <div className="flex justify-between items-center">
+        <Filter
+          categories={services.map((s) => s.label)}
+          selected={selectedCategory}
+          onSelect={setSelectedCategory}
+        />
+        <button
+          onClick={() => setShowAddForm(true)}
+          disabled={loading}
+          className="bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+        >
+          + Add Content
+        </button>
+      </div>
+
+      {/* Info message about auto-delete */}
+      <div className="mt-4 p-3 bg-blue-50 border border-blue-200 rounded-md">
+        <p className="text-sm text-blue-700">
+          <strong>Note:</strong> Categories will be automatically deleted when they have no remaining items.
+        </p>
+      </div>
+
+      {/* Dynamic Table */}
+      <div className="overflow-x-auto">
+        <table className="w-full border mt-6 bg-white shadow-sm">
+          <thead className="bg-gray-100">
+            <tr>
+              {tableHeaders.map((header) => (
+                <th key={header.key} className="p-3 border text-left">
+                  {header.label}
+                </th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {filteredServices.length === 0 ? (
+              <tr>
+                <td colSpan={tableHeaders.length} className="p-4 text-center text-gray-500">
+                  {loading ? "Loading services..." : "No services found"}
+                </td>
+              </tr>
+            ) : (
+              filteredServices.map((service) =>
+                service.sublinks?.map((sub, index) => (
+                  <tr key={`${service.id}-${index}`} className="border-t hover:bg-gray-50">
+                    {tableHeaders.map((header) => (
+                      <td key={header.key} className="p-3 border">
+                        {header.key === "actions" ? (
+                          <>
+                            <button
+                              className="px-3 py-1 bg-blue-500 text-white rounded mr-2 hover:bg-blue-600 transition-colors disabled:opacity-50"
+                              onClick={() => handleEdit(service.id, index, sub)}
+                              disabled={loading}
+                            >
+                              Edit
+                            </button>
+                            <button
+                              className="px-3 py-1 bg-red-500 text-white rounded hover:bg-red-600 transition-colors disabled:opacity-50"
+                              onClick={() => handleDeleteClick(service.id, index, sub)}
+                              disabled={loading}
+                            >
+                              Delete
+                            </button>
+                          </>
+                        ) : (
+                          renderCellContent(header, service, sub)
+                        )}
+                      </td>
+                    ))}
+                  </tr>
+                ))
+              )
+            )}
+          </tbody>
+        </table>
+      </div>
+
+      {/* Delete Confirmation Modal */}
+      {deleteConfirm && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black/50 z-50">
+          <div className="bg-white p-6 rounded-lg shadow-lg w-96 max-w-[90vw]">
+            <h3 className="text-lg font-bold mb-4 text-red-600">Confirm Delete</h3>
+            <p className="text-gray-700 mb-4">
+              Are you sure you want to delete <strong>"{deleteConfirm.title}"</strong>?
+            </p>
+            <p className="text-sm text-gray-500 mb-6">
+              This action cannot be undone. If this is the last item in the category, 
+              the entire category will also be deleted automatically.
+            </p>
+            <div className="flex justify-end space-x-2">
+              <button
+                onClick={() => setDeleteConfirm(null)}
+                disabled={loading}
+                className="px-4 py-2 bg-gray-400 text-white rounded hover:bg-gray-500 transition-colors disabled:opacity-50"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={handleDelete}
+                disabled={loading}
+                className="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700 transition-colors disabled:opacity-50"
+              >
+                {loading ? "Deleting..." : "Delete"}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Edit Modal */}
+      {editing && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black/50 z-50">
+          <div className="bg-white p-6 rounded-lg shadow-lg w-96 max-w-[90vw]">
+            <h3 className="text-lg font-bold mb-4">Edit Sublink</h3>
+            <input
+              type="text"
+              value={formData.title}
+              onChange={(e) =>
+                setFormData({ ...formData, title: e.target.value })
+              }
+              placeholder="Title"
+              className="border p-2 w-full mb-3 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+              disabled={loading}
+            />
+            <textarea
+              value={formData.details}
+              onChange={(e) =>
+                setFormData({ ...formData, details: e.target.value })
+              }
+              placeholder="Details"
+              className="border p-2 w-full mb-3 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+              rows="4"
+              disabled={loading}
+            />
+            <div className="flex justify-end space-x-2">
+              <button
+                onClick={() => setEditing(null)}
+                disabled={loading}
+                className="px-4 py-2 bg-gray-400 text-white rounded hover:bg-gray-500 transition-colors disabled:opacity-50"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={handleSave}
+                disabled={loading}
+                className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors disabled:opacity-50"
+              >
+                {loading ? "Saving..." : "Save"}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Add Modal */}
+      {showAddForm && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black/50 z-50">
+          <div className="bg-white p-6 rounded-lg shadow-lg w-96 max-w-[90vw]">
+            <h3 className="text-lg font-bold mb-4">Add Content</h3>
+
+            {/* Select existing category or new */}
+            <select
+              value={newData.category}
+              onChange={(e) =>
+                setNewData({ ...newData, category: e.target.value })
+              }
+              className="border p-2 w-full mb-3 rounded focus:outline-none focus:ring-2 focus:ring-green-500"
+              disabled={loading}
+            >
+              <option value="">-- Select Category --</option>
+              {services.map((s) => (
+                <option key={s.id} value={s.id}>
+                  {s.label}
+                </option>
+              ))}
+              <option value="new">+ New Category</option>
+            </select>
+
+            {/* Show input if new category is chosen */}
+            {newData.category === "new" && (
+              <div className="mb-3">
+                <input
+                  type="text"
+                  value={newData.newCategoryName}
+                  onChange={(e) =>
+                    setNewData({ ...newData, newCategoryName: e.target.value })
+                  }
+                  placeholder="Enter New Category Name"
+                  className="border p-2 w-full rounded focus:outline-none focus:ring-2 focus:ring-green-500"
+                  disabled={loading}
+                />
+                <small className="text-gray-500 text-xs mt-1 block">
+                  Document ID will be: {newData.newCategoryName ? 
+                    newData.newCategoryName.toLowerCase().replace(/[^a-z0-9\s-]/g, '').replace(/\s+/g, '-').replace(/-+/g, '-').replace(/^-|-$/g, '') 
+                    : 'category-name'}
+                </small>
+              </div>
+            )}
+
+            <input
+              type="text"
+              value={newData.title}
+              onChange={(e) =>
+                setNewData({ ...newData, title: e.target.value })
+              }
+              placeholder="Sublink Title"
+              className="border p-2 w-full mb-3 rounded focus:outline-none focus:ring-2 focus:ring-green-500"
+              disabled={loading}
+            />
+            <textarea
+              value={newData.details}
+              onChange={(e) =>
+                setNewData({ ...newData, details: e.target.value })
+              }
+              placeholder="Sublink Details"
+              className="border p-2 w-full mb-3 rounded focus:outline-none focus:ring-2 focus:ring-green-500"
+              rows="4"
+              disabled={loading}
+            />
+
+            <div className="flex justify-end space-x-2">
+              <button
+                onClick={() => setShowAddForm(false)}
+                disabled={loading}
+                className="px-4 py-2 bg-gray-400 text-white rounded hover:bg-gray-500 transition-colors disabled:opacity-50"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={handleAdd}
+                disabled={loading}
+                className="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 transition-colors disabled:opacity-50"
+              >
+                {loading ? "Adding..." : "Add"}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default Services;

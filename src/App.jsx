@@ -1,224 +1,111 @@
-import React, { useState } from "react";
-import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
-import {
-  ThemeProvider,
-  createTheme,
-  CssBaseline
-} from "@mui/material";
-
-// Layout Components
-import Navbar from "./components/client/Navbar";
-import Footer from "./components/client/Footer";
-import ScrollToTop from "./components/client/ScrollToTop";
-import WhatsAppButton from "./components/client/WhatsAppButton";
-
-// Admin Components
-import Sidebar from "./components/admin/Sidebar";
-import Header from "./components/admin/Header";
+// src/App.jsx
+import React from "react";
+import { Routes, Route } from "react-router-dom";
+import { AuthProvider } from "./context/AuthContext";
 import ProtectedRoute from "./components/admin/ProtectedRoute";
+
+// Layouts
+import Clientlayout from "./layouts/Clientlayout";
+import Adminlayout from "./layouts/Adminlayout";
 
 // Client Pages
 import Home from "./pages/client/Home";
 import About from "./pages/client/About";
 import Contact from "./pages/client/Contact";
+import TeamPage from "./pages/client/TeamPage";
+import ServicesPage from "./pages/client/ServicesPage";
+import ServiceDetail from "./pages/client/ServiceDetail";
+import TrainingPage from "./pages/client/TrainingPage";
+import TrainingDetail from "./pages/client/TrainingDetail";
 import Insights from "./pages/client/Insights";
 import InsightDetailPage from "./pages/client/InsightDetailPage";
-import ServiceDetail from "./pages/client/ServiceDetail";
-import ServicesPage from "./pages/client/ServicesPage";
-import TeamPage from "./pages/client/TeamPage";
-import TrainingDetail from "./pages/client/TrainingDetail";
-import TrainingPage from "./pages/client/TrainingPage";
 import Events from "./pages/client/Events";
 
 // Admin Pages
 import Login from "./pages/admin/Login";
-import Overview from "./pages/admin/Overview";
-import CrudPage from "./pages/admin/CrudPage";
-import Settings from "./pages/admin/Settings";
-
-
-// Theme configuration
-const theme = createTheme({
-  palette: {
-    primary: {
-      main: "#1976d2",
-    },
-  },
-  typography: {
-    fontFamily: "Poppins, Arial, sans-serif",
-  },
-});
+import Dashboard from "./pages/admin/Overview";
+import Training from "./pages/admin/Training";
+import Services from "./pages/admin/Services";
+import Team from "./pages/admin/Team";
+import Insightdata from "./pages/admin/Insights";
+import Setting from "./pages/admin/Setting";
+import ForgotPassword from "./pages/admin/ForgotPassword";
 
 function App() {
-  const navigate = useNavigate();
-  const [active, setActive] = useState("overview");
-
-  // Sign out function with proper cleanup
-  async function signOut() {
-    console.log("Signing out...");
-    // Clear all authentication data
-    localStorage.removeItem("irth-auth");
-    localStorage.removeItem("irth-validated");
-    localStorage.removeItem("irth-user");
-    // Redirect to login
-    navigate("/login");
-  }
-
   return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <ScrollToTop />
-      
+    <AuthProvider>
       <Routes>
-        {/* Admin Routes */}
-        <Route path="/login" element={<Login />} />
-        
-        <Route
-          path="/dashboard"
-          element={
-            <ProtectedRoute>
-              <div className="min-h-screen flex">
-                <Sidebar
-                  onSignOut={signOut}
-                  active={active}
-                  setActive={setActive}
-                />
-                <div className="flex-1 min-h-screen flex flex-col bg-gray-50">
-                  <Header
-                    title={active.charAt(0).toUpperCase() + active.slice(1)}
-                  />
-                  <main className="p-6 flex-1 overflow-auto">
-                    {active === "overview" && <Overview />}
-                    {active === "services" && (
-                      <CrudPage collectionName="services" />
-                    )}
-                    {active === "training" && (
-                      <CrudPage collectionName="training" />
-                    )}
-                    {active === "insights" && (
-                      <CrudPage collectionName="insights" />
-                    )}
-                    {active === "team" && <CrudPage collectionName="team" />}
-                    {active === "events" && <CrudPage collectionName="events" />}
-                    {active === "settings" && <Settings />}
-                  </main>
-                </div>
-              </div>
-            </ProtectedRoute>
-          }
-        />
-
         {/* Client Routes */}
-        <Route path="/" element={
-          <>
-            <Navbar />
-            <Home />
-            <Footer />
-            <WhatsAppButton />
-          </>
-        } />
-        
-        <Route path="/about" element={
-          <>
-            <Navbar />
-            <About />
-            <Footer />
-            <WhatsAppButton />
-          </>
-        } />
-        
-        <Route path="/contact" element={
-          <>
-            <Navbar />
-            <Contact />
-            <Footer />
-            <WhatsAppButton />
-          </>
-        } />
-        
-        <Route path="/team" element={
-          <>
-            <Navbar />
-            <TeamPage />
-            <Footer />
-            <WhatsAppButton />
-          </>
-        } />
+        <Route element={<Clientlayout />}>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/team" element={<TeamPage />} />
+          <Route path="/services" element={<ServicesPage />} />
+          <Route path="/services/:slug" element={<ServiceDetail />} />
+          <Route path="/trainings" element={<TrainingPage />} />
+          <Route path="/trainings/:slug" element={<TrainingDetail />} />
+          <Route path="/insights" element={<Insights />} />
+          <Route path="/insight/:slug" element={<InsightDetailPage />} />
+          <Route path="/featured" element={<Insights />} />
+          <Route path="/events" element={<Events />} />
+        </Route>
 
-        {/* Services */}
-        <Route path="/services" element={
-          <>
-            <Navbar />
-            <ServicesPage />
-            <Footer />
-            <WhatsAppButton />
-          </>
-        } />
-        <Route path="/services/:slug" element={
-          <>
-            <Navbar />
-            <ServiceDetail />
-            <Footer />
-            <WhatsAppButton />
-          </>
-        } />
-
-        {/* Trainings */}
-        <Route path="/trainings" element={
-          <>
-            <Navbar />
-            <TrainingPage />
-            <Footer />
-            <WhatsAppButton />
-          </>
-        } />
-        <Route path="/trainings/:slug" element={
-          <>
-            <Navbar />
-            <TrainingDetail />
-            <Footer />
-            <WhatsAppButton />
-          </>
-        } />
-
-        {/* Insights */}
-        <Route path="/insights" element={
-          <>
-            <Navbar />
-            <Insights />
-            <Footer />
-            <WhatsAppButton />
-          </>
-        } />
-        <Route path="/insight/:slug" element={
-          <>
-            <Navbar />
-            <InsightDetailPage />
-            <Footer />
-            <WhatsAppButton />
-          </>
-        } />
-        <Route path="/featured" element={
-          <>
-            <Navbar />
-            <Insights />
-            <Footer />
-            <WhatsAppButton />
-          </>
-        } />
-        <Route path="/events" element={
-          <>
-            <Navbar />
-            <Events />
-            <Footer />
-            <WhatsAppButton />
-          </>
-        } />
-
-        {/* Default redirect for admin */}
-        <Route path="/admin" element={<Navigate to="/login" replace />} />
+        {/* Admin Routes */}
+        <Route path="/admin/login" element={<Login />} />
+        <Route path="/admin/forgot-password" element={<ForgotPassword />} />
+        <Route element={<Adminlayout />}>
+          <Route
+            path="/admin/dashboard"
+            element={
+              <ProtectedRoute>
+                <Dashboard />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin/services"
+            element={
+              <ProtectedRoute>
+                <Services />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin/training"
+            element={
+              <ProtectedRoute>
+                <Training />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin/team"
+            element={
+              <ProtectedRoute>
+                <Team />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin/insights"
+            element={
+              <ProtectedRoute>
+                <Insightdata />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin/settings"
+            element={
+              <ProtectedRoute>
+                <Setting />
+              </ProtectedRoute>
+            }
+          />
+        </Route>
       </Routes>
-    </ThemeProvider>
+    </AuthProvider>
   );
 }
 
