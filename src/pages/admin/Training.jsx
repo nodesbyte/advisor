@@ -4,7 +4,7 @@ import DataTable from "../../components/admin/DataTable";
 import ConfirmModal from "../../components/admin/ConfirmModal";
 import FormModal from "../../components/admin/FormModal";
 import Filter from "../../components/admin/Filter";
-import LoadingSpinner from "../../components/admin/LoadingSpinner"; 
+import LoadingSpinner from "../../components/admin/LoadingSpinner";
 import {
   getTrainings,
   deleteTraining,
@@ -17,19 +17,11 @@ export default function Training() {
   const [trainings, setTrainings] = useState([]);
   const [loading, setLoading] = useState(false);
   const [processing, setProcessing] = useState(false);
-
-  // selection
   const [selectedTraining, setSelectedTraining] = useState(null);
   const [selectedTitle, setSelectedTitle] = useState(null);
-
-  // modals
   const [isConfirmOpen, setIsConfirmOpen] = useState(false);
   const [isFormOpen, setIsFormOpen] = useState(false);
-
-  // form
   const [formData, setFormData] = useState({});
-
-  // data
   const [filteredTrainings, setFilteredTrainings] = useState([]);
 
   useEffect(() => {
@@ -50,7 +42,6 @@ export default function Training() {
     }
   };
 
-  // ✅ Apply filter when selectedTitle changes
   useEffect(() => {
     if (!selectedTitle) {
       setFilteredTrainings(trainings);
@@ -59,7 +50,6 @@ export default function Training() {
     }
   }, [selectedTitle, trainings]);
 
-  // ✅ Delete training
   const handleDelete = async () => {
     if (!selectedTraining) return;
     setProcessing(true);
@@ -75,41 +65,30 @@ export default function Training() {
     }
   };
 
-  // ✅ Save (Add or Update) training
   const handleSave = async () => {
     setProcessing(true);
     try {
       let payload = { ...formData };
-
-      // Case 1: If a new file is selected → upload to Cloudinary
       if (formData.image instanceof File) {
         const url = await uploadImageToCloudinary(formData.image);
         payload.image = url;
       }
-
-      // Case 2: Editing training → if no new file, keep the old image
       if (selectedTraining && !payload.image) {
         payload.image = selectedTraining.image;
       }
-
-      // Case 3: Adding new training → require image
       if (!selectedTraining && !payload.image) {
         alert("Please upload an image for the training.");
         setProcessing(false);
         return;
       }
-
-      // Remove undefined fields
       Object.keys(payload).forEach(
         (key) => payload[key] === undefined && delete payload[key]
       );
-
       if (selectedTraining) {
         await updateTraining(selectedTraining.id, payload);
       } else {
         await addTraining(payload);
       }
-
       setIsFormOpen(false);
       setSelectedTraining(null);
       setFormData({});
@@ -122,7 +101,6 @@ export default function Training() {
     }
   };
 
-  // ✅ Table headers
   const headers = [
     { key: "image", label: "Image" },
     { key: "title", label: "Title" },
@@ -132,7 +110,6 @@ export default function Training() {
     { key: "actions", label: "Actions" },
   ];
 
-  // ✅ Render table cells
   const renderCell = (header, rowData) => {
     if (header.key === "image") {
       return (
@@ -145,9 +122,9 @@ export default function Training() {
     }
     if (header.key === "actions") {
       return (
-        <div className="flex gap-2">
+        <div className="flex flex-wrap gap-2">
           <button
-            className="px-2 py-1 bg-blue-500 text-white rounded hover:bg-blue-600"
+            className="px-2 py-1 text-sm bg-blue-500 text-white rounded hover:bg-blue-600"
             onClick={() => {
               setSelectedTraining(rowData);
               setFormData(rowData);
@@ -157,7 +134,7 @@ export default function Training() {
             Edit
           </button>
           <button
-            className="px-2 py-1 bg-red-500 text-white rounded hover:bg-red-600"
+            className="px-2 py-1 text-sm bg-red-500 text-white rounded hover:bg-red-600"
             onClick={() => {
               setSelectedTraining(rowData);
               setIsConfirmOpen(true);
@@ -171,7 +148,6 @@ export default function Training() {
     return rowData[header.key];
   };
 
-  // ✅ Fields for modal
   const fields = [
     {
       name: "title",
@@ -213,19 +189,18 @@ export default function Training() {
   ];
 
   return (
-    <div className="p-6">
-      {/* ✅ Loading spinner */}
+    <div className="p-4 sm:p-6">
       <LoadingSpinner isVisible={loading} />
 
-      {/* Header row */}
-      <div className="flex justify-between items-center mb-4">
+      {/* Header Section */}
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 gap-3">
         <Filter
           categories={trainings.map((t) => t.title)}
           selected={selectedTitle}
           onSelect={setSelectedTitle}
         />
         <button
-          className="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 disabled:opacity-50"
+          className="w-full sm:w-auto px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 disabled:opacity-50"
           onClick={() => {
             setSelectedTraining(null);
             setFormData({});
@@ -237,16 +212,9 @@ export default function Training() {
         </button>
       </div>
 
-      {/* Info message */}
-      <div className="mb-4 p-3 bg-blue-50 border border-blue-200 rounded-md">
-        <p className="text-sm text-blue-700">
-          <strong>Note:</strong> You can filter trainings by title or add new
-          trainings here. Images are stored in Cloudinary and their URLs saved
-          in Firestore.
-        </p>
-      </div>
+     
 
-      {/* Data table */}
+      {/* Data Table */}
       <DataTable
         headers={headers}
         data={filteredTrainings}

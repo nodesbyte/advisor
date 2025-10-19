@@ -1,31 +1,39 @@
 import React from "react";
-import { useAuth } from "../../context/AuthContext"; // ✅ use context, not service
+import { Menu } from "lucide-react";
+import { useAuth } from "../../context/AuthContext";
 
-export default function Header() {
-  const { user } = useAuth(); // get logged-in user from context
+export default function Header({ onMenuClick }) {
+  const { user } = useAuth();
 
   return (
-    <header className="flex items-center justify-between p-6 border-b border-irthBrown-200 bg-white shadow-brown">
-      {/* Left: Title */}
-      <div>
-        <h1 className="text-xl font-bold text-irthBrown-800">
-          Welcome to IrthAdvisor Dashboard
-        </h1>
-        <p className="text-sm text-irthBrown-600">
-          Manage your data and settings here
-        </p>
+    <header className="flex items-center justify-between p-4 md:p-6 border-b bg-white shadow-sm">
+      <div className="flex items-center space-x-3">
+        {/* ✅ Hamburger visible only on mobile */}
+        <button
+          onClick={onMenuClick}
+          className="p-2 rounded-md hover:bg-gray-100 md:hidden"
+        >
+          <Menu size={22} />
+        </button>
+
+        <div>
+          <h1 className="text-lg md:text-xl font-bold text-irthBrown-800">
+            IrthAdvisor Dashboard
+          </h1>
+          <p className="text-xs md:text-sm text-irthBrown-600">
+            Manage your data and settings here
+          </p>
+        </div>
       </div>
 
-      {/* Right: Status + Profile */}
-      <div className="flex items-center space-x-6">
-        <div className="flex items-center space-x-3">
-          <div className="text-right hidden md:block">
-            <div className="text-sm font-semibold text-irthBrown-800">
-              {user?.email ? user.email : "Guest"}
-            </div>
-            <div className="text-xs text-green-600">
-              {user ? "Active" : "Not logged in"}
-            </div>
+      {/* User Info (desktop only) */}
+      <div className="hidden md:flex items-center space-x-3">
+        <div className="text-right">
+          <div className="text-sm font-semibold text-irthBrown-800">
+            {user?.email ? user.email : "Guest"}
+          </div>
+          <div className="text-xs text-green-600">
+            {user ? "Active" : "Not logged in"}
           </div>
         </div>
       </div>

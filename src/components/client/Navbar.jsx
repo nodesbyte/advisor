@@ -5,10 +5,6 @@ import logo from "../../assets/logo.png";
 import serviceImage from "../../assets/servicenavbar.png";
 import trainingImage from "../../assets/webinar5.jpg";
 import insightsImg from "../../assets/insightnav.jpg";
-// import image1 from "../../assets/team1.jpg";
-// import image2 from "../../assets/team2.jpg";
-// import image3 from "../../assets/team3.jpg";
-// import image4 from "../../assets/team4.jpg";
 
 const data = {
   services: [
@@ -257,11 +253,7 @@ const Navbar = () => {
 
           {/* Search & Button */}
           <div className="hidden md:flex items-center gap-4 ml-auto">
-            <input
-              type="text"
-              placeholder="Search..."
-              className="px-3 py-1.5 w-48 border border-gray-400 rounded-full text-sm focus:outline-none bg-[#F0F0F0]"
-            />
+          
             <Link
               to="/contact"
               className="px-4 py-2 text-sm font-semibold text-white bg-[#814d35] rounded-full hover:bg-[#6e4b3a] transition"
@@ -276,10 +268,7 @@ const Navbar = () => {
           </button>
         </div>
 
-        {/* Mobile Search */}
-        <div className="md:hidden mt-4">
-          <input type="text" placeholder="Search..." className="w-full px-4 py-2 rounded-full border border-gray-500 text-md focus:outline-none bg-[#F0F0F0]" />
-        </div>
+       
       </div>
 
       {/* Mobile Menu */}

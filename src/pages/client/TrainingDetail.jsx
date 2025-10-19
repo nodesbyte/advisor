@@ -1,4 +1,5 @@
-import React from "react";
+// TrainingDetail.jsx
+import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import {
   Typography,
@@ -10,108 +11,47 @@ import {
   CardContent,
   CardMedia,
 } from "@mui/material";
-
-// Local images
-import tna from "../../assets/trainings/tna.jpg";
-import manuals from "../../assets/trainings/trainingm.png";
-import syllabi from "../../assets/trainings/Customized-Training-Syllabi.jpg";
-import workshops from "../../assets/trainings/Practical-Application.jpg";
-import compliance from "../../assets/trainings/compliance.jpg";
-import support from "../../assets/trainings/ongoing.jpg";
-
-const trainings = [
-  {
-    slug: "training-needs-analysis",
-    title: "Training Needs Analysis",
-    description: "Assess employee training needs for skill gaps.",
-    objectives: [
-      "Identify skill gaps in teams",
-      "Align training with organizational goals",
-      "Develop an action plan for employee development",
-    ],
-    targetAudience: "HR professionals, team leads, training managers",
-    duration: "2 days",
-    mode: "On-site / Virtual",
-    image: tna,
-  },
-  {
-    slug: "training-manuals",
-    title: "Training Manuals",
-    description: "Prepare manuals tailored to company needs.",
-    objectives: [
-      "Understand components of effective manuals",
-      "Design user-friendly content and layouts",
-      "Ensure alignment with SOPs and compliance standards",
-    ],
-    targetAudience: "Instructional designers, trainers, HR teams",
-    duration: "1 day",
-    mode: "Virtual",
-    image: manuals,
-  },
-  {
-    slug: "customized-training-syllabi",
-    title: "Customized Training Syllabi",
-    description: "Develop training syllabi tailored to department goals.",
-    objectives: [
-      "Collaborate with departments for relevant content",
-      "Align syllabus with KPIs and goals",
-      "Structure content for optimal learning paths",
-    ],
-    targetAudience: "Learning & Development, Team Leads",
-    duration: "2 days",
-    mode: "Hybrid",
-    image: syllabi,
-  },
-  {
-    slug: "practical-workshops",
-    title: "Practical Application Workshops",
-    description: "Hands-on workshops to implement training concepts.",
-    objectives: [
-      "Apply theoretical knowledge through case studies",
-      "Use simulations and role-playing",
-      "Measure real-time performance and feedback",
-    ],
-    targetAudience: "All staff levels",
-    duration: "1.5 days",
-    mode: "On-site",
-    image: workshops,
-  },
-  {
-    slug: "compliance-training",
-    title: "Compliance & Policy Training",
-    description: "Ensure employees understand compliance requirements.",
-    objectives: [
-      "Understand local and global compliance laws",
-      "Follow ethical codes of conduct",
-      "Prevent violations through awareness",
-    ],
-    targetAudience: "All employees",
-    duration: "1 day",
-    mode: "Virtual / On-site",
-    image: compliance,
-  },
-  {
-    slug: "ongoing-support",
-    title: "Ongoing Support",
-    description: "Continuous training support post-deployment.",
-    objectives: [
-      "Track training progress over time",
-      "Provide feedback and refreshers",
-      "Support long-term learning goals",
-    ],
-    targetAudience: "All teams",
-    duration: "Monthly or Quarterly",
-    mode: "Virtual",
-    image: support,
-  },
-];
+import { getFirestore, collection, query, where, onSnapshot } from "firebase/firestore";
+import { firebaseApp } from "../../services/firebaseConfig";
 
 const TrainingDetail = () => {
   const { slug } = useParams();
-  const training = trainings.find((t) => t.slug === slug);
+  const [training, setTraining] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const firestore = getFirestore(firebaseApp);
+    const trainingsCollection = collection(firestore, "trainings");
+    const q = query(trainingsCollection, where("slug", "==", slug));
+
+    // 🔹 Real-time listener
+    const unsubscribe = onSnapshot(q, (snapshot) => {
+      if (!snapshot.empty) {
+        const docData = snapshot.docs[0].data();
+        setTraining({ id: snapshot.docs[0].id, ...docData });
+      } else {
+        setTraining(null);
+      }
+      setLoading(false);
+    });
+
+    return () => unsubscribe(); // cleanup
+  }, [slug]);
+
+  if (loading) {
+    return (
+      <div className="text-center py-20">
+        <p className="text-gray-600">Loading training details...</p>
+      </div>
+    );
+  }
 
   if (!training) {
-    return <Typography variant="h5">Training not found</Typography>;
+    return (
+      <div className="text-center py-20">
+        <p className="text-gray-600">Training not found.</p>
+      </div>
+    );
   }
 
   return (
@@ -120,12 +60,12 @@ const TrainingDetail = () => {
         <Box
           sx={{
             display: "flex",
-            flexDirection: "row", // Always row
+            flexDirection: "row",
             gap: 4,
-            flexWrap: "nowrap",  // Prevent stacking
+            flexWrap: "nowrap",
             alignItems: "flex-start",
             justifyContent: "space-between",
-            overflowX: "auto", // Prevent layout breaking on small screens
+            overflowX: "auto",
           }}
         >
           {/* Text Details Section */}
@@ -139,66 +79,74 @@ const TrainingDetail = () => {
 
             <Divider sx={{ my: 3 }} />
 
-            <Card variant="outlined" sx={{ mb: 2, borderRadius: 2 }}>
-              <CardContent>
-                <Typography variant="h6">Objectives</Typography>
-                <ul style={{ marginLeft: "1.2rem" }}>
-                  {training.objectives.map((obj, i) => (
-                    <li key={i}>
-                      <Typography variant="body2">{obj}</Typography>
-                    </li>
-                  ))}
-                </ul>
-              </CardContent>
-            </Card>
+            {training.objectives && (
+              <Card variant="outlined" sx={{ mb: 2, borderRadius: 2 }}>
+                <CardContent>
+                  <Typography variant="h6">Objectives</Typography>
+                  <ul style={{ marginLeft: "1.2rem" }}>
+                    {training.objectives.map((obj, i) => (
+                      <li key={i}>
+                        <Typography variant="body2">{obj}</Typography>
+                      </li>
+                    ))}
+                  </ul>
+                </CardContent>
+              </Card>
+            )}
 
             <Grid container spacing={2}>
-              <Grid item xs={12} sm={6}>
-                <Card variant="outlined" sx={{ borderRadius: 2 }}>
-                  <CardContent>
-                    <Typography variant="subtitle2" color="text.secondary">
-                      Target Audience
-                    </Typography>
-                    <Typography variant="body2">
-                      {training.targetAudience}
-                    </Typography>
-                  </CardContent>
-                </Card>
-              </Grid>
-              <Grid item xs={6} sm={3}>
-                <Card variant="outlined" sx={{ borderRadius: 2 }}>
-                  <CardContent>
-                    <Typography variant="subtitle2" color="text.secondary">
-                      Duration
-                    </Typography>
-                    <Typography variant="body2">{training.duration}</Typography>
-                  </CardContent>
-                </Card>
-              </Grid>
-              <Grid item xs={6} sm={3}>
-                <Card variant="outlined" sx={{ borderRadius: 2 }}>
-                  <CardContent>
-                    <Typography variant="subtitle2" color="text.secondary">
-                      Mode
-                    </Typography>
-                    <Typography variant="body2">{training.mode}</Typography>
-                  </CardContent>
-                </Card>
-              </Grid>
+              {training.targetAudience && (
+                <Grid item xs={12} sm={6}>
+                  <Card variant="outlined" sx={{ borderRadius: 2 }}>
+                    <CardContent>
+                      <Typography variant="subtitle2" color="text.secondary">
+                        Target Audience
+                      </Typography>
+                      <Typography variant="body2">{training.targetAudience}</Typography>
+                    </CardContent>
+                  </Card>
+                </Grid>
+              )}
+              {training.duration && (
+                <Grid item xs={6} sm={3}>
+                  <Card variant="outlined" sx={{ borderRadius: 2 }}>
+                    <CardContent>
+                      <Typography variant="subtitle2" color="text.secondary">
+                        Duration
+                      </Typography>
+                      <Typography variant="body2">{training.duration}</Typography>
+                    </CardContent>
+                  </Card>
+                </Grid>
+              )}
+              {training.mode && (
+                <Grid item xs={6} sm={3}>
+                  <Card variant="outlined" sx={{ borderRadius: 2 }}>
+                    <CardContent>
+                      <Typography variant="subtitle2" color="text.secondary">
+                        Mode
+                      </Typography>
+                      <Typography variant="body2">{training.mode}</Typography>
+                    </CardContent>
+                  </Card>
+                </Grid>
+              )}
             </Grid>
           </Box>
 
           {/* Image Section */}
-          <Box sx={{ flexShrink: 0 }}>
-            <Card sx={{ borderRadius: 3, overflow: "hidden", maxWidth: 400 }}>
-              <CardMedia
-                component="img"
-                height="300"
-                image={training.image}
-                alt={training.title}
-              />
-            </Card>
-          </Box>
+          {training.image && (
+            <Box sx={{ flexShrink: 0 }}>
+              <Card sx={{ borderRadius: 3, overflow: "hidden", maxWidth: 400 }}>
+                <CardMedia
+                  component="img"
+                  height="300"
+                  image={training.image}
+                  alt={training.title}
+                />
+              </Card>
+            </Box>
+          )}
         </Box>
       </Paper>
     </Box>

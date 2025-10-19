@@ -22,8 +22,6 @@ export default function Team() {
   const [isConfirmOpen, setIsConfirmOpen] = useState(false);
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [formData, setFormData] = useState({});
-
-  // Filter by title (role)
   const [selectedTitle, setSelectedTitle] = useState(null);
 
   useEffect(() => {
@@ -58,7 +56,6 @@ export default function Team() {
     try {
       await deleteTeamMember(selectedMember.id);
       setIsConfirmOpen(false);
-      // If the selected title no longer exists, clear filter
       setSelectedTitle((prev) => {
         const remaining = team
           .filter((t) => t.id !== selectedMember.id)
@@ -78,17 +75,13 @@ export default function Team() {
     setProcessing(true);
     try {
       let payload = { ...formData };
-
-      // If a new file is selected, upload to Cloudinary
       if (formData.image instanceof File) {
         const url = await uploadImageToCloudinary(formData.image);
         payload.image = url;
       } else if (selectedMember && !payload.image) {
-        // keep existing image when editing and no new upload
         payload.image = selectedMember.image;
       }
 
-      // remove undefineds
       Object.keys(payload).forEach(
         (k) => payload[k] === undefined && delete payload[k]
       );
@@ -136,9 +129,9 @@ export default function Team() {
 
     if (header.key === "actions") {
       return (
-        <div className="flex gap-2">
+        <div className="flex flex-wrap gap-2">
           <button
-            className="px-2 py-1 bg-blue-500 text-white rounded hover:bg-blue-600"
+            className="px-2 py-1 text-sm bg-blue-500 text-white rounded hover:bg-blue-600"
             onClick={() => {
               setSelectedMember(rowData);
               setFormData(rowData);
@@ -148,7 +141,7 @@ export default function Team() {
             Edit
           </button>
           <button
-            className="px-2 py-1 bg-red-500 text-white rounded hover:bg-red-600"
+            className="px-2 py-1 text-sm bg-red-500 text-white rounded hover:bg-red-600"
             onClick={() => {
               setSelectedMember(rowData);
               setIsConfirmOpen(true);
@@ -160,11 +153,9 @@ export default function Team() {
       );
     }
 
-    // default cell
     return rowData[header.key] || "-";
   };
 
-  // ✅ Updated field: experience changed from textarea → text input
   const fields = [
     { name: "name", label: "Name", type: "text", placeholder: "Enter name" },
     { name: "title", label: "Title", type: "text", placeholder: "Enter title/role" },
@@ -174,21 +165,21 @@ export default function Team() {
     { name: "image", label: "Profile Image", type: "file" },
   ];
 
-  // unique titles for filter dropdown
   const titles = Array.from(new Set(team.map((t) => t.title).filter(Boolean)));
 
   return (
-    <div className="p-6">
+    <div className="p-4 sm:p-6">
       <LoadingSpinner isVisible={loading} />
 
-      <div className="flex justify-between items-center mb-4">
+      {/* Header Row */}
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 gap-3">
         <Filter
           categories={titles}
           selected={selectedTitle}
           onSelect={setSelectedTitle}
         />
         <button
-          className="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 disabled:opacity-50"
+          className="w-full sm:w-auto px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 disabled:opacity-50"
           onClick={() => {
             setSelectedMember(null);
             setFormData({});
@@ -200,14 +191,7 @@ export default function Team() {
         </button>
       </div>
 
-      <div className="mb-4 p-3 bg-blue-50 border border-blue-200 rounded-md">
-        <p className="text-sm text-blue-700">
-          <strong>Note:</strong> You can filter team members by role/title or
-          add/edit members here. Images upload to Cloudinary and the returned
-          URL is stored in Firestore.
-        </p>
-      </div>
-
+      {/* Data Table */}
       <DataTable
         headers={headers}
         data={filteredTeam}
@@ -216,6 +200,7 @@ export default function Team() {
         emptyMessage="No team members found"
       />
 
+      {/* Confirm Modal */}
       <ConfirmModal
         isOpen={isConfirmOpen}
         onClose={() => setIsConfirmOpen(false)}
@@ -227,6 +212,7 @@ export default function Team() {
         confirmText="Delete"
       />
 
+      {/* Form Modal */}
       <FormModal
         isOpen={isFormOpen}
         onClose={() => setIsFormOpen(false)}

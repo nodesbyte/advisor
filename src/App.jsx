@@ -3,7 +3,6 @@ import React from "react";
 import { Routes, Route } from "react-router-dom";
 import { AuthProvider } from "./context/AuthContext";
 import ProtectedRoute from "./components/admin/ProtectedRoute";
-
 // Layouts
 import Clientlayout from "./layouts/Clientlayout";
 import Adminlayout from "./layouts/Adminlayout";

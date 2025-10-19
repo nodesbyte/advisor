@@ -1,54 +1,37 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import magzine1 from "../../assets/magzine1.jpg";
-import magzine2 from "../../assets/magzine2.png";
-import recent1 from "../../assets/recent1.png";
-import recent2 from "../../assets/recent2.png";
-
-const initialPosts = [
-  {
-    id: 1,
-    slug: "irth-regulatory-updates-jan-2025",
-    title: "IRTH Regulatory Updates – Jan 2025 Edition",
-    time: "Posted on 21 Feb at 1:08 pm",
-    category: "Economy & Policy",
-    image: magzine1,
-    isFeatured: true,
-  },
-  {
-    id: 2,
-    slug: "e-magazine-april-2025",
-    title: "E-Magazine April 2025 Edition (Pakistan’s Roadmap to Crypto Legalization)",
-    time: "Posted on 23 Apr at 5:48 pm",
-    category: "Magzine",
-    image: magzine2,
-    isFeatured: false,
-  },
-  {
-    id: 3,
-    slug: "transforming-fbr",
-    title: "Transforming FBR",
-    time: "Posted on May 31, 2024",
-    category: "Article",
-    image: recent1,
-    isFeatured: false,
-  },
-  {
-    id: 4,
-    slug: "taxes-for-growth-&-prosperity",
-    title: "Taxes for growth & prosperity",
-    time: "Posted on May 31, 2024",
-    category: "Article",
-    image: recent2,
-    isFeatured: false,
-  },
-];
+import { onSnapshot, collection, getFirestore, query, orderBy } from "firebase/firestore";
+import { firebaseApp } from "../../services/firebaseConfig";
 
 const FeaturedInsights = () => {
-  const [posts, setPosts] = useState(initialPosts);
+  const [posts, setPosts] = useState([]);
+  const db = getFirestore(firebaseApp);
 
-  const featured = posts.find((post) => post.isFeatured);
-  const recentPosts = posts.filter((post) => !post.isFeatured);
+  useEffect(() => {
+    const q = query(collection(db, "insights"), orderBy("createdAt", "desc"));
+
+    const unsubscribe = onSnapshot(q, (snapshot) => {
+      const insightsData = snapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+      setPosts(insightsData);
+    });
+
+    return () => unsubscribe();
+  }, []);
+
+  if (posts.length === 0) {
+    return (
+      <div className="bg-white py-10 px-6 sm:px-12 lg:px-20">
+        <h1 className="text-6xl font-bold mb-8 text-[#9C6950]">Featured Insights</h1>
+        <p className="text-gray-600 text-lg">No insights available yet.</p>
+      </div>
+    );
+  }
+
+  const featured = posts.find((p) => p.isFeatured) || posts[0];
+  const recentPosts = posts.filter((p) => p.id !== featured.id);
 
   const handlePostClick = (clickedPostId) => {
     const newPosts = posts.map((post) => {
@@ -56,7 +39,6 @@ const FeaturedInsights = () => {
       if (post.id === featured.id) return { ...post, isFeatured: false };
       return post;
     });
-
     setPosts(newPosts);
   };
 
@@ -75,12 +57,12 @@ const FeaturedInsights = () => {
             className="absolute inset-0 px-8 py-14 flex flex-col justify-end text-white space-y-2"
             style={{ textShadow: "0 1px 4px rgba(0,0,0,0.6)" }}
           >
-            <p className="text-sm">{featured.time}</p>
+            <p className="text-sm">{featured.time || "Recently posted"}</p>
             <h2 className="text-2xl sm:text-3xl font-bold leading-tight">
               {featured.title}
             </h2>
             <Link
-              to={`/insight/${featured.slug}`}
+              to={`/insight/${featured.slug || featured.id}`}
               className="mt-3 px-4 py-1.5 border border-white rounded-full text-sm font-medium hover:bg-white hover:text-black transition-all duration-300 w-fit"
             >
               Learn More
@@ -92,7 +74,7 @@ const FeaturedInsights = () => {
         <div>
           <h3 className="text-lg font-semibold text-gray-900 mb-4">Recent Posts</h3>
           <div className="space-y-5">
-            {recentPosts.map((post) => (
+            {recentPosts.slice(0, 3).map((post) => (
               <div
                 key={post.id}
                 onClick={() => handlePostClick(post.id)}
@@ -104,12 +86,12 @@ const FeaturedInsights = () => {
                   className="w-28 h-20 object-cover rounded"
                 />
                 <div className="flex flex-col justify-between">
-                  <p className="text-sm text-gray-500">{post.time}</p>
+                  <p className="text-sm text-gray-500">{post.time || "Recently posted"}</p>
                   <h4 className="text-md font-semibold text-gray-900 leading-snug">
                     {post.title}
                   </h4>
                   <span className="inline-block mt-2 px-3 py-0.5 text-xs border border-gray-400 rounded-full text-gray-700 w-fit">
-                    {post.category}
+                    {post.category || "General"}
                   </span>
                 </div>
               </div>

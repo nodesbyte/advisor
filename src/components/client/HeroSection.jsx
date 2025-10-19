@@ -4,7 +4,7 @@ import partner2 from "../../assets/partner2.png";
 
 const HeroSection = () => {
     return (
-        <section className="bg-[#f4f6f7] py-10 px-4 sm:px-6 md:px-12 relative overflow-hidden">
+        <section className="bg-[#f4f6f7]  px-4 sm:px-6 md:px-12 relative overflow-hidden">
             <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 items-center mt-10">
                 {/* Left Content */}
                 <div>

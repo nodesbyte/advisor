@@ -21,12 +21,12 @@ const Services = () => {
   const [services, setServices] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [loading, setLoading] = useState(false);
-  
+
   // Modal states
   const [editing, setEditing] = useState(null);
   const [showAddForm, setShowAddForm] = useState(false);
   const [deleteConfirm, setDeleteConfirm] = useState(null);
-  
+
   // Form data
   const [editFormData, setEditFormData] = useState({ title: "", details: "" });
   const [addFormData, setAddFormData] = useState({
@@ -41,7 +41,7 @@ const Services = () => {
     { key: "label", label: "Category" },
     { key: "title", label: "Title" },
     { key: "description", label: "Description" },
-    { key: "actions", label: "Actions" }
+    { key: "actions", label: "Actions" },
   ];
 
   useEffect(() => {
@@ -63,7 +63,7 @@ const Services = () => {
 
   // Prepare table data
   const prepareTableData = () => {
-    const filteredServices = selectedCategory 
+    const filteredServices = selectedCategory
       ? services.filter((s) => s.label === selectedCategory)
       : services;
 
@@ -75,7 +75,7 @@ const Services = () => {
         label: service.label,
         title: sub.title,
         details: sub.details,
-        sublink: sub
+        sublink: sub,
       })) || []
     );
   };
@@ -113,7 +113,7 @@ const Services = () => {
     setEditing({ serviceId: rowData.serviceId, index: rowData.index });
     setEditFormData({
       title: rowData.title,
-      details: rowData.details
+      details: rowData.details,
     });
   };
 
@@ -135,24 +135,33 @@ const Services = () => {
     setDeleteConfirm({
       serviceId: rowData.serviceId,
       index: rowData.index,
-      title: rowData.title
+      title: rowData.title,
     });
   };
 
   const handleDeleteConfirm = async () => {
     if (!deleteConfirm) return;
-    
+
     try {
       setLoading(true);
-      const result = await deleteSublink(deleteConfirm.serviceId, deleteConfirm.index);
-      
+      const result = await deleteSublink(
+        deleteConfirm.serviceId,
+        deleteConfirm.index
+      );
+
       if (result?.categoryDeleted) {
-        alert("Item deleted successfully. The category was also removed because it had no remaining items.");
-        if (selectedCategory && services.find(s => s.id === deleteConfirm.serviceId)?.label === selectedCategory) {
+        alert(
+          "Item deleted successfully. The category was also removed because it had no remaining items."
+        );
+        if (
+          selectedCategory &&
+          services.find((s) => s.id === deleteConfirm.serviceId)?.label ===
+            selectedCategory
+        ) {
           setSelectedCategory(null);
         }
       }
-      
+
       setDeleteConfirm(null);
       fetchServices();
     } catch (error) {
@@ -177,19 +186,23 @@ const Services = () => {
 
     try {
       setLoading(true);
-      
+
       if (addFormData.category === "new") {
         if (!addFormData.newCategoryName) {
           alert("Enter new category name!");
           return;
         }
-        
-        const categoryExists = await checkCategoryExists(addFormData.newCategoryName);
+
+        const categoryExists = await checkCategoryExists(
+          addFormData.newCategoryName
+        );
         if (categoryExists) {
-          alert(`Category "${addFormData.newCategoryName}" already exists. Please choose a different name.`);
+          alert(
+            `Category "${addFormData.newCategoryName}" already exists. Please choose a different name.`
+          );
           return;
         }
-        
+
         await addServiceWithSublink(addFormData.newCategoryName, sublink);
       } else {
         if (!addFormData.category) {
@@ -200,11 +213,20 @@ const Services = () => {
       }
 
       setShowAddForm(false);
-      setAddFormData({ category: "", newCategoryName: "", title: "", details: "" });
+      setAddFormData({
+        category: "",
+        newCategoryName: "",
+        title: "",
+        details: "",
+      });
       fetchServices();
     } catch (error) {
       console.error("Failed to add content:", error);
-      alert(error.message.includes("already exists") ? error.message : "Failed to add content. Please try again.");
+      alert(
+        error.message.includes("already exists")
+          ? error.message
+          : "Failed to add content. Please try again."
+      );
     } finally {
       setLoading(false);
     }
@@ -212,19 +234,14 @@ const Services = () => {
 
   // Form field configurations
   const editFormFields = [
-    {
-      name: "title",
-      label: "Title",
-      type: "text",
-      placeholder: "Enter title"
-    },
+    { name: "title", label: "Title", type: "text", placeholder: "Enter title" },
     {
       name: "details",
       label: "Details",
       type: "textarea",
       placeholder: "Enter details",
-      rows: 4
-    }
+      rows: 4,
+    },
   ];
 
   const getAddFormFields = () => {
@@ -235,10 +252,10 @@ const Services = () => {
         type: "select",
         options: [
           { value: "", label: "-- Select Category --" },
-          ...services.map(s => ({ value: s.id, label: s.label })),
-          { value: "new", label: "+ New Category" }
-        ]
-      }
+          ...services.map((s) => ({ value: s.id, label: s.label })),
+          { value: "new", label: "+ New Category" },
+        ],
+      },
     ];
 
     if (addFormData.category === "new") {
@@ -247,9 +264,16 @@ const Services = () => {
         label: "New Category Name",
         type: "text",
         placeholder: "Enter New Category Name",
-        hint: `Document ID will be: ${addFormData.newCategoryName ? 
-          addFormData.newCategoryName.toLowerCase().replace(/[^a-z0-9\s-]/g, '').replace(/\s+/g, '-').replace(/-+/g, '-').replace(/^-|-$/g, '') 
-          : 'category-name'}`
+        hint: `Document ID will be: ${
+          addFormData.newCategoryName
+            ? addFormData.newCategoryName
+                .toLowerCase()
+                .replace(/[^a-z0-9\s-]/g, "")
+                .replace(/\s+/g, "-")
+                .replace(/-+/g, "-")
+                .replace(/^-|-$/g, "")
+            : "category-name"
+        }`,
       });
     }
 
@@ -258,14 +282,14 @@ const Services = () => {
         name: "title",
         label: "Service Title",
         type: "text",
-        placeholder: "Enter service title"
+        placeholder: "Enter service title",
       },
       {
         name: "details",
         label: "Service Details",
         type: "textarea",
         placeholder: "Enter service details",
-        rows: 4
+        rows: 4,
       }
     );
 
@@ -275,11 +299,11 @@ const Services = () => {
   const tableData = prepareTableData();
 
   return (
-    <div className="p-6">
+    <div className="p-4 sm:p-6">
       <LoadingSpinner isVisible={loading} />
 
       {/* Header */}
-      <div className="flex justify-between items-center">
+      <div className="flex flex-col md:flex-row md:justify-between md:items-center gap-3 mb-4">
         <Filter
           categories={services.map((s) => s.label)}
           selected={selectedCategory}
@@ -294,14 +318,7 @@ const Services = () => {
         </button>
       </div>
 
-      {/* Info message */}
-      <div className="mt-4 p-3 bg-blue-50 border border-blue-200 rounded-md">
-        <p className="text-sm text-blue-700">
-          <strong>Note:</strong> Categories will be automatically deleted when they have no remaining items.
-        </p>
-      </div>
-
-      {/* Data Table */}
+      {/* Data Table (auto responsive cards on mobile) */}
       <DataTable
         headers={tableHeaders}
         data={tableData}

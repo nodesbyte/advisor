@@ -5,9 +5,8 @@ import Header from "../components/admin/Header";
 
 export default function Adminlayout() {
   const location = useLocation();
-  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
-  // Hide layout for login
   const noLayoutRoutes = ["/admin/login"];
   const hideLayout = noLayoutRoutes.includes(location.pathname);
 
@@ -20,21 +19,29 @@ export default function Adminlayout() {
   }
 
   return (
-    <div className="flex h-screen">
+    <div className="flex h-screen overflow-x-hidden relative">
       {/* Sidebar */}
       <Sidebar isOpen={isSidebarOpen} setIsOpen={setIsSidebarOpen} />
 
-      {/* Dashboard Content */}
+      {/* Overlay for mobile */}
+      {isSidebarOpen && (
+        <div
+          className="fixed inset-0 bg-black/40 backdrop-blur-sm z-20 md:hidden"
+          onClick={() => setIsSidebarOpen(false)}
+        ></div>
+      )}
+
+      {/* Main Area */}
       <div
         className={`flex flex-col flex-1 transition-all duration-300 ${
-          isSidebarOpen ? "ml-64" : "ml-20"
+          isSidebarOpen ? "ml-0 md:ml-64" : "ml-0 md:ml-20"
         }`}
       >
-        {/* Header */}
-        <Header />
+        {/* Header (no hamburger in desktop) */}
+        <Header onMenuClick={() => setIsSidebarOpen(true)} />
 
-        {/* Main Content */}
-        <main className="flex-1 overflow-y-auto p-8">
+        {/* Content */}
+        <main className="flex-1 overflow-y-auto  ">
           <Outlet />
         </main>
       </div>

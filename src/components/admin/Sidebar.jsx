@@ -6,9 +6,9 @@ import {
   GraduationCap,
   Lightbulb,
   Users,
-  Calendar,
   Settings,
-  LogOut
+  LogOut,
+  X,
 } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import { logoutUser } from "../../services/auth";
@@ -22,7 +22,6 @@ export default function Sidebar({ isOpen, setIsOpen }) {
     { key: "training", to: "/admin/training", label: "Training", icon: <GraduationCap size={20} /> },
     { key: "insights", to: "/admin/insights", label: "Insights", icon: <Lightbulb size={20} /> },
     { key: "team", to: "/admin/team", label: "Team", icon: <Users size={20} /> },
-    // { key: "events", to: "/admin/events", label: "Events", icon: <Calendar size={20} /> },
     { key: "settings", to: "/admin/settings", label: "Settings", icon: <Settings size={20} /> },
   ];
 
@@ -37,9 +36,8 @@ export default function Sidebar({ isOpen, setIsOpen }) {
 
   return (
     <aside
-      className={`fixed top-0 left-0 h-screen bg-white border-r shadow-lg transition-all duration-300 ${
-        isOpen ? "w-64" : "w-20"
-      }`}
+      className={`fixed top-0 left-0 h-screen bg-white border-r shadow-lg z-30 transition-all duration-300 
+      ${isOpen ? "translate-x-0 w-64" : "-translate-x-full md:translate-x-0 md:w-20"}`}
     >
       {/* Header */}
       <div className="flex items-center justify-between p-4 border-b">
@@ -48,7 +46,7 @@ export default function Sidebar({ isOpen, setIsOpen }) {
           onClick={() => setIsOpen(!isOpen)}
           className="p-2 rounded-md hover:bg-gray-100"
         >
-          <Menu size={22} />
+          {isOpen ? <X size={22} /> : <Menu size={22} />}
         </button>
       </div>
 
@@ -67,14 +65,15 @@ export default function Sidebar({ isOpen, setIsOpen }) {
       </nav>
 
       {/* Logout */}
-     <button
+      <button
         onClick={handleLogout}
-        className="w-full flex items-center space-x-3 px-6 py-2  rounded-md hover:bg-gray-100 cursor-pointer"
+        className="w-full flex items-center space-x-3 px-6 py-2 rounded-md hover:bg-gray-100 cursor-pointer"
       >
-        <span className="text-gray-700"><LogOut size={20} /></span>
+        <span className="text-gray-700">
+          <LogOut size={20} />
+        </span>
         {isOpen && <span className="text-gray-800">Logout</span>}
       </button>
-
     </aside>
   );
 }

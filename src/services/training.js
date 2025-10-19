@@ -1,4 +1,4 @@
-// training.js
+// services/training.js
 import { 
   getFirestore,
   collection,
@@ -15,8 +15,19 @@ import { firebaseApp } from "./firebaseConfig";
 const firestore = getFirestore(firebaseApp);
 const trainingsCollection = collection(firestore, "trainings");
 
-// Helper: create docId from title (similar to services)
+// Helper: create docId from title (for Firestore document ID)
 const createDocId = (title) => {
+  return title
+    .toLowerCase()
+    .trim()
+    .replace(/[^a-z0-9\s-]/g, "") // remove special chars
+    .replace(/\s+/g, "-") // spaces → hyphens
+    .replace(/-+/g, "-") // multiple hyphens → single
+    .replace(/^-|-$/g, ""); // trim hyphens
+};
+
+// Helper: create slug from title (for frontend routing)
+const createSlug = (title) => {
   return title
     .toLowerCase()
     .trim()
@@ -62,11 +73,11 @@ export const updateTraining = async (id, data) => {
   });
 };
 
-// ✅ Add a new training (with createdAt)
+// ✅ Add a new training (with slug and createdAt)
 export const addTraining = async (data) => {
   if (!data.title) throw new Error("Training title is required");
 
-  const docId = createDocId(data.title); // ✅ doc ID from title
+  const docId = createDocId(data.title); // doc ID
   const docRef = doc(firestore, "trainings", docId);
 
   const existing = await getDoc(docRef);
@@ -74,9 +85,13 @@ export const addTraining = async (data) => {
     throw new Error(`Training "${data.title}" already exists`);
   }
 
+  // Generate slug automatically
+  const slug = createSlug(data.title);
+
   await setDoc(docRef, {
     ...data,
-    createdAt: serverTimestamp(), // ✅ add timestamp
+    slug,             // ✅ store slug for frontend
+    createdAt: serverTimestamp(), // timestamp
   });
 
   return docId;

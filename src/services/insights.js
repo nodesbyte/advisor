@@ -31,7 +31,7 @@ const normalizeCreatedAt = (data) => {
   return data.createdAt;
 };
 
-// ✅ Get all insights (sorted newest → oldest)
+// ✅ Get all insights
 export const getInsights = async () => {
   const snapshot = await getDocs(insightsCollection);
   return snapshot.docs
@@ -45,22 +45,22 @@ export const getInsights = async () => {
         label: d.label || "",
         slug: d.slug || createSlug(d.title || ""),
         image: d.image || "",
+        pdfs: d.pdfs || [], // ✅ include PDFs
         content: d.content || d.description || "",
         link: d.link || "",
         reference: d.reference || "",
-        createdAt: normalizeCreatedAt(d), // ✅ include timestamp
-        ...d,
+        createdAt: normalizeCreatedAt(d),
       };
     })
     .sort((a, b) => b.createdAt.seconds - a.createdAt.seconds);
 };
 
-// ✅ Add new insight (with createdAt)
+// ✅ Add new insight
 export const addInsight = async (data) => {
   const payload = {
     ...data,
     slug: data.slug || (data.title ? createSlug(data.title) : ""),
-    createdAt: serverTimestamp(), // ✅ timestamp
+    createdAt: serverTimestamp(),
   };
 
   Object.keys(payload).forEach(
@@ -71,12 +71,12 @@ export const addInsight = async (data) => {
   return ref.id;
 };
 
-// ✅ Update insight (with updatedAt)
+// ✅ Update insight
 export const updateInsight = async (id, data) => {
   const docRef = doc(firestore, "insights", id);
   const payload = {
     ...data,
-    updatedAt: serverTimestamp(), // ✅ timestamp for updates
+    updatedAt: serverTimestamp(),
   };
 
   if (payload.title && !payload.slug) payload.slug = createSlug(payload.title);
