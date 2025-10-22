@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from "react";
-
+import { Link } from "react-router-dom";
 export default function Contact() {
   const calendlyRef = useRef(null);
 
@@ -51,12 +51,13 @@ export default function Contact() {
               support@irthadvisors.com
             </a>
           </p>
-          <p className="text-lg mt-2">
+          <p className="text-lg mt-2 mb-6">
             📞{" "}
             <a href="tel:+1234567890" className="text-blue-600 hover:underline">
               +1 (786) 308-5244
             </a>
           </p>
+         
         </div>
 
         {/* Calendly Inline Widget Container */}

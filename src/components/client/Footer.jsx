@@ -59,7 +59,7 @@ export default function Footer() {
             {/* Partner Logos Section */}
             <div className="max-w-7xl mx-auto mt-12 pt-8 border-t border-gray-300 text-center">
                 <h4 className="text-md font-semibold text-gray-700 mb-4">Trusted Partners</h4>
-                <div className="flex flex-wrap justify-center gap-8">
+                <div className="flex flex-wrap justify-center gap-8 mb-8">
                     <a href="https://huzaimaikram.com/" target="_blank" rel="noopener noreferrer">
                         <img src={partner1} alt="Partner 1" className="h-10 sm:h-12 object-contain hover:opacity-80 transition" />
                     </a>
@@ -67,6 +67,13 @@ export default function Footer() {
                         <img src={partner2} alt="Partner 2" className="h-10 sm:h-12 object-contain hover:opacity-80 transition" />
                     </a>
                 </div>
+                      <Link
+              to="https://webmail.irthadvisors.com/Mondo/lang/sys/login.aspx" target="_blank"
+              className="px-4 py-3 align-items-center text-sm font-semibold text-white bg-[#814d35] rounded-full hover:bg-[#6e4b3a] transition"
+            >
+              Signin to webmail
+            </Link>
+                
             </div>
 
             {/* Bottom Line */}
